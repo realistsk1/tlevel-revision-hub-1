@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mock OSP Tasks – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item active"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Mock OSP Tasks</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">📝 Mock Tasks</div>
+        <h1>Mock OSP Practice Tasks</h1>
+        <p>Practice tasks matching the format of the real exam. Each task includes the brief, mark allocation, and Distinction-level guidance.</p>
+      </header>
+
+      <div class="info-box info fade-up-2">
+        <span class="info-icon">📌</span>
+        <div>The OSP (Occupational Specialism Project) is a real project you build over time, not a written exam. These mock tasks help you practise the type of evidence you need to produce. Focus on producing documentation and code that matches <strong>Band 3 (Distinction)</strong> descriptors.</div>
+      </div>
+
+      <!-- Task 1A -->
+      <div class="mock-task">
+        <div class="mock-task-header">
+          <div>
+            <h3>Task 1 Activity A — The Proposal</h3>
+            <p style="font-size:0.82rem;opacity:0.8;margin-top:4px;">Assessment criteria: Decomposing the problem (9) · Wider Issues (9) · Business Context (6)</p>
+          </div>
+          <div class="marks-badge">24 marks</div>
+        </div>
+        <div class="mock-task-body">
+          <h4 style="font-family:var(--font-display);margin-bottom:10px;">📋 Brief</h4>
+          <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">A local gym chain, <strong>FitLife</strong>, wants to develop a digital health and fitness platform. The platform should allow members to track workouts, calculate health metrics (BMI, BMR), receive personalised plans, and access video content. It must have free and premium membership tiers. You have been commissioned to develop this platform.</p>
+
+          <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:20px;"><strong>Produce a proposal that includes:</strong></p>
+
+          <div class="accordion">
+            <div class="accordion-item">
+              <div class="accordion-header"><span>📍 Part 1: Decompose the Problem (9 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p><strong>What to produce:</strong> Break down the complete problem into sub-problems. Identify all functionality the system needs. Decompose each area into inputs, processes, and outputs.</p>
+                <br/>
+                <p><strong>Distinction guidance:</strong> "Fully identifies the problems to be solved; effectively decomposes the problems identified; proposed solution would meet the full needs of the client and users; mitigate the potential risks; address relevant regulatory guidelines and legal requirements."</p>
+                <br/>
+                <p><strong>Suggested structure:</strong></p>
+                <ul style="padding-left:1.4em;font-size:0.88rem;line-height:1.8;">
+                  <li>User Management: registration, login, profile, membership tiers</li>
+                  <li>Workout Tracking: log entry, history, analytics, data visualisation</li>
+                  <li>Health Calculations: BMI, BMR, calorie tracking (inputs, formula, output, edge cases)</li>
+                  <li>Personalised Plans: algorithm logic, free vs premium gate</li>
+                  <li>Content: API integration for video content, social features</li>
+                  <li>Administration: user management, reporting</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header"><span>🌐 Part 2: Wider Issues &amp; Rationale (9 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p><strong>Distinction guidance:</strong> "Comprehensive lines of reasoning that fully justify how: the recommended solution meets client needs; potential risks will be mitigated; the proposed solution will address relevant regulatory guidelines and legal requirements."</p>
+                <br/>
+                <p><strong>You must cover:</strong></p>
+                <ul style="padding-left:1.4em;font-size:0.88rem;line-height:1.8;">
+                  <li><strong>Security risks:</strong> SQL injection, XSS, CSRF, broken authentication — each with specific technical mitigations</li>
+                  <li><strong>Privacy:</strong> GDPR, special category health data, consent, right to erasure</li>
+                  <li><strong>Physical harm:</strong> Incorrect workout instructions, inappropriate fitness levels — disclaimers, GP referral, age verification</li>
+                  <li><strong>Legal:</strong> Computer Misuse Act, Equality Act (accessibility), Consumer Rights Act</li>
+                  <li><strong>Emerging tech context:</strong> Wearable device integration, mobile-first, cloud hosting, REST APIs</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header"><span>🏢 Part 3: Business Context (6 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p><strong>Distinction guidance:</strong> "Comprehensive and perceptive definitions of: functional and non-functional requirements; key performance indicators; user acceptance criteria."</p>
+                <br/>
+                <p><strong>Produce all three with measurable, specific criteria. Avoid vague statements like "the app should be fast" — instead write "95th percentile page load ≤ 2.5s on 4G connection (Lighthouse ≥ 90)."</strong></p>
+                <br/>
+                <p>See the <a href="distinction-examples.html">Distinction Examples page</a> for a full Distinction-level answer to this section.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 1B -->
+      <div class="mock-task">
+        <div class="mock-task-header" style="background:linear-gradient(135deg,var(--accent-2) 0%,#1a3cc0 100%);">
+          <div>
+            <h3>Task 1 Activity B — The Design</h3>
+            <p style="font-size:0.82rem;opacity:0.8;margin-top:4px;">Interface Design (6) · Algorithm Design (10) · Data Requirements (6) · Test Strategy (6) · Communication (6)</p>
+          </div>
+          <div class="marks-badge">34 marks</div>
+        </div>
+        <div class="mock-task-body">
+          <div class="accordion">
+            <div class="accordion-item">
+              <div class="accordion-header"><span>🎨 Interface Design (6 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p>Produce wireframes for at least 3 key screens: Dashboard, Workout Log, BMI Calculator. For Distinction: "sophisticated and highly effective use of layout and white space, visual hierarchies, and common conventions."</p>
+                <br/>
+                <p><strong>Your wireframes must show:</strong> Navigation structure, content hierarchy, form elements with labels, responsive layout indicators, accessibility notes (tab order, ARIA regions), feedback message locations, error state designs.</p>
+                <br/>
+                <p>Annotate with HCI principles: Nielsen's heuristics, Fitts's Law (button sizing), progressive disclosure (don't show all options at once).</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header"><span>🧮 Algorithm Design (10 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p>Design algorithms for at least 3 key processes using flowcharts, pseudocode, or data flow diagrams. For Distinction: "precise logic; efficient structure and sequence; effective and consistent use of accepted conventions."</p>
+                <br/>
+                <p><strong>Suggested algorithms to design:</strong></p>
+                <ul style="padding-left:1.4em;font-size:0.88rem;line-height:1.8;">
+                  <li><strong>User Authentication:</strong> Input email/password → validate format → query DB → verify hash → regenerate session → redirect</li>
+                  <li><strong>BMI Calculation:</strong> Input height/weight → validate range → calculate BMI = weight / (height²) → classify → return result + advice</li>
+                  <li><strong>Personalised Plan Generator:</strong> Input fitness level + goals → check membership tier → filter workout database → apply progressive overload algorithm → output 7-day plan</li>
+                  <li><strong>Calorie Tracking:</strong> Input exercise type + duration → lookup MET value → calculate calories = MET × weight × hours → update daily total → check against target</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header"><span>🗄️ Data Requirements (6 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p>Produce an ERD with at minimum: users, workouts, workout_types, memberships tables. For Distinction: "fully appropriate variables, data structures, data types; thoroughly appropriate and consistent naming conventions; thoroughly effective error handling procedures."</p>
+                <br/>
+                <p>Include a data dictionary: for each attribute list the name, data type, size, constraints, and example value. Demonstrate normalisation (3NF) — no repeating groups, all non-key attributes depend only on the primary key.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header"><span>🧪 Test Strategy (6 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p>Design your test approach before you build. For Distinction: "thorough and detailed understanding of how components interrelate, the order in which components should be tested, the types of test that are required."</p>
+                <br/>
+                <p>Use a phased approach: Unit testing → Integration testing → System testing → UAT. Specify which types of test data (normal, erroneous, boundary) are needed for each component. Plan for regression testing. Reference black-box vs white-box testing explicitly.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 2 -->
+      <div class="mock-task">
+        <div class="mock-task-header" style="background:linear-gradient(135deg,var(--accent-3) 0%,#0e7e4a 100%);">
+          <div>
+            <h3>Task 2 — Developing the Solution</h3>
+            <p style="font-size:0.82rem;opacity:0.8;margin-top:4px;">Functionality (8) · Code Organisation (8) · User Experience (8) · Legal/Regulatory (6) · Testing (12) · Documentation (6)</p>
+          </div>
+          <div class="marks-badge">48 marks</div>
+        </div>
+        <div class="mock-task-body">
+          <div class="info-box warn" style="margin-bottom:16px;">
+            <span class="info-icon">⚠️</span>
+            <div><strong>Must use two different languages</strong> (e.g. PHP + SQL, Python + SQL). Band 2+ requires at least two languages. Band 4 (Distinction) requires "consistently efficient functional code in at least two different languages."</div>
+          </div>
+
+          <div class="card-grid">
+            <div class="card">
+              <div class="card-icon">⚡</div>
+              <h3>Functionality Checklist</h3>
+              <p>✅ Works in 2+ languages<br/>
+              ✅ No major errors persist<br/>
+              ✅ Efficient code (no unnecessary loops)<br/>
+              ✅ Precise logic throughout<br/>
+              ✅ Modular structure (functions/classes)<br/>
+              ✅ Server-side scripting with request/response</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">📁</div>
+              <h3>Code Organisation Checklist</h3>
+              <p>✅ Consistent naming conventions (camelCase JS, snake_case PHP)<br/>
+              ✅ Logical folder structure (MVC)<br/>
+              ✅ Informative comments on all non-obvious logic<br/>
+              ✅ No copy-pasted procedural code<br/>
+              ✅ Constants not magic numbers<br/>
+              ✅ PHPDoc / JSDoc on all functions</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">😊</div>
+              <h3>User Experience Checklist</h3>
+              <p>✅ Useful — outputs accurate<br/>
+              ✅ Usable — intuitive, clear navigation<br/>
+              ✅ Desirable — consistent visual design<br/>
+              ✅ Accessible — WCAG 2.1 AA<br/>
+              ✅ Credible — real, validated health data<br/>
+              ✅ Fully robust error handling</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task 3 -->
+      <div class="mock-task">
+        <div class="mock-task-header" style="background:linear-gradient(135deg,var(--band-distinction) 0%,#4c1d95 100%);">
+          <div>
+            <h3>Task 3 — Gathering &amp; Evaluating Feedback</h3>
+            <p style="font-size:0.82rem;opacity:0.8;margin-top:4px;">Feedback Materials (18) · Evaluation of Outcomes (9) · Content &amp; Assets (6)</p>
+          </div>
+          <div class="marks-badge">33 marks</div>
+        </div>
+        <div class="mock-task-body">
+          <div class="accordion">
+            <div class="accordion-item">
+              <div class="accordion-header"><span>📊 Part A: Gathering Feedback (18 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p>Produce materials to gather feedback from different user types. For Distinction: "materials would allow for the gathering of high-quality feedback; consistently provides the opportunity for evidence-informed further iteration."</p>
+                <br/>
+                <p><strong>Include:</strong></p>
+                <ul style="padding-left:1.4em;font-size:0.88rem;line-height:1.8;">
+                  <li>A <strong>screencast/demo video</strong> annotated for non-technical stakeholders</li>
+                  <li>A <strong>structured questionnaire</strong> for end users (gym members) with Likert scale and open questions targeting specific FRs and UX dimensions</li>
+                  <li>A <strong>technical code review checklist</strong> for programming professionals covering security, performance, maintainability</li>
+                  <li>An <strong>observation log template</strong> for watching test users complete key tasks (record: task completion rate, errors made, time on task)</li>
+                </ul>
+                <br/>
+                <p>Cover different audiences: gym users of varied ages/abilities, gym managers, and a programming professional peer reviewer.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header"><span>📈 Part B: Evaluating Feedback (15 marks)</span><span class="accordion-arrow">▼</span></div>
+              <div class="accordion-body">
+                <p>For Distinction: "thorough and detailed evaluation of how well the prototype meets: functional and non-functional requirements; KPIs; user acceptance criteria. Convincing and perceptive rationale for future iteration."</p>
+                <br/>
+                <p><strong>Structure your evaluation:</strong></p>
+                <ul style="padding-left:1.4em;font-size:0.88rem;line-height:1.8;">
+                  <li>For each FR: state whether it was met, with evidence from testing/feedback</li>
+                  <li>For each NFR: provide measured data (e.g. Lighthouse score, Axe test results)</li>
+                  <li>For each KPI: explain what you measured and what data you collected</li>
+                  <li>For each UAC: state pass/fail with evidence</li>
+                  <li>For future iterations: be specific — don't say "I would improve the UI", say "Based on user observation data showing 40% task failure rate on the BMI calculator, iteration 2 would restructure the input form to use a step-by-step wizard interface, reducing cognitive load."</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

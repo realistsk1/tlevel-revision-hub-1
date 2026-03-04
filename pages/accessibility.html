@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessibility – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item active"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Accessibility (WCAG)</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">♿ Accessibility</div>
+        <h1>WCAG 2.1 &amp; Accessibility</h1>
+        <p>The four POUR principles, key WCAG success criteria, ARIA roles, and how to write Distinction-level accessibility justifications.</p>
+      </header>
+
+      <!-- POUR Overview -->
+      <h2 class="section-title">🌊 The POUR Principles</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">👁️</div>
+          <h3>Perceivable</h3>
+          <p>Information and UI components must be presentable to users in ways they can perceive. It can't be invisible to all their senses.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)"><strong>Examples:</strong> alt text, captions, sufficient colour contrast, don't use colour alone</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⌨️</div>
+          <h3>Operable</h3>
+          <p>UI components and navigation must be operable. Users shouldn't need to perform interactions they can't perform.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)"><strong>Examples:</strong> keyboard navigation, no seizure-inducing content, skip navigation, sufficient time</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧠</div>
+          <h3>Understandable</h3>
+          <p>Information and the operation of the UI must be understandable. Users shouldn't encounter content or operations beyond their understanding.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)"><strong>Examples:</strong> language attribute, error identification, labels and instructions, consistent navigation</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔧</div>
+          <h3>Robust</h3>
+          <p>Content must be robust enough that it can be interpreted by a wide variety of user agents, including assistive technologies.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)"><strong>Examples:</strong> valid HTML, name/role/value for all components, status messages programmatically determinable</p>
+        </div>
+      </div>
+
+      <!-- Key Success Criteria -->
+      <h2 class="section-title">📋 Key WCAG 2.1 AA Success Criteria</h2>
+
+      <table>
+        <thead>
+          <tr><th>Criterion</th><th>Level</th><th>What You Must Do</th><th>Code Solution</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1.1.1 Non-text Content</strong></td>
+            <td><span class="tag tag-red">A</span></td>
+            <td>All images have text alternatives</td>
+            <td><code>alt="descriptive text"</code> or <code>alt=""</code> for decorative</td>
+          </tr>
+          <tr>
+            <td><strong>1.4.3 Contrast (Minimum)</strong></td>
+            <td><span class="tag tag-amber">AA</span></td>
+            <td>4.5:1 for normal text; 3:1 for large text (18pt+)</td>
+            <td>Verify with WebAIM Contrast Checker</td>
+          </tr>
+          <tr>
+            <td><strong>1.4.4 Resize Text</strong></td>
+            <td><span class="tag tag-amber">AA</span></td>
+            <td>Text can be resized up to 200% without loss of content</td>
+            <td>Use relative units: <code>rem</code>, <code>em</code>, <code>%</code> — never <code>px</code> for font sizes</td>
+          </tr>
+          <tr>
+            <td><strong>2.1.1 Keyboard</strong></td>
+            <td><span class="tag tag-red">A</span></td>
+            <td>All functionality available via keyboard</td>
+            <td>Tab order, visible focus, no keyboard traps</td>
+          </tr>
+          <tr>
+            <td><strong>2.4.3 Focus Order</strong></td>
+            <td><span class="tag tag-red">A</span></td>
+            <td>Focusable components receive focus in a logical order</td>
+            <td>Logical DOM order; use <code>tabindex="0"</code> for custom components</td>
+          </tr>
+          <tr>
+            <td><strong>2.4.6 Headings and Labels</strong></td>
+            <td><span class="tag tag-amber">AA</span></td>
+            <td>Headings and labels describe topic or purpose</td>
+            <td>Use <code>h1–h6</code> in logical hierarchy; use <code>&lt;label for="..."&gt;</code></td>
+          </tr>
+          <tr>
+            <td><strong>3.1.1 Language of Page</strong></td>
+            <td><span class="tag tag-red">A</span></td>
+            <td>Default human language can be programmatically determined</td>
+            <td><code>&lt;html lang="en"&gt;</code></td>
+          </tr>
+          <tr>
+            <td><strong>3.3.1 Error Identification</strong></td>
+            <td><span class="tag tag-red">A</span></td>
+            <td>Input errors automatically detected and described to user</td>
+            <td><code>role="alert"</code> + <code>aria-live="polite"</code> + descriptive message</td>
+          </tr>
+          <tr>
+            <td><strong>4.1.2 Name, Role, Value</strong></td>
+            <td><span class="tag tag-red">A</span></td>
+            <td>All UI components have a name, role, and value</td>
+            <td>Semantic HTML; ARIA where needed (<code>aria-label</code>, <code>role</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ARIA Code Examples -->
+      <h2 class="section-title">💻 ARIA Code Examples</h2>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">HTML — ARIA Best Practices</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;!-- ✅ Skip navigation link (keyboard users skip to content) --&gt;</span>
+<span class="var">&lt;a</span> <span class="att">href</span>=<span class="str">"#main-content"</span> <span class="att">class</span>=<span class="str">"skip-link"</span><span class="var">&gt;</span>Skip to main content<span class="var">&lt;/a&gt;</span>
+
+<span class="cmt">&lt;!-- ✅ Semantic landmark regions --&gt;</span>
+<span class="var">&lt;header</span> <span class="att">role</span>=<span class="str">"banner"</span><span class="var">&gt;</span>...<span class="var">&lt;/header&gt;</span>
+<span class="var">&lt;nav</span> <span class="att">aria-label</span>=<span class="str">"Main navigation"</span><span class="var">&gt;</span>...<span class="var">&lt;/nav&gt;</span>
+<span class="var">&lt;main</span> <span class="att">id</span>=<span class="str">"main-content"</span><span class="var">&gt;</span>...<span class="var">&lt;/main&gt;</span>
+<span class="var">&lt;footer</span> <span class="att">role</span>=<span class="str">"contentinfo"</span><span class="var">&gt;</span>...<span class="var">&lt;/footer&gt;</span>
+
+<span class="cmt">&lt;!-- ✅ Icon button with accessible name --&gt;</span>
+<span class="var">&lt;button</span> <span class="att">aria-label</span>=<span class="str">"Close dialog"</span><span class="var">&gt;</span>
+  <span class="var">&lt;svg</span> <span class="att">aria-hidden</span>=<span class="str">"true"</span><span class="var">&gt;</span>...<span class="var">&lt;/svg&gt;</span>
+<span class="var">&lt;/button&gt;</span>
+
+<span class="cmt">&lt;!-- ✅ Dynamic content update announcement --&gt;</span>
+<span class="var">&lt;div</span>
+  <span class="att">id</span>=<span class="str">"workout-status"</span>
+  <span class="att">role</span>=<span class="str">"status"</span>
+  <span class="att">aria-live</span>=<span class="str">"polite"</span>
+  <span class="att">aria-atomic</span>=<span class="str">"true"</span>
+<span class="var">&gt;&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- ✅ Expandable accordion —  ARIA states --&gt;</span>
+<span class="var">&lt;button</span>
+  <span class="att">aria-expanded</span>=<span class="str">"false"</span>
+  <span class="att">aria-controls</span>=<span class="str">"section-content"</span>
+<span class="var">&gt;</span>
+  Section Title
+<span class="var">&lt;/button&gt;</span>
+<span class="var">&lt;div</span> <span class="att">id</span>=<span class="str">"section-content"</span> <span class="att">hidden</span><span class="var">&gt;</span>
+  Content here
+<span class="var">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- ✅ Form error linking --&gt;</span>
+<span class="var">&lt;label</span> <span class="att">for</span>=<span class="str">"weight"</span><span class="var">&gt;</span>Weight (kg)<span class="var">&lt;/label&gt;</span>
+<span class="var">&lt;input</span>
+  <span class="att">type</span>=<span class="str">"number"</span>
+  <span class="att">id</span>=<span class="str">"weight"</span>
+  <span class="att">aria-required</span>=<span class="str">"true"</span>
+  <span class="att">aria-describedby</span>=<span class="str">"weight-error"</span>
+  <span class="att">aria-invalid</span>=<span class="str">"false"</span>
+<span class="var">/&gt;</span>
+<span class="var">&lt;span</span> <span class="att">id</span>=<span class="str">"weight-error"</span> <span class="att">role</span>=<span class="str">"alert"</span><span class="var">&gt;&lt;/span&gt;</span></pre>
+      </div>
+
+      <!-- Common Mistakes -->
+      <h2 class="section-title">❌ Common Accessibility Mistakes</h2>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Using <code>outline: none</code> on focused elements</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">
+            Removing focus outlines makes keyboard navigation impossible for sighted users. <strong>Never</strong> just remove it. Instead: <code>:focus-visible { outline: 3px solid #3d5af1; outline-offset: 3px; }</code> — this shows focus for keyboard users but not mouse clicks.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Using colour alone to indicate errors</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">
+            If an error field only turns red, 8% of men (colour-blind users) won't perceive it. Always combine: colour change + icon + text description. WCAG 1.4.1 "Use of Colour" prohibits colour as the sole visual means of conveying information.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Missing or generic alt text</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">
+            <strong>Bad:</strong> <code>alt="image"</code> or <code>alt="photo123.jpg"</code><br/>
+            <strong>Good:</strong> <code>alt="Bar chart showing weekly calories burned, with Sunday as the highest day at 450 calories"</code><br/>
+            <strong>Decorative:</strong> <code>alt=""</code> — screen readers skip it entirely, which is correct.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Using divs as buttons</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">
+            <code>&lt;div onclick="..."&gt;</code> has no role, no keyboard activation, no focus behaviour. Screen readers can't announce it as a button. Use <code>&lt;button&gt;</code> which has all of these by default. If you must use a div: add <code>role="button"</code>, <code>tabindex="0"</code>, and handle both click and keypress events.
+          </div>
+        </div>
+      </div>
+
+      <!-- Equality Act -->
+      <h2 class="section-title">⚖️ Legal Basis — Equality Act 2010</h2>
+      <div class="info-box warn">
+        <span class="info-icon">⚠️</span>
+        <div>The <strong>Equality Act 2010</strong> requires service providers (including websites) to make <em>reasonable adjustments</em> for people with disabilities. Knowingly building an inaccessible web application could constitute <strong>disability discrimination</strong>. WCAG 2.1 AA is the de facto standard used by courts and regulators to determine compliance.</div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

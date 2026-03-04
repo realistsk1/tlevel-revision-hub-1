@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Code – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item active"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+      <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Advanced Code Examples</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">⚙️ Advanced Code</div>
+        <h1>API Integration, Git &amp; OOP</h1>
+        <p>REST API calls with JSON parsing, Git version control workflows, and Object-Oriented PHP — all with exam-relevant commentary.</p>
+      </header>
+
+      <!-- API Integration -->
+      <h2 class="section-title">🌐 REST API Integration &amp; JSON Parsing</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:14px;">The mark scheme explicitly mentions "Web service APIs and parsing JSON/XML to service a complex client-server model" as evidence for Distinction functionality marks.</p>
+
+      <div class="info-box info">
+        <span class="info-icon">💡</span>
+        <div><strong>What is a REST API?</strong> A REST (Representational State Transfer) API is a web service that accepts HTTP requests and returns data — usually JSON. Your app sends a request to the API endpoint; the API returns structured data your code then parses and uses. Example: sending a GET request to <code>https://api.wger.de/api/v2/exercise/</code> returns a JSON list of exercises.</div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:20px 0 12px;">JavaScript — Fetch API (Client-Side)</h3>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">JavaScript — Fetch + JSON Parse</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">/**
+ * Fetches exercises from the wger fitness API and renders them.
+ * Demonstrates: async/await, fetch, JSON parsing, error handling.
+ */</span>
+<span class="kw">async function</span> <span class="fn">loadExercises</span>(<span class="var">category</span> = <span class="str">'cardio'</span>) {
+  <span class="kw">const</span> <span class="var">statusEl</span> = document.<span class="fn">getElementById</span>(<span class="str">'exercise-status'</span>);
+
+  <span class="kw">try</span> {
+    <span class="cmt">// Show loading state (good UX)</span>
+    <span class="var">statusEl</span>.textContent = <span class="str">'Loading exercises…'</span>;
+    <span class="var">statusEl</span>.setAttribute(<span class="str">'aria-busy'</span>, <span class="str">'true'</span>);
+
+    <span class="cmt">// Build URL with query parameters</span>
+    <span class="kw">const</span> <span class="var">url</span> = <span class="kw">new</span> <span class="fn">URL</span>(<span class="str">'https://api.wger.de/api/v2/exercise/'</span>);
+    <span class="var">url</span>.searchParams.<span class="fn">set</span>(<span class="str">'format'</span>, <span class="str">'json'</span>);
+    <span class="var">url</span>.searchParams.<span class="fn">set</span>(<span class="str">'language'</span>, <span class="str">'2'</span>); <span class="cmt">// English</span>
+    <span class="var">url</span>.searchParams.<span class="fn">set</span>(<span class="str">'category'</span>, <span class="var">category</span>);
+    <span class="var">url</span>.searchParams.<span class="fn">set</span>(<span class="str">'limit'</span>, <span class="str">'10'</span>);
+
+    <span class="cmt">// Make the HTTP GET request</span>
+    <span class="kw">const</span> <span class="var">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="var">url</span>, {
+      method: <span class="str">'GET'</span>,
+      headers: { <span class="str">'Accept'</span>: <span class="str">'application/json'</span> }
+    });
+
+    <span class="cmt">// Always check HTTP status — fetch doesn't throw on 4xx/5xx</span>
+    <span class="kw">if</span> (!<span class="var">response</span>.ok) {
+      <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="str">`API error: ${response.status} ${response.statusText}`</span>);
+    }
+
+    <span class="cmt">// Parse JSON response body</span>
+    <span class="kw">const</span> <span class="var">data</span> = <span class="kw">await</span> <span class="var">response</span>.<span class="fn">json</span>();
+
+    <span class="cmt">// data.results is an array of exercise objects</span>
+    <span class="kw">const</span> <span class="var">exercises</span> = <span class="var">data</span>.results ?? [];
+
+    <span class="kw">if</span> (<span class="var">exercises</span>.length === <span class="num">0</span>) {
+      <span class="var">statusEl</span>.textContent = <span class="str">'No exercises found for this category.'</span>;
+      <span class="kw">return</span>;
+    }
+
+    <span class="cmt">// Render exercises to the DOM</span>
+    <span class="kw">const</span> <span class="var">html</span> = <span class="var">exercises</span>.<span class="fn">map</span>(<span class="var">ex</span> =&gt; <span class="str">`
+      &lt;div class="exercise-card"&gt;
+        &lt;h3&gt;${sanitise(ex.name ?? 'Unnamed')}&lt;/h3&gt;
+        &lt;p&gt;${sanitise(ex.description ?? 'No description')}&lt;/p&gt;
+      &lt;/div&gt;
+    `</span>).<span class="fn">join</span>(<span class="str">''</span>);
+
+    document.<span class="fn">getElementById</span>(<span class="str">'exercise-list'</span>).innerHTML = <span class="var">html</span>;
+    <span class="var">statusEl</span>.textContent = <span class="str">''</span>;
+
+  } <span class="kw">catch</span> (<span class="var">err</span>) {
+    <span class="cmt">// Graceful degradation — show user-friendly message, log technical detail</span>
+    <span class="var">statusEl</span>.textContent = <span class="str">'Could not load exercises. Please try again later.'</span>;
+    console.<span class="fn">error</span>(<span class="str">'Exercise API error:'</span>, <span class="var">err</span>);
+  } <span class="kw">finally</span> {
+    <span class="var">statusEl</span>.setAttribute(<span class="str">'aria-busy'</span>, <span class="str">'false'</span>);
+  }
+}
+
+<span class="cmt">// Sanitise output to prevent XSS from API data</span>
+<span class="kw">function</span> <span class="fn">sanitise</span>(<span class="var">str</span>) {
+  <span class="kw">const</span> <span class="var">div</span> = document.<span class="fn">createElement</span>(<span class="str">'div'</span>);
+  <span class="var">div</span>.textContent = <span class="var">str</span>;
+  <span class="kw">return</span> <span class="var">div</span>.innerHTML;
+}</pre>
+      </div>
+
+      <div class="info-box warn">
+        <span class="info-icon">⚠️</span>
+        <div><strong>Security note:</strong> Always sanitise data from external APIs before inserting into the DOM — even "trusted" APIs could be compromised. Using <code>textContent</code> (not <code>innerHTML</code>) or the sanitise function above prevents XSS from API data.</div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:24px 0 12px;">PHP — Server-Side API Call (cURL)</h3>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">PHP — cURL API request + JSON decode</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;?php
+/**
+ * Calls an external REST API and returns decoded JSON data.
+ * Server-side API calls prevent exposing API keys to the client.
+ *
+ * @param  string $endpoint  Full API URL with query parameters
+ * @param  string $apiKey    Bearer token or API key (optional)
+ * @return array|null        Decoded JSON as associative array, or null on failure
+ */</span>
+<span class="kw">function</span> <span class="fn">callApi</span>(<span class="var">string</span> $<span class="var">endpoint</span>, <span class="var">string</span> $<span class="var">apiKey</span> = <span class="str">''</span>): ?<span class="var">array</span>
+{
+    $<span class="var">ch</span> = <span class="fn">curl_init</span>();
+
+    <span class="fn">curl_setopt_array</span>($<span class="var">ch</span>, [
+        CURLOPT_URL            =&gt; $<span class="var">endpoint</span>,
+        CURLOPT_RETURNTRANSFER =&gt; <span class="kw">true</span>,
+        CURLOPT_TIMEOUT        =&gt; <span class="num">10</span>,           <span class="cmt">// 10-second timeout</span>
+        CURLOPT_FOLLOWLOCATION =&gt; <span class="kw">true</span>,
+        CURLOPT_SSL_VERIFYPEER =&gt; <span class="kw">true</span>,         <span class="cmt">// Always verify SSL in production</span>
+        CURLOPT_HTTPHEADER     =&gt; <span class="fn">array_filter</span>([
+            <span class="str">'Accept: application/json'</span>,
+            $<span class="var">apiKey</span> ? <span class="str">"Authorization: Bearer $apiKey"</span> : <span class="kw">null</span>,
+        ]),
+    ]);
+
+    $<span class="var">response</span> = <span class="fn">curl_exec</span>($<span class="var">ch</span>);
+    $<span class="var">httpCode</span> = <span class="fn">curl_getinfo</span>($<span class="var">ch</span>, CURLINFO_HTTP_CODE);
+    $<span class="var">error</span>    = <span class="fn">curl_error</span>($<span class="var">ch</span>);
+    <span class="fn">curl_close</span>($<span class="var">ch</span>);
+
+    <span class="cmt">// Log errors server-side — never expose to client</span>
+    <span class="kw">if</span> ($<span class="var">error</span> || $<span class="var">httpCode</span> !== <span class="num">200</span>) {
+        <span class="fn">error_log</span>(<span class="str">"API call failed: $httpCode $error → $endpoint"</span>);
+        <span class="kw">return</span> <span class="kw">null</span>;
+    }
+
+    <span class="cmt">// json_decode with true = associative array (not stdObject)</span>
+    $<span class="var">data</span> = <span class="fn">json_decode</span>($<span class="var">response</span>, <span class="kw">true</span>);
+
+    <span class="cmt">// Check JSON was valid</span>
+    <span class="kw">if</span> (<span class="fn">json_last_error</span>() !== JSON_ERROR_NONE) {
+        <span class="fn">error_log</span>(<span class="str">'Invalid JSON from API: '</span> . <span class="fn">json_last_error_msg</span>());
+        <span class="kw">return</span> <span class="kw">null</span>;
+    }
+
+    <span class="kw">return</span> $<span class="var">data</span>;
+}
+
+<span class="cmt">// Usage example</span>
+$<span class="var">exercises</span> = <span class="fn">callApi</span>(<span class="str">'https://api.wger.de/api/v2/exercise/?format=json&language=2'</span>);
+<span class="kw">if</span> ($<span class="var">exercises</span> !== <span class="kw">null</span>) {
+    <span class="kw">foreach</span> ($<span class="var">exercises</span>[<span class="str">'results'</span>] <span class="kw">as</span> $<span class="var">exercise</span>) {
+        <span class="kw">echo</span> <span class="fn">htmlspecialchars</span>($<span class="var">exercise</span>[<span class="str">'name'</span>]) . <span class="str">'&lt;br&gt;'</span>;
+    }
+}
+<span class="var">?&gt;</span></pre>
+      </div>
+
+      <!-- GIT -->
+      <h2 class="section-title">🌿 Git Version Control Workflow</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:14px;">The mark scheme awards Distinction iterative development documentation for "fully effective use of versioning." Git is the industry standard — know the core workflow and commit conventions.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">Git — Feature Branch Workflow</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt"># ── Initial setup ──────────────────────────────────────────────</span>
+git init                          <span class="cmt"># Initialise repo in project folder</span>
+git remote add origin &lt;url&gt;       <span class="cmt"># Link to GitHub remote</span>
+
+<span class="cmt"># ── Everyday workflow ───────────────────────────────────────────</span>
+<span class="cmt"># 1. Always start from an up-to-date main branch</span>
+git checkout main
+git pull origin main
+
+<span class="cmt"># 2. Create a feature branch (named for the task)</span>
+git checkout -b feature/booking-conflict-check
+
+<span class="cmt"># 3. Make changes, then stage specific files</span>
+git add student_dashboard.php includes/auth.php
+
+<span class="cmt"># 4. Commit with a meaningful, conventional message</span>
+<span class="cmt">#    Format: &lt;type&gt;(&lt;scope&gt;): &lt;short description&gt;</span>
+git commit -m <span class="str">"feat(booking): add interval overlap conflict detection
+
+- Uses start_date &lt; end AND end_date &gt; start algorithm
+- Excludes cancelled/rejected bookings from conflict check
+- Returns user-friendly error on conflict
+Closes #12"</span>
+
+<span class="cmt"># 5. Push branch to remote</span>
+git push origin feature/booking-conflict-check
+
+<span class="cmt"># 6. Create Pull Request on GitHub for code review</span>
+<span class="cmt"># 7. After review and approval, merge to main</span>
+git checkout main
+git merge feature/booking-conflict-check --no-ff  <span class="cmt"># --no-ff preserves branch history</span>
+git push origin main
+
+<span class="cmt"># 8. Tag releases for version tracking</span>
+git tag -a v1.2.0 -m <span class="str">"Version 1.2.0 - Conflict detection + admin filter"</span>
+git push origin v1.2.0
+
+<span class="cmt"># ── Useful commands ─────────────────────────────────────────────</span>
+git log --oneline --graph          <span class="cmt"># Visual branch history</span>
+git diff HEAD~1                    <span class="cmt"># What changed in last commit</span>
+git stash                          <span class="cmt"># Temporarily save uncommitted changes</span>
+git revert HEAD                    <span class="cmt"># Safely undo last commit (keeps history)</span>
+git blame student_dashboard.php    <span class="cmt"># Who changed each line and when</span></pre>
+      </div>
+
+      <div class="info-box tip">
+        <span class="info-icon">💡</span>
+        <div><strong>Conventional Commits for Distinction documentation:</strong> Use prefixes: <code>feat:</code> new feature · <code>fix:</code> bug fix · <code>docs:</code> documentation · <code>refactor:</code> code change without new feature · <code>test:</code> adding tests · <code>security:</code> security fix. This makes your commit history scannable evidence of your iterative process.</div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:20px 0 12px;">Git — Key Commands Reference</h3>
+      <table>
+        <thead><tr><th>Command</th><th>What it does</th><th>When to use</th></tr></thead>
+        <tbody>
+          <tr><td><code>git init</code></td><td>Initialise a new repository</td><td>Start of every project</td></tr>
+          <tr><td><code>git clone &lt;url&gt;</code></td><td>Download a remote repository</td><td>Starting work on an existing project</td></tr>
+          <tr><td><code>git status</code></td><td>Show modified/staged/untracked files</td><td>Before every commit — always check this first</td></tr>
+          <tr><td><code>git add -p</code></td><td>Interactively stage chunks of changes</td><td>When you want precise control over what's committed</td></tr>
+          <tr><td><code>git commit --amend</code></td><td>Edit the last commit message/content</td><td>Fix a typo in a commit message (before pushing)</td></tr>
+          <tr><td><code>git revert &lt;hash&gt;</code></td><td>Create new commit undoing a specific commit</td><td>Safer than reset — preserves full history</td></tr>
+          <tr><td><code>git cherry-pick &lt;hash&gt;</code></td><td>Apply a specific commit to current branch</td><td>Port a fix from one branch to another</td></tr>
+          <tr><td><code>git bisect</code></td><td>Binary search through commits to find when a bug was introduced</td><td>Debugging regressions</td></tr>
+        </tbody>
+      </table>
+
+      <!-- OOP -->
+      <h2 class="section-title">🏗️ Object-Oriented Programming (OOP)</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:14px;">The mark scheme references "use of function, procedures and Classes" for Distinction functionality. OOP organises code into objects that combine data (properties) and behaviour (methods).</p>
+
+      <div class="card-grid card-grid-3" style="margin-bottom:20px;">
+        <div class="card"><div class="card-icon">📦</div><h3>Encapsulation</h3><p>Bundle data and the methods that operate on it together. Control access via <code>public</code>, <code>protected</code>, <code>private</code> — hide internal implementation details.</p></div>
+        <div class="card"><div class="card-icon">🧬</div><h3>Inheritance</h3><p>A child class inherits properties and methods from a parent class. Promotes code reuse — a <code>PremiumUser</code> class extends <code>User</code>, adding premium-only methods.</p></div>
+        <div class="card"><div class="card-icon">🎭</div><h3>Polymorphism</h3><p>Objects of different classes can be treated as the same type through interfaces or inheritance. A <code>sendNotification()</code> method works whether sending Email or SMS.</p></div>
+        <div class="card"><div class="card-icon">🔒</div><h3>Abstraction</h3><p>Hide complex implementation behind a simple interface. Users of a <code>Database</code> class call <code>query()</code> without knowing whether it uses MySQLi or PDO underneath.</p></div>
+        <div class="card"><div class="card-icon">🔌</div><h3>Interfaces</h3><p>Define a contract — a set of methods a class must implement. Ensures different classes can be used interchangeably if they implement the same interface.</p></div>
+        <div class="card"><div class="card-icon">🏭</div><h3>Dependency Injection</h3><p>Pass dependencies (like a DB connection) into a class rather than creating them inside. Makes classes easier to test and less tightly coupled.</p></div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">PHP — OOP Example: User &amp; Booking Classes</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;?php
+/**
+ * Represents a user of the Resource Hub system.
+ * Demonstrates: encapsulation, constructor, typed properties, methods.
+ */</span>
+<span class="kw">class</span> <span class="fn">User</span>
+{
+    <span class="cmt">// Private properties — encapsulation: only accessible via methods</span>
+    <span class="kw">private</span> <span class="var">int</span>    $<span class="var">id</span>;
+    <span class="kw">private</span> <span class="var">string</span> $<span class="var">username</span>;
+    <span class="kw">private</span> <span class="var">string</span> $<span class="var">passwordHash</span>;
+    <span class="kw">private</span> <span class="var">string</span> $<span class="var">role</span>;
+
+    <span class="cmt">/**
+     * Constructor — dependency injection (PDO passed in, not created here).
+     */</span>
+    <span class="kw">public function</span> <span class="fn">__construct</span>(
+        <span class="var">int</span>    $<span class="var">id</span>,
+        <span class="var">string</span> $<span class="var">username</span>,
+        <span class="var">string</span> $<span class="var">passwordHash</span>,
+        <span class="var">string</span> $<span class="var">role</span> = <span class="str">'student'</span>
+    ) {
+        $<span class="kw">this</span>-&gt;<span class="var">id</span>           = $<span class="var">id</span>;
+        $<span class="kw">this</span>-&gt;<span class="var">username</span>     = $<span class="var">username</span>;
+        $<span class="kw">this</span>-&gt;<span class="var">passwordHash</span> = $<span class="var">passwordHash</span>;
+        $<span class="kw">this</span>-&gt;<span class="var">role</span>         = $<span class="var">role</span>;
+    }
+
+    <span class="cmt">// Getters — controlled read access (no setter for passwordHash — immutable)</span>
+    <span class="kw">public function</span> <span class="fn">getId</span>(): <span class="var">int</span>    { <span class="kw">return</span> $<span class="kw">this</span>-&gt;<span class="var">id</span>; }
+    <span class="kw">public function</span> <span class="fn">getUsername</span>(): <span class="var">string</span> { <span class="kw">return</span> $<span class="kw">this</span>-&gt;<span class="var">username</span>; }
+    <span class="kw">public function</span> <span class="fn">isAdmin</span>(): <span class="var">bool</span> { <span class="kw">return</span> $<span class="kw">this</span>-&gt;<span class="var">role</span> === <span class="str">'admin'</span>; }
+
+    <span class="kw">public function</span> <span class="fn">verifyPassword</span>(<span class="var">string</span> $<span class="var">plain</span>): <span class="var">bool</span>
+    {
+        <span class="kw">return</span> <span class="fn">password_verify</span>($<span class="var">plain</span>, $<span class="kw">this</span>-&gt;<span class="var">passwordHash</span>);
+    }
+}
+
+<span class="cmt">/**
+ * PremiumUser extends User — inheritance + polymorphism.
+ * Inherits all User methods and adds premium-specific behaviour.
+ */</span>
+<span class="kw">class</span> <span class="fn">PremiumUser</span> <span class="kw">extends</span> <span class="fn">User</span>
+{
+    <span class="kw">private</span> <span class="var">?\DateTime</span> $<span class="var">subscriptionExpiry</span>;
+
+    <span class="kw">public function</span> <span class="fn">__construct</span>(<span class="var">int</span> $<span class="var">id</span>, <span class="var">string</span> $<span class="var">username</span>, <span class="var">string</span> $<span class="var">hash</span>, ?\<span class="fn">DateTime</span> $<span class="var">expiry</span>)
+    {
+        <span class="kw">parent</span>::<span class="fn">__construct</span>($<span class="var">id</span>, $<span class="var">username</span>, $<span class="var">hash</span>, <span class="str">'premium'</span>);
+        $<span class="kw">this</span>-&gt;<span class="var">subscriptionExpiry</span> = $<span class="var">expiry</span>;
+    }
+
+    <span class="kw">public function</span> <span class="fn">hasActiveSubscription</span>(): <span class="var">bool</span>
+    {
+        <span class="kw">if</span> ($<span class="kw">this</span>-&gt;<span class="var">subscriptionExpiry</span> === <span class="kw">null</span>) <span class="kw">return false</span>;
+        <span class="kw">return</span> $<span class="kw">this</span>-&gt;<span class="var">subscriptionExpiry</span> &gt; <span class="kw">new</span> \<span class="fn">DateTime</span>();
+    }
+
+    <span class="cmt">// Override parent method — polymorphism</span>
+    <span class="kw">public function</span> <span class="fn">getPersonalisedPlan</span>(): <span class="var">array</span>
+    {
+        <span class="kw">if</span> (!$<span class="kw">this</span>-&gt;<span class="fn">hasActiveSubscription</span>()) {
+            <span class="kw">throw new</span> \<span class="fn">RuntimeException</span>(<span class="str">'Premium subscription required'</span>);
+        }
+        <span class="kmt">// AI-generated plan logic here...</span>
+        <span class="kw">return</span> [];
+    }
+}
+<span class="var">?&gt;</span></pre>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header"><span>What is the difference between a class and an object?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">A <strong>class</strong> is the blueprint/template — it defines properties and methods. An <strong>object</strong> is an instance of that class — a specific entity created from the blueprint. E.g. <code>User</code> is the class; <code>$john = new User(1, 'jsmith', $hash)</code> creates a specific user object. You can create many objects from one class.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Why use OOP instead of procedural code?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">OOP makes large codebases more <strong>maintainable</strong> (encapsulation hides complexity), more <strong>reusable</strong> (inheritance prevents duplication), and more <strong>testable</strong> (objects can be isolated and tested independently). The mark scheme awards Distinction for code "easily maintainable by a third party" — OOP directly supports this.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>What is a static method?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">A static method belongs to the class itself, not to instances. Called as <code>User::create($data)</code> rather than <code>$user->create($data)</code>. Useful for factory methods (creating instances), singleton patterns (ensuring only one DB connection), and utility functions that don't need instance data.</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item active"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Documentation</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">📄 Documentation</div>
+        <h1>Technical Documentation Templates</h1>
+        <p>Design documents, test plans, risk assessments, ERD explanations, user stories, and wireframe annotations with Distinction-level examples.</p>
+      </header>
+
+      <!-- Development Lifecycle -->
+      <h2 class="section-title">🔄 Iterative Development Lifecycle</h2>
+      <div class="info-box info">
+        <span class="info-icon">💡</span>
+        <div>The mark scheme requires evidence of an <strong>iterative development process</strong> with four phases: Requirements → Design → Implementation &amp; Test → Review. Distinction requires "thorough and detailed recording of notable changes" and "convincing and perceptive rationales."</div>
+      </div>
+
+      <div class="card-grid">
+        <div class="card"><div class="card-icon">📋</div><h3>1. Requirements</h3><p>Gather and analyse requirements. Produce completed functional/non-functional requirements spec. Document user stories. Create initial risk assessment.</p></div>
+        <div class="card"><div class="card-icon">✏️</div><h3>2. Design</h3><p>Design the solution: wireframes, ERD, algorithm pseudocode/flowcharts, test strategy. Design documentation must be audience-appropriate (technical and non-technical).</p></div>
+        <div class="card"><div class="card-icon">⚙️</div><h3>3. Implement &amp; Test</h3><p>Code, integrate, and test. Apply test strategy. Log all defects. Execute regression testing after each fix. Version control every change.</p></div>
+        <div class="card"><div class="card-icon">🔍</div><h3>4. Review</h3><p>Evaluate software against requirements. Gather user feedback. Propose changes. Decide: discard this iteration or use as basis for next. Document rationale for all decisions.</p></div>
+      </div>
+
+      <!-- User Stories -->
+      <h2 class="section-title">📖 User Stories</h2>
+      <p style="color:var(--text-secondary);margin-bottom:12px;font-size:0.9rem;">Format: <em>"As a [type of user], I want to [goal] so that [reason]."</em> Each story should have acceptance criteria.</p>
+
+      <table>
+        <thead>
+          <tr><th>ID</th><th>User Story</th><th>Acceptance Criteria</th><th>Priority</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>US-01</strong></td>
+            <td>As a <strong>new user</strong>, I want to register with my email and password so that I can create a personal account.</td>
+            <td>Password meets complexity rules; confirmation email sent; duplicate emails rejected; account stored securely</td>
+            <td><span class="tag tag-red">Must Have</span></td>
+          </tr>
+          <tr>
+            <td><strong>US-02</strong></td>
+            <td>As a <strong>registered user</strong>, I want to log a workout entry so that I can track my fitness progress over time.</td>
+            <td>Can select activity type, enter duration and calories; entry appears in history; data persists between sessions</td>
+            <td><span class="tag tag-red">Must Have</span></td>
+          </tr>
+          <tr>
+            <td><strong>US-03</strong></td>
+            <td>As a <strong>gym user</strong>, I want to calculate my BMI so that I can understand my current health status.</td>
+            <td>Accepts height (cm) and weight (kg); returns BMI value and WHO classification; flags extreme values with advice</td>
+            <td><span class="tag tag-amber">Should Have</span></td>
+          </tr>
+          <tr>
+            <td><strong>US-04</strong></td>
+            <td>As a <strong>premium member</strong>, I want to receive a personalised workout plan so that my training is suited to my fitness level.</td>
+            <td>Plan generated based on fitness level, goals, and history; different plan for free vs premium; premium gate visible to free users</td>
+            <td><span class="tag tag-amber">Should Have</span></td>
+          </tr>
+          <tr>
+            <td><strong>US-05</strong></td>
+            <td>As a <strong>user with a visual impairment</strong>, I want to navigate the app using a screen reader so that I can access all features.</td>
+            <td>All images have alt text; ARIA landmarks present; tab order logical; WCAG 2.1 AA automated test passes</td>
+            <td><span class="tag tag-red">Must Have</span></td>
+          </tr>
+          <tr>
+            <td><strong>US-06</strong></td>
+            <td>As a <strong>site administrator</strong>, I want to view all users and their membership levels so that I can manage subscriptions.</td>
+            <td>Admin role required; list paginated; search by email; cannot access user health data without consent</td>
+            <td><span class="tag">Could Have</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ERD -->
+      <h2 class="section-title">🗄️ Entity Relationship Diagram (ERD)</h2>
+      <p style="color:var(--text-secondary);margin-bottom:12px;font-size:0.9rem;">An ERD shows the entities in your system and the relationships between them. For Distinction, your data design must use appropriate variables, data structures, data types, and naming conventions consistently.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">ERD — Health Fitness App (Text Representation)</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">┌─────────────┐         ┌──────────────────┐        ┌─────────────────┐
+│    USERS    │         │    WORKOUTS      │        │  WORKOUT_TYPES  │
+├─────────────┤         ├──────────────────┤        ├─────────────────┤
+│ user_id PK  │◄──1:M──►│ workout_id PK    │──M:1──►│ type_id PK      │
+│ email       │         │ user_id FK       │        │ type_name       │
+│ password_  │         │ type_id FK       │        │ met_value       │
+│  hash       │         │ duration_mins    │        │ description     │
+│ first_name  │         │ calories_burned  │        └─────────────────┘
+│ last_name   │         │ notes            │
+│ membership  │         │ logged_at        │        ┌─────────────────┐
+│ dob         │         └──────────────────┘        │   USER_GOALS    │
+│ height_cm   │                                     ├─────────────────┤
+│ weight_kg   │◄──1:1──────────────────────────────►│ goal_id PK      │
+│ created_at  │                                     │ user_id FK      │
+└─────────────┘                                     │ goal_type       │
+      │                                             │ target_value    │
+      │ 1:M                                         │ target_date     │
+      ▼                                             └─────────────────┘
+┌─────────────────┐
+│   MEMBERSHIPS   │
+├─────────────────┤
+│ membership_id PK│
+│ user_id FK      │
+│ level           │
+│ start_date      │
+│ end_date        │
+│ payment_ref     │
+└─────────────────┘
+
+RELATIONSHIPS:
+  USERS ──── 1:M ──── WORKOUTS     (One user has many workouts)
+  WORKOUT_TYPES ── M:1 ── WORKOUTS (Many workouts of one type)
+  USERS ──── 1:1 ──── USER_GOALS  (One user has one goal set)
+  USERS ──── 1:M ──── MEMBERSHIPS (History of membership changes)</span></pre>
+      </div>
+
+      <!-- Test Plan -->
+      <h2 class="section-title">🧪 Test Plan Template</h2>
+      <div class="info-box tip">
+        <span class="info-icon">💡</span>
+        <div>Distinction test logs must include: test ID, requirement reference, description, test type, data used, expected result, actual result, pass/fail, defect ID (if fail), and retest result after fix.</div>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Test ID</th><th>Req</th><th>Description</th><th>Type</th><th>Data</th><th>Expected</th><th>Actual</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>T-01</strong></td>
+            <td>FR-01</td>
+            <td>Register with valid email and strong password</td>
+            <td><span class="tag">Normal</span></td>
+            <td>user@test.com / Pass123!</td>
+            <td>Account created, redirect to dashboard</td>
+            <td>As expected</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><strong>T-02</strong></td>
+            <td>FR-01</td>
+            <td>Register with duplicate email</td>
+            <td><span class="tag tag-amber">Erroneous</span></td>
+            <td>existing@test.com</td>
+            <td>Error: "Email already registered"</td>
+            <td>As expected</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><strong>T-03</strong></td>
+            <td>FR-01</td>
+            <td>Password at minimum length boundary</td>
+            <td><span class="tag tag-purple">Boundary</span></td>
+            <td>Pass123! (exactly 8 chars)</td>
+            <td>Registration succeeds</td>
+            <td>As expected</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><strong>T-04</strong></td>
+            <td>FR-01</td>
+            <td>Password below minimum</td>
+            <td><span class="tag tag-purple">Boundary</span></td>
+            <td>Pass12! (7 chars)</td>
+            <td>Error: "Password too short"</td>
+            <td>As expected</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><strong>T-05</strong></td>
+            <td>FR-01</td>
+            <td>SQL injection attempt via email field</td>
+            <td><span class="tag tag-red">Erroneous</span></td>
+            <td>' OR '1'='1'; --</td>
+            <td>Input rejected; no SQL executed</td>
+            <td>As expected (prepared stmt)</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><strong>T-06</strong></td>
+            <td>FR-04</td>
+            <td>BMI calculation — normal weight boundary</td>
+            <td><span class="tag tag-purple">Boundary</span></td>
+            <td>H: 170cm, W: 53.6kg (BMI=18.5)</td>
+            <td>BMI=18.5, class="Normal"</td>
+            <td>BMI=18.4 — classification error</td>
+            <td><span class="tag tag-red">✗ Fail — DEF-01</span></td>
+          </tr>
+          <tr>
+            <td><strong>T-06R</strong></td>
+            <td>FR-04</td>
+            <td>REGRESSION: BMI after fix DEF-01</td>
+            <td><span class="tag tag-purple">Boundary</span></td>
+            <td>H: 170cm, W: 53.6kg</td>
+            <td>BMI=18.5, class="Normal"</td>
+            <td>BMI=18.5, class="Normal"</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Risk Assessment -->
+      <h2 class="section-title">⚠️ Risk Assessment</h2>
+      <p style="color:var(--text-secondary);margin-bottom:12px;font-size:0.9rem;">For Distinction: identify risks across security, data protection, physical harm context, and development risks. Each should have a likelihood, impact, and concrete mitigation.</p>
+
+      <table>
+        <thead>
+          <tr><th>Risk ID</th><th>Risk</th><th>Category</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>R-01</td>
+            <td>SQL injection attack exposes user health data</td>
+            <td><span class="tag tag-red">Security</span></td>
+            <td>High</td>
+            <td>Critical</td>
+            <td>PDO prepared statements on all queries; input validation; principle of least privilege DB user</td>
+          </tr>
+          <tr>
+            <td>R-02</td>
+            <td>Data breach exposing password hashes</td>
+            <td><span class="tag tag-red">Security</span></td>
+            <td>Medium</td>
+            <td>High</td>
+            <td>bcrypt hashing (cost 12); no plain-text storage; GDPR breach notification procedure within 72 hours</td>
+          </tr>
+          <tr>
+            <td>R-03</td>
+            <td>Incorrect calorie/BMI calculations cause users to follow harmful dietary advice</td>
+            <td><span class="tag tag-amber">Physical Harm</span></td>
+            <td>Medium</td>
+            <td>High</td>
+            <td>Unit-tested calculations against WHO reference values; prominent disclaimer "consult GP before starting plan"; out-of-range value warnings</td>
+          </tr>
+          <tr>
+            <td>R-04</td>
+            <td>User selects training intensity beyond their capability causing injury</td>
+            <td><span class="tag tag-amber">Physical Harm</span></td>
+            <td>Medium</td>
+            <td>Medium</td>
+            <td>Fitness level assessment before plan generation; beginner/intermediate/advanced classification; GP consultation disclaimer; T&amp;Cs requiring user responsibility</td>
+          </tr>
+          <tr>
+            <td>R-05</td>
+            <td>GDPR non-compliance (processing special category health data without consent)</td>
+            <td><span class="tag tag-purple">Legal</span></td>
+            <td>High if unchecked</td>
+            <td>Critical (fines up to 4% global turnover)</td>
+            <td>Explicit consent checkbox at registration; Privacy Notice; consent withdrawal mechanism; Data Protection Officer designated</td>
+          </tr>
+          <tr>
+            <td>R-06</td>
+            <td>Third-party API downtime breaks workout video feature</td>
+            <td><span class="tag">Technical</span></td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Graceful degradation — show text descriptions if API unavailable; cache previously loaded videos; user notification</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Wireframe Explanation -->
+      <h2 class="section-title">🖼️ Wireframe Annotation Guide</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📐</div>
+          <h3>What to Annotate</h3>
+          <p>Good wireframes annotate: element purpose, interaction behaviour, responsive behaviour, accessibility notes (e.g. "tab order: 1→2→3"), content strategy (placeholder text vs real content).</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3>Design Heuristics (Mark Scheme)</h3>
+          <p>The mark scheme references Nielsen's heuristics. For Distinction: minimise memory load, use consistent conventions, provide appropriate feedback, aesthetic and minimalist design, good use of space and visual hierarchy.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Responsive Considerations</h3>
+          <p>Show at least two breakpoints. Mobile-first approach: design for smallest screen first, then add complexity for larger screens. Annotate which elements collapse/stack on mobile.</p>
+        </div>
+      </div>
+
+      <div class="info-box warn">
+        <span class="info-icon">⚠️</span>
+        <div><strong>Mark scheme note:</strong> "The design should not contain information which is irrelevant or rarely needed. Every piece of extra information competes with the relevant information and diminishes their relative visibility." This directly references Nielsen's Aesthetic &amp; Minimalist Design heuristic — your UI annotations should justify why elements are included, not just describe them.</div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Project Analysis – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    /* ── Annotation system ── */
+    .annotated-block { position: relative; margin: 16px 0; }
+
+    .annotation-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .annotation {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      border-left: 3px solid transparent;
+    }
+    .annotation .ann-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    .annotation .ann-body { flex: 1; }
+    .annotation .ann-body strong { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 2px; }
+    .annotation .ann-body p { color: var(--text-secondary); margin: 0; }
+
+    .ann-distinction { background: #f3f0ff; border-left-color: #8b5cf6; }
+    .ann-distinction .ann-body strong { color: #6d28d9; }
+    [data-theme="dark"] .ann-distinction { background: #2e1065; }
+
+    .ann-good { background: #f0fdf4; border-left-color: #22c55e; }
+    .ann-good .ann-body strong { color: #166534; }
+    [data-theme="dark"] .ann-good { background: #052e16; }
+
+    .ann-improve { background: #fffbeb; border-left-color: #f59e0b; }
+    .ann-improve .ann-body strong { color: #92400e; }
+    [data-theme="dark"] .ann-improve { background: #1c1400; }
+
+    .ann-info { background: #eff6ff; border-left-color: #3b82f6; }
+    .ann-info .ann-body strong { color: #1e40af; }
+    [data-theme="dark"] .ann-info { background: #0a1628; }
+
+    /* ── Score card ── */
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 20px 0 32px;
+    }
+    .score-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .score-ring {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 10px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+    .ring-d { background: #ede9fe; color: #6d28d9; }
+    .ring-m { background: #dbeafe; color: #1e40af; }
+    .ring-p { background: #fef3c7; color: #92400e; }
+    [data-theme="dark"] .ring-d { background: #2e1065; color: #c4b5fd; }
+    [data-theme="dark"] .ring-m { background: #1e3a5f; color: #93c5fd; }
+    [data-theme="dark"] .ring-p { background: #451a03; color: #fcd34d; }
+
+    .score-label { font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .score-sub { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ── File tab nav ── */
+    .file-tabs {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+      scrollbar-width: none;
+    }
+    .file-tabs::-webkit-scrollbar { display: none; }
+
+    .file-tab {
+      padding: 9px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .file-tab:hover { color: var(--text-primary); }
+    .file-tab.active { color: var(--accent-2); border-bottom-color: var(--accent-2); }
+
+    .file-panel { display: none; }
+    .file-panel.active { display: block; }
+
+    /* ── Mark map ── */
+    .mark-map {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .mark-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .mark-item .mark-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .dot-d { background: #8b5cf6; }
+    .dot-g { background: #22c55e; }
+    .dot-w { background: #f59e0b; }
+    .mark-item p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5; margin: 0; }
+    .mark-item strong { color: var(--text-primary); font-size: 0.84rem; }
+
+    @media (max-width: 600px) {
+      .mark-map { grid-template-columns: 1fr; }
+      .score-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search">
+      <input type="search" id="sidebarSearch" placeholder="Search topics…" aria-label="Search navigation" />
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+      <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item active"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Main -->
+  <main class="main-content" role="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Your Project Analysis</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <!-- Header -->
+      <header class="page-header fade-up">
+        <div class="eyebrow">🔬 Your Project — Resource Hub</div>
+        <h1>Code Analysis &amp; Mark Scheme Mapping</h1>
+        <p>Your actual code from <strong>resource_hub</strong> analysed against every OSP assessment criteria. Each file is annotated with what earns marks, what to improve, and exactly what to say in your evaluation.</p>
+      </header>
+
+      <!-- Overall Score Summary -->
+      <div class="info-box info fade-up-2">
+        <span class="info-icon">🎯</span>
+        <div><strong>Overall verdict:</strong> Your project is <strong>strong Merit / borderline Distinction</strong>. Security implementation is genuinely Distinction-level. The main gap to full Distinction is: accessibility implementation, code comments, and iterative documentation. These are fixable — read on.</div>
+      </div>
+
+      <h2 class="section-title">📊 Assessment Criteria Scores — Estimated</h2>
+      <p style="color:var(--text-secondary);font-size:0.88rem;margin-bottom:16px;">Based on mark scheme Band descriptors. P = Pass · M = Merit · D = Distinction</p>
+
+      <div class="score-grid">
+        <div class="score-card">
+          <div class="score-ring ring-d">D</div>
+          <div class="score-label">Functionality</div>
+          <div class="score-sub">PHP + SQL ✓ · Efficient logic ✓ · Two languages ✓</div>
+        </div>
+        <div class="score-card">
+          <div class="score-ring ring-d">D</div>
+          <div class="score-label">Security</div>
+          <div class="score-sub">CSRF · bcrypt · Prepared stmts · Rate limiting ✓</div>
+        </div>
+        <div class="score-card">
+          <div class="score-ring ring-m">M</div>
+          <div class="score-label">Code Organisation</div>
+          <div class="score-sub">Good naming · Needs more PHPDoc comments</div>
+        </div>
+        <div class="score-card">
+          <div class="score-ring ring-m">M</div>
+          <div class="score-label">User Experience</div>
+          <div class="score-sub">Good UX · Missing ARIA · No skip link</div>
+        </div>
+        <div class="score-card">
+          <div class="score-ring ring-m">M</div>
+          <div class="score-label">Legal &amp; Regulatory</div>
+          <div class="score-sub">Security good · WCAG gaps · No GDPR notice</div>
+        </div>
+        <div class="score-card">
+          <div class="score-ring ring-p">P+</div>
+          <div class="score-label">Accessibility</div>
+          <div class="score-sub">Labels present · Missing ARIA landmarks/roles</div>
+        </div>
+      </div>
+
+      <!-- File-by-file analysis tabs -->
+      <h2 class="section-title">📁 File-by-File Analysis</h2>
+
+      <div class="file-tabs" role="tablist">
+        <button class="file-tab active" role="tab" onclick="showFile('index', this)">index.php (Login)</button>
+        <button class="file-tab" role="tab" onclick="showFile('register', this)">registration_page.php</button>
+        <button class="file-tab" role="tab" onclick="showFile('student', this)">student_dashboard.php</button>
+        <button class="file-tab" role="tab" onclick="showFile('admin', this)">admin_dashboard.php</button>
+        <button class="file-tab" role="tab" onclick="showFile('auth', this)">auth.php</button>
+        <button class="file-tab" role="tab" onclick="showFile('db', this)">db_connect.php</button>
+        <button class="file-tab" role="tab" onclick="showFile('css', this)">style.css</button>
+        <button class="file-tab" role="tab" onclick="showFile('js', this)">script.js</button>
+      </div>
+
+      <!-- ══════════════ INDEX.PHP ══════════════ -->
+      <div class="file-panel active" id="panel-index">
+        <div class="info-box tip" style="margin-bottom:20px;">
+          <span class="info-icon">⭐</span>
+          <div><strong>index.php — Login Page:</strong> This is one of your strongest files. It implements rate limiting, CSRF, session regeneration, and secure password verification — all correctly. This alone could anchor your security justification for Distinction.</div>
+        </div>
+
+        <!-- Rate Limiting -->
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:12px;">🔒 Rate Limiting — Distinction Level</h3>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">index.php — Lines 15–36</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="kw">const</span> MAX_LOGIN_ATTEMPTS = <span class="num">5</span>;
+<span class="kw">const</span> LOCKOUT_SECONDS    = <span class="num">900</span>; <span class="cmt">// 15 minutes</span>
+
+<span class="kw">function</span> <span class="fn">isLockedOut</span>(): <span class="var">bool</span>
+{
+    <span class="kw">if</span> (!isset($_SESSION[<span class="str">'login_attempts'</span>])) <span class="kw">return</span> <span class="kw">false</span>;
+    <span class="kw">if</span> ($_SESSION[<span class="str">'login_attempts'</span>] >= MAX_LOGIN_ATTEMPTS) {
+        <span class="kw">return</span> (time() - ($_SESSION[<span class="str">'last_attempt_time'</span>] ?? <span class="num">0</span>)) < LOCKOUT_SECONDS;
+    }
+    <span class="kw">return</span> <span class="kw">false</span>;
+}
+
+<span class="kw">function</span> <span class="fn">recordFailedAttempt</span>(): <span class="var">void</span>
+{
+    $_SESSION[<span class="str">'login_attempts'</span>]    = ($_SESSION[<span class="str">'login_attempts'</span>] ?? <span class="num">0</span>) + <span class="num">1</span>;
+    $_SESSION[<span class="str">'last_attempt_time'</span>] = <span class="fn">time</span>();
+}
+
+<span class="kw">function</span> <span class="fn">resetAttempts</span>(): <span class="var">void</span>
+{
+    <span class="fn">unset</span>($_SESSION[<span class="str">'login_attempts'</span>], $_SESSION[<span class="str">'last_attempt_time'</span>]);
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Rate Limiting (Availability / CIA Triad)</strong>
+              <p>This implements brute-force protection — 5 attempts then 15-minute lockout. The mark scheme awards Distinction for "thoroughly effective application of procedures and security controls to ensure <em>confidentiality, integrity and availability</em>." Rate limiting directly protects availability (prevents DoS-style brute force) and confidentiality (stops password guessing). Use of PHP constants for magic numbers (<code>MAX_LOGIN_ATTEMPTS</code>) also earns code organisation marks.</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Vague error message</strong>
+              <p><code>'Invalid username or password.'</code> is intentionally ambiguous — this is the correct security practice. Specific messages like "that username doesn't exist" enable user enumeration attacks. Mention this explicitly in your evaluation: "I used a generic error message to prevent user enumeration."</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Add PHPDoc comment to each function</strong>
+              <p>For Distinction code organisation marks you need "informative commenting." Add: <code>/** Checks if the current session has exceeded the maximum login attempts. @return bool True if locked out. */</code> above each function. Currently zero docblock comments exist in this file.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — <code>secure => false</code> on cookie params</strong>
+              <p>Line 2: <code>'secure' => false</code> — this means cookies can be sent over HTTP (unencrypted). In production this MUST be <code>true</code> to enforce HTTPS-only transmission. Add a comment: <code>// TODO: set 'secure' => true in production (requires HTTPS)</code> — this shows awareness and prevents it being marked as a security flaw.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Session regeneration -->
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin:24px 0 12px;">🔄 Session Regeneration — Distinction Level</h3>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">index.php — Successful login block</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="kw">if</span> (<span class="fn">password_verify</span>($<span class="var">password</span>, $<span class="var">row</span>[<span class="str">'password_hash'</span>])) {
+    <span class="fn">session_regenerate_id</span>(<span class="kw">true</span>); <span class="cmt">// Prevents session fixation attack</span>
+    $_SESSION[<span class="str">'user_id'</span>]  = (<span class="var">int</span>)$<span class="var">row</span>[<span class="str">'user_id'</span>];
+    $_SESSION[<span class="str">'username'</span>] = $<span class="var">row</span>[<span class="str">'username'</span>];
+    $_SESSION[<span class="str">'role'</span>]     = $<span class="var">row</span>[<span class="str">'role'</span>];
+    <span class="fn">resetAttempts</span>();
+    <span class="fn">header</span>(<span class="str">'Location: '</span> . ($<span class="var">row</span>[<span class="str">'role'</span>] === <span class="str">'admin'</span>
+        ? <span class="str">'admin_dashboard.php'</span>
+        : <span class="str">'student_dashboard.php'</span>));
+    <span class="kw">exit</span>();
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Session Fixation Prevention</strong>
+              <p><code>session_regenerate_id(true)</code> after successful login is the correct defence against session fixation attacks (where an attacker sets a known session ID before login). The <code>true</code> parameter deletes the old session file. This is an advanced security feature most Pass-level projects miss entirely — highlight it in your proposal and evaluation.</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Role-based redirect</strong>
+              <p>Redirecting to different dashboards based on <code>$_SESSION['role']</code> demonstrates Role-Based Access Control (RBAC). Mention this in your security justification: "I implemented RBAC to ensure users can only access resources appropriate to their role, preventing horizontal privilege escalation."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ REGISTRATION ══════════════ -->
+      <div class="file-panel" id="panel-register">
+        <div class="info-box tip" style="margin-bottom:20px;">
+          <span class="info-icon">⭐</span>
+          <div><strong>registration_page.php — Strong server-side validation + bcrypt hashing.</strong> Password strength indicator in JS is a great UX addition. Key gaps: no PHPDoc comments, no GDPR consent checkbox.</div>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:12px;">🔒 bcrypt Password Hashing — Distinction Level</h3>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">registration_page.php — Insert block</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="cmt">// Insert new student</span>
+<span class="kw">if</span> (empty($<span class="var">errors</span>)) {
+    $<span class="var">hash</span> = <span class="fn">password_hash</span>($<span class="var">password</span>, PASSWORD_BCRYPT);
+    $<span class="var">stmt</span> = $<span class="var">conn</span>-><span class="fn">prepare</span>(
+        <span class="str">"INSERT INTO users (username, password_hash, role) VALUES (?, ?, 'student')"</span>
+    );
+    $<span class="var">stmt</span>-><span class="fn">bind_param</span>(<span class="str">'ss'</span>, $<span class="var">form</span>[<span class="str">'username'</span>], $<span class="var">hash</span>);
+    ...
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — bcrypt + prepared statement together</strong>
+              <p>You've combined two critical security controls in one INSERT: (1) <code>password_hash()</code> with bcrypt never stores plain text, and (2) a prepared statement prevents SQL injection during registration. The role is hardcoded to <code>'student'</code> — this is correct defensive programming; new registrations can never self-assign admin rights.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Add bcrypt cost factor</strong>
+              <p>Consider using <code>password_hash($password, PASSWORD_BCRYPT, ['cost' => 12])</code>. Cost 12 ≈ 250ms per hash — slow enough to deter brute force but fast enough for users. Mentioning the cost factor in your evaluation shows deeper security knowledge and could push you to Distinction on the security criteria.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Missing GDPR consent checkbox</strong>
+              <p>Your app stores user data. Under GDPR, you need a lawful basis for processing — typically consent for a voluntary service. Add a checkbox: <code>&lt;input type="checkbox" name="gdpr_consent" required /&gt; I agree to the Privacy Policy and consent to my data being stored.</code> Without this, a marker checking for "legal and ethical considerations" cannot award full marks.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin:24px 0 12px;">✅ Server-Side Validation — What You're Doing Right</h3>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">registration_page.php — Validation</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="cmt">// Validate username</span>
+<span class="kw">if</span> ($<span class="var">form</span>[<span class="str">'username'</span>] === <span class="str">''</span>) {
+    $<span class="var">errors</span>[<span class="str">'username'</span>] = <span class="str">'Username is required.'</span>;
+} <span class="kw">elseif</span> (<span class="fn">strlen</span>($<span class="var">form</span>[<span class="str">'username'</span>]) < <span class="num">3</span> || <span class="fn">strlen</span>($<span class="var">form</span>[<span class="str">'username'</span>]) > <span class="num">50</span>) {
+    $<span class="var">errors</span>[<span class="str">'username'</span>] = <span class="str">'Username must be between 3 and 50 characters.'</span>;
+} <span class="kw">elseif</span> (!<span class="fn">preg_match</span>(<span class="str">'/^[a-zA-Z0-9_-]+$/'</span>, $<span class="var">form</span>[<span class="str">'username'</span>])) {
+    $<span class="var">errors</span>[<span class="str">'username'</span>] = <span class="str">'Only letters, numbers, underscores and hyphens allowed.'</span>;
+}
+
+<span class="cmt">// Validate password complexity</span>
+<span class="kw">if</span> (<span class="fn">strlen</span>($<span class="var">password</span>) < <span class="num">8</span>) {
+    $<span class="var">errors</span>[<span class="str">'password'</span>] = <span class="str">'Password must be at least 8 characters.'</span>;
+} <span class="kw">elseif</span> (!<span class="fn">preg_match</span>(<span class="str">'/[A-Z]/'</span>, $<span class="var">password</span>) || !<span class="fn">preg_match</span>(<span class="str">'/[0-9]/'</span>, $<span class="var">password</span>)) {
+    $<span class="var">errors</span>[<span class="str">'password'</span>] = <span class="str">'Must include at least one uppercase letter and one number.'</span>;
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Layered, specific server-side validation</strong>
+              <p>This demonstrates defensive programming with multiple validation layers: presence check → length bounds → regex whitelist → uniqueness check. Using an associative <code>$errors</code> array (keyed by field name) is sophisticated — it enables field-level error display rather than a generic list. The regex <code>/^[a-zA-Z0-9_-]+$/</code> whitelists characters rather than blacklisting bad ones (a stronger security approach).</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Input preserved on error</strong>
+              <p><code>value="&lt;?= htmlspecialchars($form['username']) ?&gt;"</code> repopulates the username field after a failed submission. This is excellent UX — users don't lose their input on validation errors. Combined with <code>htmlspecialchars()</code>, it also prevents XSS through reflected values.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ STUDENT DASHBOARD ══════════════ -->
+      <div class="file-panel" id="panel-student">
+        <div class="info-box tip" style="margin-bottom:20px;">
+          <span class="info-icon">⭐</span>
+          <div><strong>student_dashboard.php — Excellent booking logic.</strong> Conflict checking, date validation, CSRF on cancel forms — all strong. The match() expressions and arrow functions show modern PHP 8 knowledge.</div>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:12px;">🗄️ Conflict-Checking Query — Distinction Level</h3>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">student_dashboard.php — Booking conflict check</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="cmt">// Conflict check: overlapping booking detection</span>
+$<span class="var">stmt</span> = $<span class="var">conn</span>-><span class="fn">prepare</span>(
+    <span class="str">"SELECT booking_id FROM bookings
+     WHERE resource_id = ?
+       AND status NOT IN ('cancelled','rejected')
+       AND start_date < ? AND end_date > ?"</span>
+);
+$<span class="var">stmt</span>-><span class="fn">bind_param</span>(<span class="str">'iss'</span>, $<span class="var">resource_id</span>, $<span class="var">end_date</span>, $<span class="var">start_date</span>);
+$<span class="var">stmt</span>-><span class="fn">execute</span>();
+$<span class="var">stmt</span>-><span class="fn">store_result</span>();
+<span class="kw">if</span> ($<span class="var">stmt</span>->num_rows > <span class="num">0</span>) {
+    $<span class="var">booking_errors</span>[] = <span class="str">'This resource is already booked during that time.'</span>;
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Correct interval overlap algorithm</strong>
+              <p>The condition <code>start_date &lt; end AND end_date &gt; start</code> is the mathematically correct test for two time intervals overlapping (Allen's interval algebra). Many students get this wrong. It also correctly excludes cancelled/rejected bookings from the conflict check. This demonstrates "precise logic and efficient structure" — the Distinction descriptor for algorithm design.</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Server-side date validation</strong>
+              <p><code>strtotime($date) &lt; strtotime('today')</code> prevents past-date bookings server-side. Client-side <code>min="<?= date('Y-m-d') ?>"</code> on the date input provides UX feedback, but the server-side check is what actually secures it (client validation can be bypassed). Having both shows awareness of the distinction.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Add ARIA to booking modal</strong>
+              <p>The booking modal is missing: <code>role="dialog"</code>, <code>aria-modal="true"</code>, <code>aria-labelledby="modalTitle"</code>. Without these, screen readers cannot identify it as a dialog or announce it correctly. For the WCAG/Legal criteria this is a notable gap. See the accessibility page for the correct pattern.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Explain <code>match()</code> in your documentation</strong>
+              <p>The <code>resourceEmoji()</code> and <code>thumbClass()</code> functions use PHP 8's <code>match()</code> expression — this is more concise and type-safe than <code>switch</code>. Mention this in your code organisation section: "I used PHP 8 match expressions for cleaner, more readable type mapping, replacing verbose switch statements."</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin:24px 0 12px;">🔐 CSRF on Cancel — Good Practice</h3>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">student_dashboard.php — Cancel booking form</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="var">&lt;form</span> <span class="att">method</span>=<span class="str">"POST"</span> <span class="att">onsubmit</span>=<span class="str">"return confirm('Cancel this booking?')"</span><span class="var">&gt;</span>
+  <span class="var">&lt;input</span> <span class="att">type</span>=<span class="str">"hidden"</span> <span class="att">name</span>=<span class="str">"csrf_token"</span>
+         <span class="att">value</span>=<span class="str">"&lt;?= htmlspecialchars($_SESSION['csrf_token']) ?&gt;"</span><span class="var">&gt;</span>
+  <span class="var">&lt;input</span> <span class="att">type</span>=<span class="str">"hidden"</span> <span class="att">name</span>=<span class="str">"action"</span> <span class="att">value</span>=<span class="str">"cancel"</span><span class="var">&gt;</span>
+  <span class="var">&lt;input</span> <span class="att">type</span>=<span class="str">"hidden"</span> <span class="att">name</span>=<span class="str">"booking_id"</span> <span class="att">value</span>=<span class="str">"&lt;?= $b['booking_id'] ?&gt;"</span><span class="var">&gt;</span>
+  <span class="var">&lt;button</span> <span class="att">type</span>=<span class="str">"submit"</span> <span class="att">class</span>=<span class="str">"btn-sm btn-reject"</span><span class="var">&gt;</span>Cancel<span class="var">&lt;/button&gt;</span>
+<span class="var">&lt;/form&gt;</span></pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — CSRF protection on every state-changing action</strong>
+              <p>Every POST form — booking, cancellation, admin actions — includes a CSRF token. This is consistent application of a security control, which is exactly what the Distinction descriptor means by "thoroughly effective application of procedures." Mention that you applied CSRF protection to ALL state-changing operations, not just the login form.</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Ownership check on cancel</strong>
+              <p><code>WHERE booking_id = ? AND user_id = ?</code> in the cancel query means a student can only cancel their own bookings — even if they manipulate the <code>booking_id</code> POST parameter. This is server-side authorisation (not just authentication), preventing horizontal privilege escalation (OWASP A01).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ ADMIN DASHBOARD ══════════════ -->
+      <div class="file-panel" id="panel-admin">
+        <div class="info-box tip" style="margin-bottom:20px;">
+          <span class="info-icon">⭐</span>
+          <div><strong>admin_dashboard.php — Your most complex file.</strong> Role-based access control, flash messages, whitelist validation for status values, self-protection (can't demote yourself). All these show sophisticated defensive programming.</div>
+        </div>
+
+        <h3 style="font-family:var(--font-display);font-size:1.1rem;margin-bottom:12px;">🛡️ Whitelist Validation — Distinction Level</h3>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">admin_dashboard.php — Status whitelist</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="cmt">// Whitelist validation — only permit known-good values</span>
+$<span class="var">status</span> = <span class="fn">in_array</span>($_POST[<span class="str">'res_status'</span>] ?? <span class="str">''</span>, [<span class="str">'available'</span>,<span class="str">'maintenance'</span>,<span class="str">'unavailable'</span>])
+            ? $_POST[<span class="str">'res_status'</span>] : <span class="str">'available'</span>;
+
+<span class="cmt">// Same pattern for user roles</span>
+$<span class="var">role</span> = <span class="fn">in_array</span>($_POST[<span class="str">'new_role'</span>] ?? <span class="str">''</span>, [<span class="str">'student'</span>,<span class="str">'admin'</span>])
+            ? $_POST[<span class="str">'new_role'</span>] : <span class="str">'student'</span>;
+
+<span class="cmt">// Self-protection: admin cannot demote themselves</span>
+<span class="kw">if</span> ($<span class="var">uid</span> !== (<span class="var">int</span>)$_SESSION[<span class="str">'user_id'</span>]) {
+    <span class="cmt">// Only then update the role</span>
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Whitelist (allowlist) validation</strong>
+              <p>Using <code>in_array()</code> against an explicit allowlist is security best practice — it ensures only permitted values can reach the database, regardless of what an attacker submits. This is stronger than blacklisting (which has to enumerate all bad values). Mention in your evaluation: "I used allowlist validation for enumerated fields rather than blacklisting, as blacklists can never enumerate all possible attack strings."</p>
+            </div>
+          </div>
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Self-protection prevents privilege lock-out</strong>
+              <p><code>if ($uid !== (int)$_SESSION['user_id'])</code> prevents an admin accidentally (or maliciously via CSRF) demoting their own account. Casting to <code>(int)</code> also prevents type juggling attacks. This is a subtle but important piece of defensive programming — highlight it explicitly in your evaluation.</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Flash message pattern</strong>
+              <p>Using <code>$_SESSION['flash']</code> with a Post-Redirect-Get (PRG) pattern is correct — it prevents duplicate form submissions on page refresh. The flash message is stored in session, page redirects, then the message is shown and immediately unset. This is a professional web development pattern worth mentioning in your documentation.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Direct SQL queries for stats (minor)</strong>
+              <p>Lines like <code>$conn->query("SELECT COUNT(*) FROM bookings")->fetch_row()[0]</code> without prepared statements are technically safe here (no user input), but for consistency and Distinction code organisation, it's better to always use prepared statements or at minimum a helper method. A marker may flag this inconsistency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ AUTH.PHP ══════════════ -->
+      <div class="file-panel" id="panel-auth">
+        <div class="info-box tip" style="margin-bottom:20px;">
+          <span class="info-icon">⭐</span>
+          <div><strong>auth.php — Clean, well-structured helper library.</strong> <code>hash_equals()</code> for constant-time CSRF comparison is an advanced security detail. Backwards-compatible aliases show good maintainability thinking.</div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">auth.php — CSRF verification with constant-time comparison</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="kw">function</span> <span class="fn">verifyCsrf</span>(): <span class="var">bool</span>
+{
+    <span class="kw">return</span> isset($_POST[<span class="str">'csrf_token'</span>], $_SESSION[<span class="str">'csrf_token'</span>])
+        && <span class="fn">hash_equals</span>($_SESSION[<span class="str">'csrf_token'</span>], $_POST[<span class="str">'csrf_token'</span>]);
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — <code>hash_equals()</code> prevents timing attacks</strong>
+              <p>Using <code>===</code> for string comparison leaks information through execution time — an attacker can measure microsecond differences to determine how many characters matched. <code>hash_equals()</code> uses constant-time comparison regardless of where strings differ. This is an advanced security detail that goes beyond what most T-Level students implement. <strong>Mention this explicitly in your evaluation</strong> — it demonstrates deep security knowledge that the mark scheme calls "perceptive."</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Centralised auth helpers</strong>
+              <p>Centralising <code>requireLogin()</code>, <code>requireRole()</code>, <code>verifyCsrf()</code> in one file means changing the auth logic only needs to happen in one place — this is the DRY (Don't Repeat Yourself) principle and improves maintainability. Mention this in your code organisation section.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Add PHPDoc to all functions</strong>
+              <p>None of the functions in auth.php have docblock comments. For Distinction: add <code>/** Requires the current session to have the specified role. Redirects on failure. @param string $role Required role ('admin' or 'student'). @return void */</code> before each function. This is a quick fix with meaningful mark impact.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ DB_CONNECT ══════════════ -->
+      <div class="file-panel" id="panel-db">
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">db_connect.php</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="fn">mysqli_report</span>(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+<span class="kw">try</span> {
+    $<span class="var">conn</span> = <span class="kw">new</span> <span class="fn">mysqli</span>(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+    $<span class="var">conn</span>-><span class="fn">set_charset</span>(DB_CHARSET);          <span class="cmt">// ✅ utf8mb4 — full Unicode support</span>
+    $<span class="var">conn</span>-><span class="fn">query</span>(<span class="str">"SET time_zone = '+00:00'"</span>); <span class="cmt">// ✅ UTC — consistent timestamps</span>
+} <span class="kw">catch</span> (mysqli_sql_exception $<span class="var">e</span>) {
+    <span class="fn">error_log</span>(<span class="str">'Database connection failed: '</span> . $<span class="var">e</span>-><span class="fn">getMessage</span>());
+    <span class="kw">die</span>(<span class="str">'Database connection error. Please try again later.'</span>);
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Three security/best-practice details in 5 lines</strong>
+              <p>(1) <code>mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT)</code> — throws exceptions on all DB errors, enabling proper error handling. (2) <code>set_charset('utf8mb4')</code> — prevents charset-based SQL injection attacks and supports all Unicode characters. (3) <code>SET time_zone = '+00:00'</code> — stores all timestamps in UTC, preventing timezone-based logic bugs. (4) <code>error_log()</code> + user-friendly die message — logs errors server-side without exposing database details to the user (prevents information leakage). Mention all four in your evaluation.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Move credentials to .env or config outside webroot</strong>
+              <p><code>DB_PASS = ''</code> is fine for local dev, but in production credentials should be in environment variables or a <code>config.php</code> outside the webroot, loaded via <code>$_ENV</code>. Add a comment: <code>// Production: load from environment variables, never commit credentials to version control</code>. This demonstrates awareness even if you can't implement it in your college environment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ CSS ══════════════ -->
+      <div class="file-panel" id="panel-css">
+        <div class="info-box tip" style="margin-bottom:20px;">
+          <span class="info-icon">⭐</span>
+          <div><strong>style.css — Professional and well-structured.</strong> CSS custom properties, semantic class naming, consistent design system. The main accessibility gap is the focus state handling.</div>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — CSS custom properties design system</strong>
+              <p>Your <code>:root</code> block defines a complete design system with colour tokens (<code>--figma-purple</code>, <code>--color-green</code>), typography scale (<code>--text-xs</code> through <code>--text-3xl</code>), and shared UI constants (<code>--radius-figma</code>, <code>--shadow-figma</code>). This demonstrates "consistent naming conventions" and "logical organisation" — Distinction descriptors for code organisation. Mention this in your design documentation.</p>
+            </div>
+          </div>
+          <div class="annotation ann-good">
+            <span class="ann-icon">✅</span>
+            <div class="ann-body">
+              <strong>Good — Status pill system</strong>
+              <p>The <code>.pill-pending</code>, <code>.pill-approved</code>, <code>.pill-rejected</code> pattern maps CSS classes directly to database status values. This makes adding new statuses trivial — just add a class. It's a scalable, maintainable pattern that shows thoughtful design.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Critical Improvement — No <code>:focus-visible</code> style</strong>
+              <p>Your CSS does not define a custom focus ring. This means keyboard users see the browser default (often invisible in some browsers). Add: <code>:focus-visible { outline: 3px solid var(--figma-purple); outline-offset: 3px; border-radius: 4px; }</code> — this is required for WCAG 2.1 SC 2.4.7 (Focus Visible). This single change improves your accessibility score significantly.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — No skip navigation link</strong>
+              <p>WCAG 2.4.1 (Bypass Blocks) requires a mechanism to skip repeated navigation. Add as the first element in body: <code>&lt;a href="#main-content" class="skip-link"&gt;Skip to main content&lt;/a&gt;</code> styled to be visually hidden until focused. This is quick to implement and earns WCAG compliance points.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════ SCRIPT.JS ══════════════ -->
+      <div class="file-panel" id="panel-js">
+        <div class="info-box tip" style="margin-bottom:20px;">
+          <span class="info-icon">⭐</span>
+          <div><strong>script.js — Clean, minimal, purposeful.</strong> The password strength indicator is a genuine UX addition. The DOMContentLoaded pattern shows good JavaScript practice.</div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+            <span class="code-lang">script.js — Password strength checker</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><span class="kw">function</span> <span class="fn">checkStrength</span>(<span class="var">pw</span>) {
+  <span class="kw">let</span> <span class="var">score</span> = <span class="num">0</span>;
+  <span class="kw">if</span> (<span class="var">pw</span>.length >= <span class="num">8</span>)          <span class="var">score</span>++;
+  <span class="kw">if</span> (<span class="str">/[A-Z]/</span>.<span class="fn">test</span>(<span class="var">pw</span>))          <span class="var">score</span>++;
+  <span class="kw">if</span> (<span class="str">/[0-9]/</span>.<span class="fn">test</span>(<span class="var">pw</span>))          <span class="var">score</span>++;
+  <span class="kw">if</span> (<span class="str">/[^A-Za-z0-9]/</span>.<span class="fn">test</span>(<span class="var">pw</span>))   <span class="var">score</span>++;
+  <span class="cmt">// Colours match score index</span>
+  <span class="kw">const</span> <span class="var">colours</span> = [<span class="str">'#ef4444'</span>, <span class="str">'#f59e0b'</span>, <span class="str">'#84cc16'</span>, <span class="str">'#16a34a'</span>];
+  <span class="kw">const</span> <span class="var">labels</span>  = [<span class="str">'Weak'</span>, <span class="str">'Fair'</span>, <span class="str">'Good'</span>, <span class="str">'Strong'</span>];
+  ...
+}</pre>
+        </div>
+
+        <div class="annotation-rail">
+          <div class="annotation ann-distinction">
+            <span class="ann-icon">⭐</span>
+            <div class="ann-body">
+              <strong>Distinction — Client + server validation working together</strong>
+              <p>Your JS provides real-time password strength feedback while PHP server-side validates the same rules. This is the correct architecture: client-side for UX (immediate feedback), server-side for security (client-side can be bypassed). Mention this duality explicitly: "Client-side validation improves UX by giving immediate feedback, but server-side validation in registration_page.php is the security enforcement layer."</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Colour alone for strength indicator</strong>
+              <p>The strength indicator uses only colour (red/amber/green). WCAG 1.4.1 says colour must not be the sole means of conveying information. Add the text label (<code>strength-label</code> already exists in your code — good!) and ensure it's always visible when the password field has content. The text <em>is</em> there — just make sure it's consistently shown and has sufficient contrast.</p>
+            </div>
+          </div>
+          <div class="annotation ann-improve">
+            <span class="ann-icon">⚠️</span>
+            <div class="ann-body">
+              <strong>Improvement — Add JSDoc comments</strong>
+              <p>Add JSDoc above each function: <code>/** Toggles password field visibility between text and password type. @param {string} id - The ID of the input element. @returns {void} */</code>. Quick to do and earns code organisation marks. Also add a file-level comment: <code>/** Resource Hub - Client-side scripts. Handles: password toggle, strength checker, DOM event binding. */</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What to Say in Your Evaluation -->
+      <h2 class="section-title" style="margin-top: 40px;">💬 What to Say in Your Evaluation (Task 3B)</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Copy these justification patterns and adapt them with your own evidence. The mark scheme awards Distinction for "convincing and perceptive rationale."</p>
+
+      <div class="mark-map">
+        <div class="mark-item">
+          <div class="mark-dot dot-d"></div>
+          <div><strong>On rate limiting:</strong><p>"I implemented session-based rate limiting (5 attempts / 15-minute lockout) in index.php to prevent brute-force attacks. This protects the Availability and Confidentiality pillars of the CIA triad — an attacker cannot repeatedly guess passwords, and legitimate users' accounts cannot be locked indefinitely."</p></div>
+        </div>
+        <div class="mark-item">
+          <div class="mark-dot dot-d"></div>
+          <div><strong>On hash_equals():</strong><p>"I used PHP's hash_equals() for CSRF token comparison rather than === to prevent timing side-channel attacks. Standard string comparison short-circuits when characters don't match, leaking information about partial matches through execution time. hash_equals() uses constant-time comparison regardless of where strings differ."</p></div>
+        </div>
+        <div class="mark-item">
+          <div class="mark-dot dot-d"></div>
+          <div><strong>On conflict checking:</strong><p>"The booking conflict query uses the interval overlap condition start &lt; requestedEnd AND end &gt; requestedStart — the mathematically correct test for two time intervals overlapping. It excludes cancelled/rejected bookings, ensuring only active reservations block new ones."</p></div>
+        </div>
+        <div class="mark-item">
+          <div class="mark-dot dot-d"></div>
+          <div><strong>On RBAC:</strong><p>"I implemented Role-Based Access Control using requireRole('admin') and requireRole('student') helpers in auth.php. Every protected page calls the appropriate role check at the top — server-side authorisation on every request, preventing horizontal and vertical privilege escalation."</p></div>
+        </div>
+        <div class="mark-item">
+          <div class="mark-dot dot-g"></div>
+          <div><strong>On future iteration:</strong><p>"User testing showed 2 of 5 participants struggled to find the 'My Bookings' tab on mobile as the sidebar is hidden. Future iteration 2 would implement a bottom navigation bar on mobile viewports, with persistent tab state using localStorage to preserve the user's position across page loads."</p></div>
+        </div>
+        <div class="mark-item">
+          <div class="mark-dot dot-w"></div>
+          <div><strong>On accessibility gap:</strong><p>"Automated Axe testing identified that the booking modal is missing role='dialog' and aria-modal='true' attributes, meaning screen readers cannot correctly identify it as a dialog. In iteration 2 I would add these ARIA attributes and implement focus trapping within the modal to meet WCAG 2.1 SC 2.1.2 (No Keyboard Trap)."</p></div>
+        </div>
+      </div>
+
+      <!-- Quick wins summary -->
+      <h2 class="section-title">⚡ Quick Wins — Do These Before Submission</h2>
+      <div class="card" style="margin-top:0;">
+        <ul class="checklist">
+          <li><input type="checkbox" class="check-input"/><span>Add PHPDoc comments to every function in <code>auth.php</code>, <code>db_connect.php</code>, and <code>index.php</code></span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add <code>:focus-visible</code> CSS rule to <code>style.css</code> for keyboard navigation visibility</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add <code>role="dialog"</code> + <code>aria-modal="true"</code> + <code>aria-labelledby</code> to both modals</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add a skip navigation link as the first element in all dashboard pages</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add a GDPR consent checkbox to <code>registration_page.php</code></span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add a comment to cookie params explaining <code>secure => false</code> is dev-only</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add bcrypt cost factor 12 to <code>password_hash()</code> in <code>registration_page.php</code></span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add JSDoc comments to all functions in <code>script.js</code></span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add semantic <code>&lt;main id="main-content"&gt;</code> wrapper to all pages</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Add <code>lang="en"</code> to all <code>&lt;html&gt;</code> tags (currently missing in some files)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Document your CSRF implementation and rate limiting in your proposal/evaluation</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Run Axe DevTools Chrome extension on all pages and fix any Level A violations</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="../assets/js/script.js"></script>
+<script>
+  function showFile(name, btn) {
+    document.querySelectorAll('.file-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.file-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

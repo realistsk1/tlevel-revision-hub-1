@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Distinction Examples – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item active"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Distinction Examples</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">⭐ Distinction Examples</div>
+        <h1>Pass vs Merit vs Distinction</h1>
+        <p>Side-by-side answer comparisons based directly on the official mark scheme criteria. Learn what "comprehensive lines of reasoning" looks like in practice.</p>
+      </header>
+
+      <div class="info-box info fade-up-2">
+        <span class="info-icon">🎯</span>
+        <div>These examples are based on the <strong>T-Level Digital Production, Design &amp; Development Sample Assessment Material Mark Scheme</strong>. Distinction = Band 3 language: <em>"comprehensive, thorough, perceptive, convincing, fully, consistently."</em></div>
+      </div>
+
+      <!-- EXAMPLE 1: Security Justification -->
+      <h2 class="section-title">🔐 Security Justification (Task 1A — Wider Issues)</h2>
+      <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem;"><strong>Mark Scheme Focus:</strong> "Appreciation of Wider Issues in Context" — up to 9 marks. Distinction requires "comprehensive lines of reasoning that fully justify how potential risks will be mitigated."</p>
+
+      <div class="band-container">
+        <div class="band-tabs">
+          <button class="band-tab pass" data-band="pass">🟡 Pass (Band 1)</button>
+          <button class="band-tab merit" data-band="merit">🔵 Merit (Band 2)</button>
+          <button class="band-tab distinction" data-band="distinction">🟣 Distinction (Band 3)</button>
+        </div>
+
+        <div class="band-content" data-band="pass">
+          <div class="band-answer">
+            <div class="band-label pass">🟡 Pass — Band 1 (1–3 marks)</div>
+            <p>My solution will be secure. I will use passwords to protect user accounts. The app will also be safe from hackers. I will store user data in a database and make sure only logged-in users can see it. There are laws about data like GDPR that I will follow.</p>
+            <br/>
+            <p><strong>Why this is Pass:</strong> Identifies some risks (hacking, data storage) but provides limited reasoning. No specific technical implementations. Mentions GDPR without explaining what it requires. No mitigation strategies — just vague reassurances.</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="merit">
+          <div class="band-answer">
+            <div class="band-label merit">🔵 Merit — Band 2 (4–6 marks)</div>
+            <p>My health and fitness app will handle sensitive personal data including health metrics such as BMI and calorie intake. This data is considered special category under GDPR, which requires explicit user consent before processing. I will implement a consent mechanism during registration.</p>
+            <p>To protect user accounts, I will store passwords using the PHP <code>password_hash()</code> function with bcrypt, which prevents attackers from recovering plain-text passwords if the database is breached. SQL injection attacks will be prevented using PDO prepared statements.</p>
+            <p>The Computer Misuse Act 1990 makes unauthorised access illegal — my authorisation system will ensure users can only access their own data.</p>
+            <br/>
+            <p><strong>Why this is Merit:</strong> Good reasoning for most risks. Mentions specific technologies. However, doesn't comprehensively cover all risks (no mention of XSS, CSRF, availability, session management). Doesn't fully explain why each technology solves the specific problem.</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="distinction">
+          <div class="band-answer">
+            <div class="band-label distinction">🟣 Distinction — Band 3 (7–9 marks)</div>
+            <p>My health and fitness app processes <strong>Special Category personal data</strong> under GDPR Article 9 (health and biometric data including BMI, calorie intake, and workout intensity). This imposes strict legal obligations: I must obtain explicit, informed consent at registration, implement a clear Privacy Notice explaining what data is collected and why, and provide mechanisms for users to exercise their rights including the Right to Erasure (Article 17) and Data Portability (Article 20). All personal data will be minimised — only data strictly necessary for the platform's functionality will be collected.</p>
+
+            <p>The three primary technical security risks and their mitigations are:</p>
+            <ul>
+              <li><strong>SQL Injection:</strong> Without mitigation, an attacker could manipulate database queries via form inputs to extract all user health data or bypass authentication entirely. I will use PDO prepared statements throughout — these separate SQL structure from user data at the database engine level, making it impossible for input to be interpreted as SQL commands. This directly preserves data <em>integrity</em> (CIA triad).</li>
+              <li><strong>Broken Authentication:</strong> Plain-text or weakly hashed passwords would expose all users if the database were breached. I will use PHP's <code>password_hash()</code> with bcrypt at cost factor 12, which makes each hash take ~250ms — computationally infeasible to brute-force. Salts are generated automatically per-hash, preventing rainbow table attacks. Sessions will be regenerated on login using <code>session_regenerate_id(true)</code> to prevent session fixation. This preserves <em>confidentiality</em>.</li>
+              <li><strong>XSS &amp; CSRF:</strong> Cross-site scripting attacks could allow attackers to steal session cookies via injected JavaScript. All output will be sanitised using <code>htmlspecialchars()</code> and a Content-Security-Policy header will restrict script sources. CSRF attacks, which could trick authenticated users into submitting malicious requests, will be mitigated using synchronised token pattern — a per-session cryptographic token in all state-changing forms. This preserves <em>integrity</em> and protects user <em>availability</em>.</li>
+            </ul>
+
+            <p>Under the <strong>Computer Misuse Act 1990</strong>, my security controls are essential to prevent Section 1 (unauthorised access) offences against users. Inadequate security would leave me civilly liable under GDPR for failing to implement "appropriate technical measures" (Article 32). Additionally, under the <strong>Health and Safety at Work Act</strong>, any incorrect workout instructions generated by my algorithms that cause physical injury represent a contextual risk — I will implement clear disclaimers and recommend users consult a GP before following personalised plans.</p>
+            <br/>
+            <p><strong>Why this is Distinction:</strong> Comprehensive identification of all risk categories (data law, authentication, injection, XSS/CSRF, physical harm). Each risk has a specific, technically accurate mitigation with the reasoning chain explained. Named legislation applied to specific scenarios. CIA triad explicitly addressed. Covers the full business/industry context.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 2: Testing Strategy -->
+      <h2 class="section-title" style="margin-top:40px;">🧪 Testing Strategy (Task 1B / Task 2)</h2>
+      <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem;"><strong>Mark Scheme Focus:</strong> "Test Strategy" up to 6 marks + "Suitability of Test Data" up to 6 marks. Distinction: "thorough and detailed understanding of how components interrelate, the order in which components should be tested."</p>
+
+      <div class="band-container">
+        <div class="band-tabs">
+          <button class="band-tab pass" data-band="pass2">🟡 Pass (Band 1)</button>
+          <button class="band-tab merit" data-band="merit2">🔵 Merit (Band 2)</button>
+          <button class="band-tab distinction" data-band="distinction2">🟣 Distinction (Band 3)</button>
+        </div>
+
+        <div class="band-content" data-band="pass2">
+          <div class="band-answer">
+            <div class="band-label pass">🟡 Pass (1–2 marks)</div>
+            <p>I will test my app by testing each part to make sure it works. I will try logging in with correct and incorrect passwords. I will also test the workout tracking feature. If something breaks I will fix it and test again.</p>
+            <p><strong>Why Pass:</strong> Some understanding of testing exists but no test types named, no data types described, no order or methodology. No link between tests and requirements.</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="merit2">
+          <div class="band-answer">
+            <div class="band-label merit">🔵 Merit (3–4 marks)</div>
+            <p>I will use a combination of white-box and black-box testing. White-box testing will check the internal logic of my algorithms — for example, the BMI calculation function will be unit tested with known inputs to verify correct outputs. Black-box testing will test the user-facing features such as the login form and workout submission.</p>
+            <p>Test data will include normal data (valid email and password), erroneous data (invalid email format, SQL injection strings), and boundary data (password exactly 8 characters, 7 characters). I will use regression testing after each fix to ensure new changes don't break existing functionality.</p>
+            <p><strong>Why Merit:</strong> Good understanding, correct test types named, test data categories mentioned. Doesn't fully explain the order of testing, integration between components, or trace tests back to specific functional requirements.</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="distinction2">
+          <div class="band-answer">
+            <div class="band-label distinction">🟣 Distinction (5–6 marks)</div>
+            <p>My test strategy follows a <strong>bottom-up integration testing approach</strong>, reflecting the component dependency chain of my MVC architecture:</p>
+            <ul>
+              <li><strong>Phase 1 — Unit Testing (White-box):</strong> Test individual functions in isolation. The Database class will be tested first as all Models depend on it. Each Model method (e.g. <code>Workout::getByUserId()</code>) will be unit tested with known PDO mock data to verify correct SQL and data mapping. The BMI and calorie calculation algorithms will be unit tested against medically accepted reference values, including boundary values (underweight/normal weight boundary: BMI = 18.5) and extreme values (BMI = 0, negative inputs).</li>
+              <li><strong>Phase 2 — Integration Testing:</strong> Once units pass, test component interactions. Controller ↔ Model integration: verify that <code>WorkoutController::store()</code> correctly calls <code>Workout::create()</code> and returns the expected response. Front-end ↔ Back-end: verify AJAX fetch requests to the API correctly receive and render JSON workout data.</li>
+              <li><strong>Phase 3 — System Testing (Black-box):</strong> Full end-to-end tests against the complete application. Each functional requirement (FR) will have a corresponding test case: FR-01 "User can register" → test with valid data, duplicate email, missing fields, invalid email format. Test data types: normal (valid email/password), erroneous (SQL injection strings: <code>' OR '1'='1</code>, XSS payloads: <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>), boundary (password = 7 chars, 8 chars, 255 chars).</li>
+              <li><strong>Phase 4 — User Acceptance Testing (UAT):</strong> Distribute a screened prototype to representative testers (gym users, fitness professionals) with structured questionnaires measuring usability, accuracy of health data, and performance on mobile devices.</li>
+            </ul>
+            <p><strong>Regression testing</strong> will be applied after every defect fix, re-executing the full Phase 1 and Phase 2 test suites to ensure no new defects have been introduced. Defects will be tracked in a test log with ID, description, severity, fix applied, and retest result.</p>
+            <p><strong>Why Distinction:</strong> Thorough, structured, phase-based approach. Explains why components are tested in that order (dependency chain). Covers all three test data types with specific examples. UAT links to real users. Regression testing explicitly planned. Tests traceable to functional requirements.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 3: Accessibility -->
+      <h2 class="section-title" style="margin-top:40px;">♿ Accessibility Reasoning (Task 2 — Legal &amp; Regulatory)</h2>
+      <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem;"><strong>Mark Scheme Focus:</strong> "Legal and Regulatory Guidelines and Standards" — Distinction: "consistent and effective application of standards and guidelines in relation to accessibility, compatibility, legal and ethical considerations."</p>
+
+      <div class="band-container">
+        <div class="band-tabs">
+          <button class="band-tab pass" data-band="pass3">🟡 Pass</button>
+          <button class="band-tab merit" data-band="merit3">🔵 Merit</button>
+          <button class="band-tab distinction" data-band="distinction3">🟣 Distinction</button>
+        </div>
+
+        <div class="band-content" data-band="pass3">
+          <div class="band-answer">
+            <div class="band-label pass">🟡 Pass</div>
+            <p>I made my website accessible by using alt text on images and making the text big enough to read. I also used high contrast colours so people can see it easily.</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="merit3">
+          <div class="band-answer">
+            <div class="band-label merit">🔵 Merit</div>
+            <p>My application follows WCAG 2.1 Level AA guidelines. I implemented alt attributes on all meaningful images (<code>alt=""</code> for decorative images so screen readers skip them). All form inputs have associated <code>&lt;label&gt;</code> elements to support screen reader navigation. Colour contrast ratios meet the minimum 4.5:1 requirement for normal text. The application is navigable by keyboard alone — all interactive elements receive focus in a logical tab order.</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="distinction3">
+          <div class="band-answer">
+            <div class="band-label distinction">🟣 Distinction</div>
+            <p>My health and fitness application implements WCAG 2.1 Level AA compliance across all four principles (POUR):</p>
+            <ul>
+              <li><strong>Perceivable:</strong> All images carry descriptive <code>alt</code> attributes (decorative images use <code>alt=""</code>). Colour is never the sole means of conveying information — for example, error states use both red text AND an error icon AND an ARIA <code>role="alert"</code> message. Contrast ratios for body text ≥ 4.5:1 and for large text ≥ 3:1, verified using the WebAIM Contrast Checker. Video content would include captions.</li>
+              <li><strong>Operable:</strong> All functionality is accessible via keyboard. Custom interactive components (accordion menus, modal dialogs) implement the ARIA authoring practices keyboard patterns (e.g. Escape closes modals, arrow keys navigate menu items). No content flashes more than 3 times per second (seizure risk). Focus indicators are clearly visible — I removed <code>outline: none</code> and replaced it with a 3px contrasting ring.</li>
+              <li><strong>Understandable:</strong> The <code>&lt;html lang="en"&gt;</code> attribute enables correct screen reader pronunciation. Error messages are specific and suggest how to fix the problem (not just "invalid input"). All form fields use <code>autocomplete</code> attributes to support users with cognitive disabilities.</li>
+              <li><strong>Robust:</strong> Semantic HTML5 elements (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>) provide structural meaning to assistive technologies without relying on ARIA. ARIA roles and attributes are used only where native semantics are insufficient. The application is tested with NVDA screen reader and Chrome Axe DevTools.</li>
+            </ul>
+            <p>This is a legal requirement under the <strong>Equality Act 2010</strong> which prohibits discrimination based on disability. As a health platform, accessibility is particularly important — users with visual impairments, motor disabilities, or cognitive conditions must be able to access fitness and health information equitably.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAMPLE 4: System Design -->
+      <h2 class="section-title" style="margin-top:40px;">🏗️ System Design Decisions (Task 1A — Business Context)</h2>
+      <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem;"><strong>Mark Scheme Focus:</strong> "Appreciation of Business Context" — Distinction: "comprehensive and perceptive definitions of functional and non-functional requirements, key performance indicators, user acceptance criteria."</p>
+
+      <div class="band-container">
+        <div class="band-tabs">
+          <button class="band-tab pass" data-band="pass4">🟡 Pass</button>
+          <button class="band-tab merit" data-band="merit4">🔵 Merit</button>
+          <button class="band-tab distinction" data-band="distinction4">🟣 Distinction</button>
+        </div>
+
+        <div class="band-content" data-band="pass4">
+          <div class="band-answer">
+            <div class="band-label pass">🟡 Pass</div>
+            <p><strong>Functional requirements:</strong> Users can log in, track workouts, view their progress.<br/>
+            <strong>Non-functional requirements:</strong> The app should be fast and easy to use.<br/>
+            <strong>KPIs:</strong> The app should work well.<br/>
+            <strong>User acceptance:</strong> Users should be happy with the app.</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="merit4">
+          <div class="band-answer">
+            <div class="band-label merit">🔵 Merit</div>
+            <p><strong>Functional Requirements (what the system does):</strong></p>
+            <ul>
+              <li>FR-01: Users can register with email and password</li>
+              <li>FR-02: Users can log in and out securely</li>
+              <li>FR-03: Users can log workouts with type, duration, and calories</li>
+              <li>FR-04: Users can view their workout history</li>
+              <li>FR-05: Premium members can access personalised workout plans</li>
+            </ul>
+            <p><strong>Non-functional Requirements (how well):</strong></p>
+            <ul>
+              <li>NFR-01: Page load time under 3 seconds</li>
+              <li>NFR-02: 99% uptime</li>
+              <li>NFR-03: WCAG 2.1 AA compliant</li>
+            </ul>
+            <p><strong>KPIs:</strong> Number of daily active users, average session duration, workout log completion rate</p>
+          </div>
+        </div>
+
+        <div class="band-content" data-band="distinction4">
+          <div class="band-answer">
+            <div class="band-label distinction">🟣 Distinction</div>
+            <p><strong>Functional Requirements</strong> (what the system must do — verifiable by testing):</p>
+            <ul>
+              <li>FR-01: Users shall register using a unique email address and password meeting complexity requirements (min 8 chars, 1 number, 1 symbol)</li>
+              <li>FR-02: The system shall authenticate users and issue a session token; sessions expire after 30 minutes of inactivity</li>
+              <li>FR-03: Authenticated users shall log a workout entry with: activity type, duration (minutes), estimated calories, date/time</li>
+              <li>FR-04: The system shall calculate and display BMI given user's height and weight, classified per WHO guidelines</li>
+              <li>FR-05: Premium members shall access AI-generated personalised weekly workout plans; free members see a paywall with upgrade prompt</li>
+              <li>FR-06: The system shall integrate with a REST API to fetch exercise video content for the specified workout type</li>
+            </ul>
+            <p><strong>Non-Functional Requirements</strong> (quality attributes — measurable):</p>
+            <ul>
+              <li>NFR-01 Performance: 95th percentile page load ≤ 2.5s on a 4G connection (Lighthouse score ≥ 90)</li>
+              <li>NFR-02 Availability: 99.5% uptime (≤ 3.65 hours downtime/year)</li>
+              <li>NFR-03 Security: OWASP Top 10 compliance; GDPR Article 32 compliant encryption</li>
+              <li>NFR-04 Accessibility: WCAG 2.1 Level AA — verified by automated (Axe) and manual screen reader testing</li>
+              <li>NFR-05 Scalability: Architecture must support horizontal scaling to 10,000 concurrent users</li>
+              <li>NFR-06 Maintainability: Code must score ≥ B on CodeClimate; all functions documented with PHPDoc</li>
+            </ul>
+            <p><strong>Key Performance Indicators</strong> (business success metrics):</p>
+            <ul>
+              <li>KPI-01: Free-to-premium conversion rate ≥ 5% within first month</li>
+              <li>KPI-02: Daily Active Users (DAU) / Monthly Active Users (MAU) ratio ≥ 0.2 (stickiness)</li>
+              <li>KPI-03: Workout log completion rate ≥ 60% of sessions started</li>
+              <li>KPI-04: User satisfaction score (NPS) ≥ 40 from post-launch survey</li>
+            </ul>
+            <p><strong>User Acceptance Criteria</strong> (conditions for client sign-off):</p>
+            <ul>
+              <li>UAC-01: A test user can complete registration → login → log a workout → view history in ≤ 3 minutes without guidance</li>
+              <li>UAC-02: All WCAG 2.1 AA automated test violations = 0 on production build</li>
+              <li>UAC-03: All functional requirements verified by independent QA tester with no critical defects outstanding</li>
+              <li>UAC-04: Load test confirms ≥ 500 concurrent users without performance degradation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

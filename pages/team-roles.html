@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Team Roles – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .role-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+    }
+    .role-sidebar {
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .role-avatar {
+      font-size: 2.8rem;
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .role-sidebar h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .role-sidebar .role-type {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 10px;
+    }
+    .role-sidebar .role-salary {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .role-body { padding: 22px 24px; }
+    .role-body p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+
+    .responsibility-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .responsibility-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .responsibility-list li::before {
+      content: '▸';
+      color: var(--accent-2);
+      font-size: 0.8rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .interaction-diagram {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .interaction-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    .i-node {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .i-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 700px) {
+      .role-card { grid-template-columns: 1fr; }
+      .role-sidebar { border-right: none; border-bottom: 1px solid var(--border); flex-direction: row; gap: 16px; text-align: left; }
+      .role-avatar { margin-bottom: 0; }
+      .responsibility-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-icon"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item active"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+      <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Digital Team Roles</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">👥 Digital Team Roles</div>
+        <h1>Who Does What in a Digital Team</h1>
+        <p>Product Owner, Scrum Master, Technical Lead, and the full cast of a modern software development team — responsibilities, interactions, and exam-ready definitions.</p>
+      </header>
+
+      <div class="info-box info fade-up-2">
+        <span class="info-icon">🎯</span>
+        <div><strong>Where this appears in your OSP:</strong> Your proposal should reference relevant professional roles when describing your project context. Your evaluation should mention who would be involved in different phases if this were a real professional project. Understanding roles also helps you justify <em>why</em> you made certain decisions in your solo project.</div>
+      </div>
+
+      <!-- Team interaction diagram -->
+      <h2 class="section-title">🗺️ How the Roles Interact (Agile/Scrum)</h2>
+      <div class="interaction-diagram">
+        <div class="interaction-row">
+          <div class="i-node" style="background:#ede9fe;border-color:#8b5cf6;color:#6d28d9;">👔 Stakeholders / Client</div>
+          <div class="i-arrow">↕</div>
+          <div class="i-node" style="background:#dbeafe;border-color:#3b82f6;color:#1e40af;">📋 Product Owner</div>
+          <div class="i-arrow">↕</div>
+          <div class="i-node" style="background:#dcfce7;border-color:#22c55e;color:#166534;">🛡️ Scrum Master</div>
+        </div>
+        <div class="i-arrow" style="display:block;margin:4px 0;">↕</div>
+        <div class="interaction-row">
+          <div class="i-node">🛠️ Technical Lead</div>
+          <div class="i-arrow">↔</div>
+          <div class="i-node">💻 Developers (Frontend/Backend)</div>
+          <div class="i-arrow">↔</div>
+          <div class="i-node">🧪 QA Engineers</div>
+        </div>
+        <div class="i-arrow" style="display:block;margin:4px 0;">↕</div>
+        <div class="interaction-row">
+          <div class="i-node">🎨 UX/UI Designer</div>
+          <div class="i-arrow">↔</div>
+          <div class="i-node">🔐 Security Analyst</div>
+          <div class="i-arrow">↔</div>
+          <div class="i-node">📊 Data Analyst</div>
+        </div>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-top:14px;">↕ = formal hierarchy/communication &nbsp;·&nbsp; ↔ = collaborative peer relationship</p>
+      </div>
+
+      <!-- Product Owner -->
+      <h2 class="section-title">🎯 Core Agile Roles</h2>
+
+      <div class="role-card">
+        <div class="role-sidebar">
+          <div class="role-avatar" style="background:#ede9fe;">📋</div>
+          <h3>Product Owner</h3>
+          <div class="role-type" style="color:#7c3aed;">Agile / Scrum</div>
+          <div class="role-salary">Avg UK salary:<br/>£55,000–£80,000</div>
+        </div>
+        <div class="role-body">
+          <p>The Product Owner (PO) is the single point of accountability for the product. They represent the voice of the customer and business stakeholders, translating their needs into actionable development work. They own the <strong>Product Backlog</strong> — the ordered list of all work to be done.</p>
+          <p>Crucially, the PO makes <strong>prioritisation decisions</strong>: deciding which features provide the most business value and should be built first. They are not a manager — they cannot tell the development team <em>how</em> to build things, only <em>what</em> to build and in what order.</p>
+          <ul class="responsibility-list">
+            <li>Define and prioritise the Product Backlog</li>
+            <li>Write and refine User Stories with acceptance criteria</li>
+            <li>Attend Sprint Reviews and accept/reject completed work</li>
+            <li>Engage with stakeholders and translate needs to requirements</li>
+            <li>Make scope decisions within each sprint</li>
+            <li>Define KPIs and success metrics for the product</li>
+            <li>Maximise the value delivered by the development team</li>
+            <li>Communicate product vision to the whole team</li>
+          </ul>
+          <div class="info-box tip" style="margin-top:12px;">
+            <span class="info-icon">💡</span>
+            <div><strong>In your OSP:</strong> You are acting as both developer AND a form of Product Owner — you define requirements, prioritise features, and accept/reject your own work. Reference this in your proposal: "In a professional context, a dedicated Product Owner would manage stakeholder expectations and backlog prioritisation — in this solo project I have assumed this responsibility."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrum Master -->
+      <div class="role-card">
+        <div class="role-sidebar">
+          <div class="role-avatar" style="background:#dcfce7;">🛡️</div>
+          <h3>Scrum Master</h3>
+          <div class="role-type" style="color:#16a34a;">Agile / Scrum</div>
+          <div class="role-salary">Avg UK salary:<br/>£50,000–£75,000</div>
+        </div>
+        <div class="role-body">
+          <p>The Scrum Master is a <strong>servant-leader</strong> — they don't manage the team but serve them by removing obstacles (impediments) and ensuring the team can work at their best. They are guardians of the Scrum process and help the team continuously improve.</p>
+          <p>The Scrum Master is <strong>not a project manager</strong> — they don't assign tasks, track individual performance, or hold direct authority. Their power is facilitative. A good Scrum Master makes themselves less needed over time as the team becomes self-organising.</p>
+          <ul class="responsibility-list">
+            <li>Facilitate Sprint Planning, Daily Stand-ups, Reviews, Retrospectives</li>
+            <li>Remove blockers and impediments for the team</li>
+            <li>Coach the team on Scrum practices and Agile values</li>
+            <li>Protect the team from external interruptions mid-sprint</li>
+            <li>Help the Product Owner refine the backlog</li>
+            <li>Foster a culture of continuous improvement</li>
+            <li>Track sprint velocity and help with capacity planning</li>
+            <li>Escalate unresolvable impediments to management</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Technical Lead -->
+      <div class="role-card">
+        <div class="role-sidebar">
+          <div class="role-avatar" style="background:#fef3c7;">🛠️</div>
+          <h3>Technical Lead</h3>
+          <div class="role-type" style="color:#d97706;">Engineering</div>
+          <div class="role-salary">Avg UK salary:<br/>£65,000–£95,000</div>
+        </div>
+        <div class="role-body">
+          <p>The Technical Lead (Tech Lead) is the most senior technical person on the team. They are responsible for <strong>technical decisions</strong> — choosing the technology stack, defining coding standards, reviewing architecture, and ensuring the codebase is maintainable and secure. They typically still write code but also mentor junior developers.</p>
+          <p>Unlike a manager, the Tech Lead's authority comes from technical expertise and trust. They are the person the team asks: "How should we build this?"</p>
+          <ul class="responsibility-list">
+            <li>Define technical architecture and technology choices</li>
+            <li>Establish and enforce coding standards and conventions</li>
+            <li>Lead code reviews — approving pull requests</li>
+            <li>Identify and manage technical debt</li>
+            <li>Mentor junior and mid-level developers</li>
+            <li>Make security and performance architectural decisions</li>
+            <li>Work with PO to assess technical feasibility of requirements</li>
+            <li>Manage third-party integrations and dependencies</li>
+          </ul>
+          <div class="info-box tip" style="margin-top:12px;">
+            <span class="info-icon">💡</span>
+            <div><strong>In your OSP:</strong> Decisions you document — "I chose PHP over Python because the college hosting environment supports PHP natively" or "I selected bcrypt cost factor 12 to balance security and performance" — are exactly the type of decisions a Tech Lead makes. Frame them this way in your evaluation.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other key roles -->
+      <h2 class="section-title">👤 Other Key Digital Roles</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">💻</div>
+          <h3>Full-Stack Developer</h3>
+          <p>Works on both front-end (HTML/CSS/JS) and back-end (PHP/Python/Node). Must understand the full request-response cycle. The role your OSP most closely represents.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)">UK avg: £45,000–£70,000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3>UX/UI Designer</h3>
+          <p>UX (User Experience) — researches user needs, creates wireframes, runs usability tests. UI (User Interface) — designs the visual layer. Distinct from development but must collaborate closely.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)">UK avg: £35,000–£60,000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧪</div>
+          <h3>QA Engineer</h3>
+          <p>Quality Assurance — designs test plans, executes manual and automated tests, reports defects, verifies fixes. Works closely with developers. Distinct from Developers who test their own code.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)">UK avg: £30,000–£55,000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h3>Security Analyst</h3>
+          <p>Identifies vulnerabilities, conducts penetration testing, ensures OWASP compliance, responds to security incidents. Increasingly embedded in dev teams (DevSecOps) rather than siloed.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)">UK avg: £45,000–£75,000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">☁️</div>
+          <h3>DevOps Engineer</h3>
+          <p>Bridges development and operations. Manages CI/CD pipelines, cloud infrastructure (AWS/Azure), containerisation (Docker/Kubernetes), monitoring, and deployment automation.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)">UK avg: £55,000–£85,000</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Data Analyst / Engineer</h3>
+          <p>Collects, processes and analyses data to inform product decisions. Works with SQL, Python/R, and BI tools (Tableau, Power BI). Increasingly important as data-driven decisions become standard.</p>
+          <p style="margin-top:8px;font-size:0.82rem;color:var(--text-muted)">UK avg: £35,000–£60,000</p>
+        </div>
+      </div>
+
+      <!-- RACI -->
+      <h2 class="section-title">📋 RACI Matrix — Who Does What</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:14px;">A RACI matrix clarifies roles on each task: <strong>R</strong>esponsible (does the work) · <strong>A</strong>ccountable (owns the outcome) · <strong>C</strong>onsulted (gives input) · <strong>I</strong>nformed (kept updated).</p>
+
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Product Owner</th>
+              <th>Scrum Master</th>
+              <th>Tech Lead</th>
+              <th>Developer</th>
+              <th>QA Engineer</th>
+              <th>UX Designer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Define user stories</td><td><span class="tag tag-purple">A/R</span></td><td><span class="tag">C</span></td><td><span class="tag">C</span></td><td><span class="tag">I</span></td><td><span class="tag">C</span></td><td><span class="tag">C</span></td></tr>
+            <tr><td>Architecture decisions</td><td><span class="tag">I</span></td><td><span class="tag">I</span></td><td><span class="tag tag-purple">A/R</span></td><td><span class="tag">C</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td></tr>
+            <tr><td>Write code</td><td><span class="tag">I</span></td><td><span class="tag">I</span></td><td><span class="tag">C</span></td><td><span class="tag tag-purple">A/R</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td></tr>
+            <tr><td>Code review</td><td><span class="tag">I</span></td><td><span class="tag">I</span></td><td><span class="tag tag-purple">A</span></td><td><span class="tag">R</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td></tr>
+            <tr><td>UI/UX wireframes</td><td><span class="tag">A</span></td><td><span class="tag">I</span></td><td><span class="tag">C</span></td><td><span class="tag">C</span></td><td><span class="tag">I</span></td><td><span class="tag tag-purple">R</span></td></tr>
+            <tr><td>Test planning</td><td><span class="tag">I</span></td><td><span class="tag">I</span></td><td><span class="tag">C</span></td><td><span class="tag">C</span></td><td><span class="tag tag-purple">A/R</span></td><td><span class="tag">I</span></td></tr>
+            <tr><td>Sprint facilitation</td><td><span class="tag">C</span></td><td><span class="tag tag-purple">A/R</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td></tr>
+            <tr><td>Stakeholder comms</td><td><span class="tag tag-purple">A/R</span></td><td><span class="tag">C</span></td><td><span class="tag">C</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td><td><span class="tag">I</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick quiz -->
+      <h2 class="section-title">🧠 Quick-Fire Definitions</h2>
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header"><span>What is the key difference between Product Owner and Project Manager?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">A <strong>Project Manager</strong> focuses on delivery — time, budget, resources, risk. They manage <em>how</em> the project is delivered. A <strong>Product Owner</strong> focuses on value — what to build and why. They define <em>what</em> is delivered. In Scrum, traditional project management is distributed: the Scrum Master handles process, the PO handles priorities, the team handles how.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Can the Scrum Master and Product Owner be the same person?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">No — this is explicitly prohibited in the Scrum Guide. The Scrum Master protects the team's capacity; the PO pushes for more features. These are conflicting interests. Combining the roles creates an inherent conflict of interest that undermines the process.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>What is a "definition of done" and who sets it?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">The Definition of Done (DoD) is a shared agreement within the Scrum Team about what criteria a user story must meet before it can be called complete. It's created collaboratively by the whole team (developers, QA, PO) and typically includes: code written, unit tests passing, code reviewed, acceptance criteria met, no known defects, documentation updated. The Scrum Master facilitates creating it; the Tech Lead often defines the technical criteria.</div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>What does a Technical Lead do that a senior developer doesn't?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">A Technical Lead has an additional <em>leadership and communication</em> dimension. Beyond writing code: they represent the team in architectural discussions with stakeholders, make technology stack decisions with long-term implications, are accountable for the overall code quality of the team's output, and actively mentor others. A senior developer excels technically; a Tech Lead enables the entire team to excel technically.</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

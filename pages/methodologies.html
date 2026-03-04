@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Development Methodologies – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .method-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .method-header {
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .method-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+    }
+    .method-header p { font-size: 0.82rem; color: rgba(255,255,255,0.8); margin: 3px 0 0; }
+    .method-badge {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .method-body { padding: 22px 24px; }
+    .method-body p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .pros, .cons {
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .pros { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .cons { background: #fef2f2; border: 1px solid #fecaca; }
+    [data-theme="dark"] .pros { background: #052e16; border-color: #14532d; }
+    [data-theme="dark"] .cons { background: #1a0505; border-color: #450a0a; }
+    .pros h4 { color: #166534; font-size: 0.82rem; font-weight: 700; margin-bottom: 8px; }
+    .cons h4 { color: #991b1b; font-size: 0.82rem; font-weight: 700; margin-bottom: 8px; }
+    [data-theme="dark"] .pros h4 { color: #86efac; }
+    [data-theme="dark"] .cons h4 { color: #fca5a5; }
+    .pros ul, .cons ul { padding-left: 1.3em; font-size: 0.84rem; color: var(--text-secondary); line-height: 1.7; }
+
+    .when-to-use {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+    .when-to-use strong { color: var(--text-primary); }
+
+    .comparison-table-wrap { overflow-x: auto; margin: 20px 0; }
+
+    .sprint-diagram {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 20px 0;
+      overflow-x: auto;
+      padding: 4px 0;
+    }
+    .sprint-step {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .sprint-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+    .sprint-step.highlight {
+      background: var(--accent-2);
+      color: #fff;
+      border-color: var(--accent-2);
+    }
+
+    @media (max-width: 600px) {
+      .pros-cons { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item active"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+      <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Development Methodologies</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">🔄 Development Methodologies</div>
+        <h1>Agile, Waterfall, RAD &amp; LEAN</h1>
+        <p>Compare the major software development methodologies, know when to use each, and understand how to justify your choice in the OSP proposal — a frequent Distinction differentiator.</p>
+      </header>
+
+      <div class="info-box info fade-up-2">
+        <span class="info-icon">🎯</span>
+        <div><strong>Exam relevance:</strong> The mark scheme expects you to justify your development approach in your proposal and demonstrate it throughout your documentation. Distinction requires you to reference your chosen methodology and explain <em>why</em> it suits the project context — not just name it.</div>
+      </div>
+
+      <!-- AGILE -->
+      <h2 class="section-title">🏃 Agile</h2>
+
+      <div class="method-card">
+        <div class="method-header" style="background: linear-gradient(135deg, #3d5af1, #1a3cc0);">
+          <div>
+            <h3>Agile Methodology</h3>
+            <p>Iterative, incremental development with continuous feedback and adaptation</p>
+          </div>
+          <span class="method-badge">Most Common</span>
+        </div>
+        <div class="method-body">
+          <p>Agile is a family of methodologies based on the <strong>Agile Manifesto (2001)</strong>, which prioritises: <em>individuals and interactions</em> over processes; <em>working software</em> over documentation; <em>customer collaboration</em> over contract negotiation; <em>responding to change</em> over following a plan.</p>
+
+          <p>Work is broken into short cycles called <strong>sprints</strong> (typically 1–4 weeks). At the end of each sprint, a working increment is delivered and reviewed. Requirements can evolve — making Agile ideal for projects where needs aren't fully known upfront.</p>
+
+          <div class="sprint-diagram">
+            <div class="sprint-step">📋 Product<br>Backlog</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step highlight">🏃 Sprint<br>(2 weeks)</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">🔍 Sprint<br>Review</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">🔄 Sprint<br>Retrospective</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">📦 Working<br>Increment</div>
+            <div class="sprint-arrow">↩</div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <h4>✅ Advantages</h4>
+              <ul>
+                <li>Responds quickly to changing requirements</li>
+                <li>Regular delivery of working software</li>
+                <li>Continuous stakeholder involvement reduces risk of wrong product</li>
+                <li>Early detection of problems through frequent testing</li>
+                <li>Suits the OSP iterative development requirement directly</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>❌ Disadvantages</h4>
+              <ul>
+                <li>Hard to predict final cost and timeline upfront</li>
+                <li>Requires high client involvement — not always available</li>
+                <li>Can lead to scope creep without clear boundaries</li>
+                <li>Less suitable when requirements are completely fixed</li>
+                <li>Documentation often lighter — may conflict with regulated industries</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="when-to-use">
+            <strong>Best for:</strong> Projects with evolving requirements, startups, web/app development, innovation projects, the OSP itself (iterative development is explicitly required by the mark scheme).
+          </div>
+
+          <h4 style="font-family:var(--font-display);margin:18px 0 10px;font-size:1rem;">Agile Key Terms for Exams</h4>
+          <table>
+            <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Sprint</strong></td><td>A fixed-length iteration (1–4 weeks) producing a potentially shippable increment</td></tr>
+              <tr><td><strong>Product Backlog</strong></td><td>Prioritised list of all features, fixes, and requirements for the product</td></tr>
+              <tr><td><strong>Sprint Backlog</strong></td><td>Subset of backlog items committed to for the current sprint</td></tr>
+              <tr><td><strong>Daily Stand-up</strong></td><td>15-minute daily meeting: what did I do yesterday? Today? Any blockers?</td></tr>
+              <tr><td><strong>Velocity</strong></td><td>Amount of work a team completes per sprint (used to predict future capacity)</td></tr>
+              <tr><td><strong>Definition of Done</strong></td><td>Agreed criteria a feature must meet before it is considered complete</td></tr>
+              <tr><td><strong>Retrospective</strong></td><td>Post-sprint reflection: what went well, what to improve, what to try next sprint</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SCRUM -->
+      <div class="info-box tip">
+        <span class="info-icon">💡</span>
+        <div><strong>Scrum vs Agile:</strong> Scrum is a specific <em>framework</em> for implementing Agile. Agile is the philosophy; Scrum is one way to do it (with defined roles: Product Owner, Scrum Master, Development Team). Kanban is another Agile framework focused on visualising and limiting work-in-progress.</div>
+      </div>
+
+      <!-- SCALED AGILE (SAFe) -->
+      <h2 class="section-title">📈 Scaled Agile (SAFe)</h2>
+
+      <div class="method-card">
+        <div class="method-header" style="background: linear-gradient(135deg, #7c3aed, #4c1d95);">
+          <div>
+            <h3>Scaled Agile Framework (SAFe)</h3>
+            <p>Agile practices applied across multiple teams in large organisations</p>
+          </div>
+          <span class="method-badge">Enterprise</span>
+        </div>
+        <div class="method-body">
+          <p>Agile works well for a single team, but large organisations with 50–5000+ developers need a way to coordinate multiple Agile teams working on the same product. <strong>SAFe</strong> provides structure for this through three levels:</p>
+
+          <div class="card-grid card-grid-3" style="margin: 14px 0;">
+            <div class="card">
+              <div class="card-icon">👤</div>
+              <h3>Team Level</h3>
+              <p>Individual Scrum teams run 2-week sprints. Each team has a Product Owner and Scrum Master.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">🏢</div>
+              <h3>Programme Level</h3>
+              <p>5–12 Agile teams form an <strong>Agile Release Train (ART)</strong>, synchronised on a common PI (Programme Increment) of 8–12 weeks.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">🏭</div>
+              <h3>Portfolio Level</h3>
+              <p>Strategic themes align multiple ARTs with business goals. Budgets and roadmaps managed at this level.</p>
+            </div>
+          </div>
+
+          <div class="when-to-use">
+            <strong>Used by:</strong> Large enterprises — Spotify, NHS Digital, major banks. Not relevant for solo/small projects but important to know for your wider context section on current industry practice.
+          </div>
+        </div>
+      </div>
+
+      <!-- WATERFALL -->
+      <h2 class="section-title">💧 Waterfall</h2>
+
+      <div class="method-card">
+        <div class="method-header" style="background: linear-gradient(135deg, #0891b2, #0e4f63);">
+          <div>
+            <h3>Waterfall Methodology</h3>
+            <p>Sequential, phase-by-phase development — each phase must complete before the next begins</p>
+          </div>
+          <span class="method-badge">Traditional</span>
+        </div>
+        <div class="method-body">
+          <p>Waterfall follows a rigid linear sequence. Requirements are fully defined upfront, then each phase flows downward (like a waterfall) — there is no going back to a previous phase without significant cost.</p>
+
+          <div class="sprint-diagram">
+            <div class="sprint-step highlight">📋 Requirements</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">✏️ Design</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">⚙️ Implementation</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">🧪 Testing</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">🚀 Deployment</div>
+            <div class="sprint-arrow">→</div>
+            <div class="sprint-step">🔧 Maintenance</div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <h4>✅ Advantages</h4>
+              <ul>
+                <li>Clear structure — easy to plan, budget and manage</li>
+                <li>Thorough documentation at every stage</li>
+                <li>Works well when requirements are stable and fully known</li>
+                <li>Easier for regulatory/compliance projects (healthcare, aviation)</li>
+                <li>Clear milestones and deliverables</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>❌ Disadvantages</h4>
+              <ul>
+                <li>Very expensive to change requirements mid-project</li>
+                <li>Working software not delivered until late in the process</li>
+                <li>Customer doesn't see product until near the end — high risk of wrong product</li>
+                <li>Testing happens late — defects found late are costly to fix</li>
+                <li>Doesn't suit modern fast-moving tech projects</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="when-to-use">
+            <strong>Best for:</strong> Fixed-scope government contracts, safety-critical systems (aircraft, medical devices), projects where requirements genuinely cannot change (embedded systems, construction software).
+          </div>
+        </div>
+      </div>
+
+      <!-- RAD -->
+      <h2 class="section-title">⚡ Rapid Application Development (RAD)</h2>
+
+      <div class="method-card">
+        <div class="method-header" style="background: linear-gradient(135deg, #e84855, #a0131e);">
+          <div>
+            <h3>Rapid Application Development</h3>
+            <p>Speed-focused iterative development using prototyping and user feedback loops</p>
+          </div>
+          <span class="method-badge">Fast Delivery</span>
+        </div>
+        <div class="method-body">
+          <p>RAD, developed by James Martin in 1991, prioritises speed of delivery over exhaustive planning. It uses <strong>prototyping</strong> extensively — building rough versions quickly, showing them to users, gathering feedback, and refining. The aim is to deliver a working product in weeks rather than months.</p>
+
+          <div class="card-grid card-grid-3" style="margin: 14px 0;">
+            <div class="card">
+              <div class="card-icon">📋</div>
+              <h3>Requirements Planning</h3>
+              <p>High-level workshop with stakeholders. Enough to start — not exhaustive specification.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">🖼️</div>
+              <h3>User Design</h3>
+              <p>Rapid prototyping with continuous user feedback. Users are heavily involved throughout.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">🏗️</div>
+              <h3>Construction</h3>
+              <p>Developers and users work together to build and refine. Automated code generation tools used where possible.</p>
+            </div>
+          </div>
+
+          <div class="pros-cons">
+            <div class="pros">
+              <h4>✅ Advantages</h4>
+              <ul>
+                <li>Very fast time-to-working-product</li>
+                <li>High user involvement reduces misalignment risk</li>
+                <li>Flexible — easy to change direction based on feedback</li>
+                <li>Well-suited to UI-heavy projects</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h4>❌ Disadvantages</h4>
+              <ul>
+                <li>Requires skilled developers — speed demands expertise</li>
+                <li>Can sacrifice architecture quality for speed</li>
+                <li>Less suitable for large teams or complex backend systems</li>
+                <li>Risk of "prototype becoming product" with technical debt</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="when-to-use">
+            <strong>Best for:</strong> Small–medium projects with engaged users, UI/UX-focused apps, proof-of-concept projects, startups needing quick MVPs (Minimum Viable Products).
+          </div>
+        </div>
+      </div>
+
+      <!-- LEAN -->
+      <h2 class="section-title">♻️ LEAN Software Development</h2>
+
+      <div class="method-card">
+        <div class="method-header" style="background: linear-gradient(135deg, #22c55e, #14532d);">
+          <div>
+            <h3>LEAN Development</h3>
+            <p>Eliminate waste, amplify learning, deliver fast — adapted from Toyota Production System</p>
+          </div>
+          <span class="method-badge">7 Principles</span>
+        </div>
+        <div class="method-body">
+          <p>LEAN originates from Toyota's manufacturing philosophy and was adapted for software by Mary and Tom Poppendieck. The core idea: <strong>maximise value by eliminating everything that doesn't directly contribute to the customer's needs</strong> (waste).</p>
+
+          <h4 style="font-family:var(--font-display);margin: 14px 0 10px;font-size:1rem;">The 7 LEAN Principles</h4>
+          <table>
+            <thead><tr><th>#</th><th>Principle</th><th>What it means in software</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1</strong></td><td>Eliminate Waste</td><td>Remove anything not adding value: unnecessary features, waiting time, defects, excess process</td></tr>
+              <tr><td><strong>2</strong></td><td>Amplify Learning</td><td>Short feedback cycles, code reviews, pair programming, retrospectives</td></tr>
+              <tr><td><strong>3</strong></td><td>Decide as Late as Possible</td><td>Delay irreversible decisions until you have more information (keeps options open)</td></tr>
+              <tr><td><strong>4</strong></td><td>Deliver as Fast as Possible</td><td>Small batches, continuous deployment, reduce handoff delays</td></tr>
+              <tr><td><strong>5</strong></td><td>Empower the Team</td><td>Decisions made by those closest to the work — not just management</td></tr>
+              <tr><td><strong>6</strong></td><td>Build Integrity In</td><td>Quality built into the process — not tested in at the end</td></tr>
+              <tr><td><strong>7</strong></td><td>See the Whole</td><td>Optimise the whole system, not just individual components</td></tr>
+            </tbody>
+          </table>
+
+          <div class="when-to-use" style="margin-top:14px;">
+            <strong>LEAN vs Agile:</strong> Agile focuses on <em>how to develop</em> (sprints, ceremonies); LEAN focuses on <em>what to eliminate</em> (waste reduction). Many modern teams combine both — Kanban is a LEAN-inspired Agile framework.
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison -->
+      <h2 class="section-title">⚖️ Side-by-Side Comparison</h2>
+
+      <div class="comparison-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Agile / Scrum</th>
+              <th>Waterfall</th>
+              <th>RAD</th>
+              <th>LEAN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Requirements</strong></td>
+              <td>Evolving, prioritised backlog</td>
+              <td>Fixed upfront, fully documented</td>
+              <td>High-level, refined via prototypes</td>
+              <td>Value-driven, wasteful ones removed</td>
+            </tr>
+            <tr>
+              <td><strong>Delivery</strong></td>
+              <td>Working software every sprint</td>
+              <td>Single delivery at end</td>
+              <td>Rapid prototypes, then final build</td>
+              <td>Continuous, small batches</td>
+            </tr>
+            <tr>
+              <td><strong>Client involvement</strong></td>
+              <td>High — sprint reviews</td>
+              <td>Low — mainly at start and end</td>
+              <td>Very high — co-design sessions</td>
+              <td>Moderate — pull-driven by demand</td>
+            </tr>
+            <tr>
+              <td><strong>Change tolerance</strong></td>
+              <td>High</td>
+              <td>Very low (expensive)</td>
+              <td>High</td>
+              <td>High</td>
+            </tr>
+            <tr>
+              <td><strong>Documentation</strong></td>
+              <td>Lightweight, just-enough</td>
+              <td>Comprehensive at every stage</td>
+              <td>Minimal — speed priority</td>
+              <td>Only what adds value</td>
+            </tr>
+            <tr>
+              <td><strong>Team size</strong></td>
+              <td>Small–large (SAFe for large)</td>
+              <td>Any size</td>
+              <td>Small, skilled teams</td>
+              <td>Any, empowered teams</td>
+            </tr>
+            <tr>
+              <td><strong>Risk</strong></td>
+              <td>Low — frequent feedback</td>
+              <td>High — late integration</td>
+              <td>Medium — prototype quality</td>
+              <td>Low — waste elimination</td>
+            </tr>
+            <tr>
+              <td><strong>OSP suitability</strong></td>
+              <td><span class="tag tag-green">Best fit</span></td>
+              <td><span class="tag tag-red">Poor fit</span></td>
+              <td><span class="tag tag-amber">Good fit</span></td>
+              <td><span class="tag tag-amber">Principles apply</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Exam Answer -->
+      <h2 class="section-title">⭐ Distinction-Level Justification</h2>
+      <div class="band-container">
+        <div class="band-tabs">
+          <button class="band-tab pass" data-band="mpass">🟡 Pass</button>
+          <button class="band-tab distinction" data-band="mdist">🟣 Distinction</button>
+        </div>
+        <div class="band-content" data-band="mpass">
+          <div class="band-answer">
+            <div class="band-label pass">🟡 Pass</div>
+            <p>I will use Agile because it is flexible and allows me to change things as I go. It is better than Waterfall because Waterfall is too rigid.</p>
+          </div>
+        </div>
+        <div class="band-content" data-band="mdist">
+          <div class="band-answer">
+            <div class="band-label distinction">🟣 Distinction</div>
+            <p>I selected an <strong>Agile/Scrum-inspired methodology</strong> for the Resource Hub project because requirements were not fully defined at the outset — the client (the college) would need to review early prototypes before confirming final feature priorities (e.g. whether admin approval should be automatic or manual). Agile's iterative sprint structure maps directly onto the OSP's required iterative development lifecycle (Requirements → Design → Implementation → Review).</p>
+            <p>Waterfall was rejected because it requires fully-specified requirements upfront — inappropriate for a project where user feedback would inevitably refine the booking conflict logic and UI layout. RAD was considered but discarded because, while speed is valuable, the authorisation and security requirements (RBAC, CSRF protection) demanded careful architectural planning rather than rapid prototyping that might introduce technical debt.</p>
+            <p>LEAN principles were applied within the Agile framework to eliminate waste: I did not build features not requested by the client (YAGNI — You Aren't Gonna Need It), and kept documentation proportional to its value rather than comprehensive for its own sake.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

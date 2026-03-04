@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Examples – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search">
+      <input type="search" id="sidebarSearch" placeholder="Search topics…" aria-label="Search navigation" />
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item active"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content" role="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Code Examples</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">💻 Code Examples</div>
+        <h1>Code Examples &amp; Concepts</h1>
+        <p>HTML, CSS, JavaScript, PHP, and SQL — with syntax highlighting, explanations, and exam-relevant notes.</p>
+      </header>
+
+      <!-- Search bar -->
+      <input type="search" id="pageSearch" placeholder="🔍 Search this page…" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);color:var(--text-primary);font-family:var(--font-body);font-size:0.9rem;margin-bottom:28px;outline:none;" />
+
+      <!-- HTML -->
+      <h2 class="section-title">📄 HTML — Semantic Form</h2>
+      <p style="color:var(--text-secondary);margin-bottom:12px;font-size:0.9rem;">Semantic HTML improves accessibility and SEO. Always use appropriate input types and label associations.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">HTML</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;!-- Semantic registration form with accessibility attributes --&gt;</span>
+<span class="var">&lt;form</span> <span class="att">id</span>=<span class="str">"registerForm"</span> <span class="att">novalidate</span> <span class="att">aria-label</span>=<span class="str">"User registration form"</span><span class="var">&gt;</span>
+  <span class="var">&lt;fieldset&gt;</span>
+    <span class="var">&lt;legend&gt;</span>Create Your Account<span class="var">&lt;/legend&gt;</span>
+
+    <span class="var">&lt;div</span> <span class="att">class</span>=<span class="str">"form-group"</span><span class="var">&gt;</span>
+      <span class="cmt">&lt;!-- label 'for' MUST match input 'id' for accessibility --&gt;</span>
+      <span class="var">&lt;label</span> <span class="att">for</span>=<span class="str">"email"</span><span class="var">&gt;</span>Email Address <span class="var">&lt;span</span> <span class="att">aria-label</span>=<span class="str">"required"</span><span class="var">&gt;</span>*<span class="var">&lt;/span&gt;&lt;/label&gt;</span>
+      <span class="var">&lt;input</span>
+        <span class="att">type</span>=<span class="str">"email"</span>
+        <span class="att">id</span>=<span class="str">"email"</span>
+        <span class="att">name</span>=<span class="str">"email"</span>
+        <span class="att">required</span>
+        <span class="att">autocomplete</span>=<span class="str">"email"</span>
+        <span class="att">aria-required</span>=<span class="str">"true"</span>
+        <span class="att">aria-describedby</span>=<span class="str">"emailError"</span>
+      <span class="var">/&gt;</span>
+      <span class="var">&lt;span</span> <span class="att">id</span>=<span class="str">"emailError"</span> <span class="att">role</span>=<span class="str">"alert"</span> <span class="att">aria-live</span>=<span class="str">"polite"</span><span class="var">&gt;&lt;/span&gt;</span>
+    <span class="var">&lt;/div&gt;</span>
+
+    <span class="var">&lt;div</span> <span class="att">class</span>=<span class="str">"form-group"</span><span class="var">&gt;</span>
+      <span class="var">&lt;label</span> <span class="att">for</span>=<span class="str">"password"</span><span class="var">&gt;</span>Password *<span class="var">&lt;/label&gt;</span>
+      <span class="var">&lt;input</span>
+        <span class="att">type</span>=<span class="str">"password"</span>
+        <span class="att">id</span>=<span class="str">"password"</span>
+        <span class="att">name</span>=<span class="str">"password"</span>
+        <span class="att">required</span>
+        <span class="att">minlength</span>=<span class="str">"8"</span>
+        <span class="att">autocomplete</span>=<span class="str">"new-password"</span>
+        <span class="att">aria-describedby</span>=<span class="str">"pwHint pwError"</span>
+      <span class="var">/&gt;</span>
+      <span class="var">&lt;span</span> <span class="att">id</span>=<span class="str">"pwHint"</span><span class="var">&gt;</span>Minimum 8 characters, include a number and symbol.<span class="var">&lt;/span&gt;</span>
+      <span class="var">&lt;span</span> <span class="att">id</span>=<span class="str">"pwError"</span> <span class="att">role</span>=<span class="str">"alert"</span><span class="var">&gt;&lt;/span&gt;</span>
+    <span class="var">&lt;/div&gt;</span>
+
+    <span class="var">&lt;button</span> <span class="att">type</span>=<span class="str">"submit"</span><span class="var">&gt;</span>Register<span class="var">&lt;/button&gt;</span>
+  <span class="var">&lt;/fieldset&gt;</span>
+<span class="var">&lt;/form&gt;</span></pre>
+      </div>
+
+      <div class="info-box tip">
+        <span class="info-icon">💡</span>
+        <div><strong>Exam tip:</strong> Always use <code>aria-describedby</code> to link error messages to inputs, <code>aria-live="polite"</code> for dynamic feedback, and <code>role="alert"</code> for errors.</div>
+      </div>
+
+      <!-- JavaScript Form Validation -->
+      <h2 class="section-title">⚡ JavaScript — Form Validation</h2>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">JavaScript</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">/**
+ * Client-side form validation
+ * Note: Always validate server-side too — client validation can be bypassed!
+ */</span>
+
+<span class="kw">const</span> <span class="fn">validateEmail</span> = (<span class="var">email</span>) =&gt; {
+  <span class="kw">const</span> <span class="var">regex</span> = <span class="str">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>;
+  <span class="kw">return</span> regex.<span class="fn">test</span>(<span class="var">email</span>);
+};
+
+<span class="kw">const</span> <span class="fn">validatePassword</span> = (<span class="var">pw</span>) =&gt; {
+  <span class="kw">return</span> <span class="var">pw</span>.length &gt;= <span class="num">8</span>
+    &amp;&amp; <span class="str">/[0-9]/</span>.<span class="fn">test</span>(<span class="var">pw</span>)
+    &amp;&amp; <span class="str">/[!@#$%^&amp;*]/</span>.<span class="fn">test</span>(<span class="var">pw</span>);
+};
+
+<span class="kw">const</span> <span class="fn">showError</span> = (<span class="var">elementId</span>, <span class="var">message</span>) =&gt; {
+  <span class="kw">const</span> <span class="var">el</span> = document.<span class="fn">getElementById</span>(<span class="var">elementId</span>);
+  <span class="kw">if</span> (<span class="var">el</span>) {
+    <span class="var">el</span>.textContent = <span class="var">message</span>;
+    <span class="var">el</span>.style.color = <span class="str">'#ef4444'</span>;
+  }
+};
+
+<span class="kw">const</span> <span class="fn">clearError</span> = (<span class="var">elementId</span>) =&gt; {
+  <span class="kw">const</span> <span class="var">el</span> = document.<span class="fn">getElementById</span>(<span class="var">elementId</span>);
+  <span class="kw">if</span> (<span class="var">el</span>) <span class="var">el</span>.textContent = <span class="str">''</span>;
+};
+
+document.<span class="fn">getElementById</span>(<span class="str">'registerForm'</span>)
+  ?.<span class="fn">addEventListener</span>(<span class="str">'submit'</span>, (<span class="var">e</span>) =&gt; {
+    <span class="var">e</span>.<span class="fn">preventDefault</span>();
+    <span class="kw">let</span> <span class="var">isValid</span> = <span class="kw">true</span>;
+
+    <span class="kw">const</span> <span class="var">email</span> = document.<span class="fn">getElementById</span>(<span class="str">'email'</span>).value.<span class="fn">trim</span>();
+    <span class="kw">const</span> <span class="var">password</span> = document.<span class="fn">getElementById</span>(<span class="str">'password'</span>).value;
+
+    <span class="cmt">// Validate email</span>
+    <span class="kw">if</span> (!<span class="fn">validateEmail</span>(<span class="var">email</span>)) {
+      <span class="fn">showError</span>(<span class="str">'emailError'</span>, <span class="str">'Please enter a valid email address.'</span>);
+      <span class="var">isValid</span> = <span class="kw">false</span>;
+    } <span class="kw">else</span> {
+      <span class="fn">clearError</span>(<span class="str">'emailError'</span>);
+    }
+
+    <span class="cmt">// Validate password</span>
+    <span class="kw">if</span> (!<span class="fn">validatePassword</span>(<span class="var">password</span>)) {
+      <span class="fn">showError</span>(<span class="str">'pwError'</span>, <span class="str">'Password must be 8+ chars with a number and symbol.'</span>);
+      <span class="var">isValid</span> = <span class="kw">false</span>;
+    } <span class="kw">else</span> {
+      <span class="fn">clearError</span>(<span class="str">'pwError'</span>);
+    }
+
+    <span class="kw">if</span> (<span class="var">isValid</span>) {
+      console.<span class="fn">log</span>(<span class="str">'Form valid — submit to server'</span>);
+    }
+});</pre>
+      </div>
+
+      <!-- PHP Prepared Statements -->
+      <h2 class="section-title">🐘 PHP — Prepared Statements</h2>
+      <div class="info-box warn">
+        <span class="info-icon">⚠️</span>
+        <div><strong>SQL Injection:</strong> Without prepared statements, user input can escape the SQL query and run malicious commands. Prepared statements separate SQL logic from data — the database treats user input as data only, never as executable SQL.</div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">PHP</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;?php
+/**
+ * SECURE user login using PDO prepared statements
+ * Prevents SQL injection attacks
+ */</span>
+
+<span class="kw">function</span> <span class="fn">loginUser</span>(<span class="var">string</span> $<span class="var">email</span>, <span class="var">string</span> $<span class="var">password</span>, PDO $<span class="var">pdo</span>): <span class="var">array</span>|<span class="kw">false</span>
+{
+    <span class="cmt">// 1. Prepare: SQL template with named placeholders (never concatenate user input)</span>
+    $<span class="var">stmt</span> = $<span class="var">pdo</span>-&gt;<span class="fn">prepare</span>(
+        <span class="str">"SELECT user_id, email, password_hash, membership_level
+         FROM users
+         WHERE email = :email
+         LIMIT 1"</span>
+    );
+
+    <span class="cmt">// 2. Bind parameters — PDO escapes these safely</span>
+    $<span class="var">stmt</span>-&gt;<span class="fn">bindParam</span>(<span class="str">':email'</span>, $<span class="var">email</span>, PDO::PARAM_STR);
+
+    <span class="cmt">// 3. Execute</span>
+    $<span class="var">stmt</span>-&gt;<span class="fn">execute</span>();
+    $<span class="var">user</span> = $<span class="var">stmt</span>-&gt;<span class="fn">fetch</span>(PDO::FETCH_ASSOC);
+
+    <span class="kw">if</span> (!$<span class="var">user</span>) {
+        <span class="kw">return</span> <span class="kw">false</span>; <span class="cmt">// User not found</span>
+    }
+
+    <span class="cmt">// 4. Verify password using password_verify() — NEVER compare plain text!</span>
+    <span class="kw">if</span> (password_verify($<span class="var">password</span>, $<span class="var">user</span>[<span class="str">'password_hash'</span>])) {
+        <span class="cmt">// 5. Regenerate session ID to prevent session fixation</span>
+        <span class="fn">session_regenerate_id</span>(<span class="kw">true</span>);
+        $_SESSION[<span class="str">'user_id'</span>]  = $<span class="var">user</span>[<span class="str">'user_id'</span>];
+        $_SESSION[<span class="str">'email'</span>]    = $<span class="var">user</span>[<span class="str">'email'</span>];
+        <span class="kw">return</span> $<span class="var">user</span>;
+    }
+
+    <span class="kw">return</span> <span class="kw">false</span>;
+}
+
+<span class="cmt">// Hashing when registering a new user</span>
+<span class="kw">function</span> <span class="fn">hashPassword</span>(<span class="var">string</span> $<span class="var">plain</span>): <span class="var">string</span>
+{
+    <span class="cmt">// password_hash uses bcrypt by default (cost factor 10)</span>
+    <span class="kw">return</span> <span class="fn">password_hash</span>($<span class="var">plain</span>, PASSWORD_BCRYPT, [<span class="str">'cost'</span> =&gt; <span class="num">12</span>]);
+}
+<span class="var">?&gt;</span></pre>
+      </div>
+
+      <!-- SQL DDL + DML -->
+      <h2 class="section-title">🗄️ SQL — DDL &amp; DML</h2>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">SQL</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">-- =============================================
+-- DDL (Data Definition Language) — Defines schema
+-- =============================================</span>
+
+<span class="kw">CREATE TABLE</span> users (
+    user_id       <span class="fn">INT</span>          <span class="kw">AUTO_INCREMENT</span> <span class="kw">PRIMARY KEY</span>,
+    email         <span class="fn">VARCHAR</span>(<span class="num">255</span>) <span class="kw">NOT NULL UNIQUE</span>,
+    password_hash <span class="fn">VARCHAR</span>(<span class="num">255</span>) <span class="kw">NOT NULL</span>,
+    membership    <span class="fn">ENUM</span>(<span class="str">'free'</span>,<span class="str">'premium'</span>) <span class="kw">DEFAULT</span> <span class="str">'free'</span>,
+    created_at    <span class="fn">TIMESTAMP</span>    <span class="kw">DEFAULT</span> <span class="kw">CURRENT_TIMESTAMP</span>
+);
+
+<span class="kw">CREATE TABLE</span> workouts (
+    workout_id  <span class="fn">INT</span>          <span class="kw">AUTO_INCREMENT</span> <span class="kw">PRIMARY KEY</span>,
+    user_id     <span class="fn">INT</span>          <span class="kw">NOT NULL</span>,
+    title       <span class="fn">VARCHAR</span>(<span class="num">100</span>) <span class="kw">NOT NULL</span>,
+    calories    <span class="fn">DECIMAL</span>(<span class="num">8</span>,<span class="num">2</span>),
+    logged_at   <span class="fn">TIMESTAMP</span>    <span class="kw">DEFAULT</span> <span class="kw">CURRENT_TIMESTAMP</span>,
+    <span class="kw">FOREIGN KEY</span> (user_id) <span class="kw">REFERENCES</span> users(user_id) <span class="kw">ON DELETE CASCADE</span>
+);
+
+<span class="cmt">-- Index for fast lookups</span>
+<span class="kw">CREATE INDEX</span> idx_workouts_user <span class="kw">ON</span> workouts(user_id);
+
+<span class="cmt">-- =============================================
+-- DML (Data Manipulation Language) — Queries
+-- =============================================</span>
+
+<span class="cmt">-- INSERT new workout</span>
+<span class="kw">INSERT INTO</span> workouts (user_id, title, calories)
+<span class="kw">VALUES</span> (<span class="num">1</span>, <span class="str">'Morning Run 5km'</span>, <span class="num">320.50</span>);
+
+<span class="cmt">-- SELECT with JOIN to get user's workouts</span>
+<span class="kw">SELECT</span>
+    u.email,
+    w.title,
+    w.calories,
+    w.logged_at
+<span class="kw">FROM</span> workouts w
+<span class="kw">INNER JOIN</span> users u <span class="kw">ON</span> w.user_id = u.user_id
+<span class="kw">WHERE</span> u.user_id = <span class="num">1</span>
+<span class="kw">ORDER BY</span> w.logged_at <span class="kw">DESC</span>;
+
+<span class="cmt">-- Aggregate: total calories this week</span>
+<span class="kw">SELECT</span>
+    <span class="fn">SUM</span>(calories) <span class="kw">AS</span> weekly_calories,
+    <span class="fn">COUNT</span>(*) <span class="kw">AS</span> workout_count
+<span class="kw">FROM</span> workouts
+<span class="kw">WHERE</span>
+    user_id = <span class="num">1</span>
+    <span class="kw">AND</span> logged_at &gt;= <span class="fn">DATE_SUB</span>(<span class="fn">NOW</span>(), <span class="kw">INTERVAL</span> <span class="num">7</span> <span class="kw">DAY</span>);</pre>
+      </div>
+
+      <!-- MVC Structure -->
+      <h2 class="section-title">🏗️ MVC Folder Structure</h2>
+      <p style="color:var(--text-secondary);margin-bottom:12px;font-size:0.9rem;">Model-View-Controller separates concerns: Models handle data/database, Controllers handle logic, Views handle display. This improves maintainability and testability.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">File Structure</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">fitness-app/
+├── index.php               ← Entry point, routes requests
+├── .htaccess               ← URL rewriting (Apache)
+│
+├── app/
+│   ├── Models/
+│   │   ├── User.php        ← DB queries for users table
+│   │   ├── Workout.php     ← DB queries for workouts table
+│   │   └── Database.php    ← PDO connection singleton
+│   │
+│   ├── Controllers/
+│   │   ├── AuthController.php     ← login, register, logout
+│   │   ├── WorkoutController.php  ← CRUD for workouts
+│   │   └── DashboardController.php
+│   │
+│   └── Views/
+│       ├── layout/
+│       │   ├── header.php  ← Common HTML head + nav
+│       │   └── footer.php
+│       ├── auth/
+│       │   ├── login.php
+│       │   └── register.php
+│       ├── workouts/
+│       │   ├── index.php   ← List workouts
+│       │   └── create.php  ← Add workout form
+│       └── dashboard/
+│           └── index.php
+│
+├── public/
+│   ├── css/                ← Stylesheets
+│   ├── js/                 ← Client-side scripts
+│   └── img/
+│
+└── config/
+    ├── database.php        ← DB credentials (NOT committed to git)
+    └── constants.php</span></pre>
+      </div>
+
+      <!-- CSRF -->
+      <h2 class="section-title">🛡️ PHP — CSRF Protection</h2>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">PHP</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;?php
+/**
+ * CSRF (Cross-Site Request Forgery) Protection
+ * Attacker tricks user's browser into making an unwanted request.
+ * Solution: include a secret token in every form that only our server knows.
+ */</span>
+
+<span class="fn">session_start</span>();
+
+<span class="cmt">// Generate a CSRF token once per session</span>
+<span class="kw">if</span> (empty($_SESSION[<span class="str">'csrf_token'</span>])) {
+    $_SESSION[<span class="str">'csrf_token'</span>] = <span class="fn">bin2hex</span>(<span class="fn">random_bytes</span>(<span class="num">32</span>));
+}
+
+<span class="cmt">// Validate incoming POST requests</span>
+<span class="kw">function</span> <span class="fn">validateCsrf</span>(): <span class="kw">void</span>
+{
+    $<span class="var">token</span> = $_POST[<span class="str">'csrf_token'</span>] ?? <span class="str">''</span>;
+    <span class="kw">if</span> (!<span class="fn">hash_equals</span>($_SESSION[<span class="str">'csrf_token'</span>], $<span class="var">token</span>)) {
+        <span class="fn">http_response_code</span>(<span class="num">403</span>);
+        <span class="kw">die</span>(<span class="str">'CSRF validation failed'</span>);
+    }
+}
+<span class="var">?&gt;</span>
+
+<span class="cmt">&lt;!-- In your HTML form: --&gt;</span>
+<span class="var">&lt;form</span> <span class="att">method</span>=<span class="str">"post"</span> <span class="att">action</span>=<span class="str">"/workout/create"</span><span class="var">&gt;</span>
+  <span class="var">&lt;input</span>
+    <span class="att">type</span>=<span class="str">"hidden"</span>
+    <span class="att">name</span>=<span class="str">"csrf_token"</span>
+    <span class="att">value</span>=<span class="str">"&lt;?= htmlspecialchars($_SESSION['csrf_token']) ?&gt;"</span>
+  <span class="var">/&gt;</span>
+  <span class="cmt">&lt;!-- rest of form --&gt;</span>
+<span class="var">&lt;/form&gt;</span></pre>
+      </div>
+
+      <!-- CSS Grid/Flex -->
+      <h2 class="section-title">🎨 CSS — Responsive Layout</h2>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">CSS</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">/* CSS Custom Properties for theming */</span>
+<span class="var">:root</span> {
+  <span class="att">--primary</span>:   <span class="num">#3d5af1</span>;
+  <span class="att">--bg</span>:        <span class="num">#f4f1ec</span>;
+  <span class="att">--surface</span>:   <span class="num">#ffffff</span>;
+  <span class="att">--text</span>:      <span class="num">#1a1a2e</span>;
+  <span class="att">--radius</span>:    <span class="num">12px</span>;
+  <span class="att">--gap</span>:       <span class="num">16px</span>;
+}
+
+<span class="cmt">/* Responsive card grid using auto-fill */</span>
+<span class="var">.card-grid</span> {
+  <span class="att">display</span>:               grid;
+  <span class="att">grid-template-columns</span>: repeat(auto-fill, minmax(<span class="num">280px</span>, 1fr));
+  <span class="att">gap</span>:                   var(<span class="att">--gap</span>);
+}
+
+<span class="cmt">/* Flexbox header with space-between */</span>
+<span class="var">.site-header</span> {
+  <span class="att">display</span>:         flex;
+  <span class="att">align-items</span>:     center;
+  <span class="att">justify-content</span>: space-between;
+  <span class="att">padding</span>:         <span class="num">16px 32px</span>;
+  <span class="att">background</span>:      var(<span class="att">--surface</span>);
+  <span class="att">box-shadow</span>:      <span class="num">0 1px 8px rgba(0,0,0,.08)</span>;
+}
+
+<span class="cmt">/* Mobile-first media query */</span>
+<span class="kw">@media</span> (<span class="att">max-width</span>: <span class="num">768px</span>) {
+  <span class="var">.card-grid</span> {
+    <span class="att">grid-template-columns</span>: <span class="num">1fr</span>;
+  }
+  <span class="var">.site-header</span> {
+    <span class="att">flex-direction</span>: column;
+    <span class="att">gap</span>: var(<span class="att">--gap</span>);
+  }
+}
+
+<span class="cmt">/* Accessible focus styles — never remove outline without replacement */</span>
+<span class="var">:focus-visible</span> {
+  <span class="att">outline</span>:        <span class="num">3px</span> solid var(<span class="att">--primary</span>);
+  <span class="att">outline-offset</span>: <span class="num">3px</span>;
+  <span class="att">border-radius</span>:  <span class="num">4px</span>;
+}</pre>
+      </div>
+
+      <!-- Quick Reference -->
+      <h2 class="section-title">📖 Quick Reference</h2>
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>What is the difference between DDL and DML?</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-body">
+            <strong>DDL (Data Definition Language)</strong> defines the database structure: <code>CREATE TABLE</code>, <code>ALTER TABLE</code>, <code>DROP TABLE</code>. It changes the schema.<br><br>
+            <strong>DML (Data Manipulation Language)</strong> manipulates the data within that structure: <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>. It reads and writes rows.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Why use two languages in your solution?</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-body">
+            The mark scheme explicitly requires at least two different languages (e.g. PHP + SQL, JavaScript + PHP, Python + SQL) to reach Band 2 or above. Each language should have a clear role: <strong>PHP/Python</strong> for server-side logic, <strong>SQL</strong> for database operations, <strong>JavaScript</strong> for client-side interactivity.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>What makes code "well-organised" for Distinction?</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-body">
+            According to the mark scheme, Distinction code must be: <strong>easily maintainable by a third party</strong> through consistently appropriate <em>naming conventions</em>, <em>logical organisation</em>, and <em>informative commenting</em>. Avoid nested if statements with copy-pasted procedural code. Use functions, classes, and modular structure.
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Explain recursive algorithms with a stopping mechanism</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-body">
+            A recursive function calls itself. The mark scheme specifically warns: <em>"if used in PHP here must be a mechanism (IF statement, etc.) that stops the recursion"</em>. This is the <strong>base case</strong>. Without it, you get a stack overflow.<br><br>
+            <code>function factorial(int $n): int {<br>&nbsp;&nbsp;if ($n &lt;= 1) return 1; // BASE CASE — stops recursion<br>&nbsp;&nbsp;return $n * factorial($n - 1);<br>}</code>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

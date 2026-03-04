@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revision Checklists – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item active"><span class="nav-icon">✅</span> Revision Checklists</a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Revision Checklists</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">✅ Checklists</div>
+        <h1>Revision Checklists</h1>
+        <p>Tick off each item as you master it. Progress is saved automatically to your browser. Aim for 100% before your exam.</p>
+      </header>
+
+      <!-- Overall Progress -->
+      <div class="card" style="margin-bottom:32px;">
+        <h3 style="font-family:var(--font-display);margin-bottom:8px;">📊 Overall Progress</h3>
+        <div class="progress-label">
+          <span id="progressLabel">Calculating…</span>
+          <span id="progressPct" style="font-weight:700;color:var(--accent-3)">0%</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-muted);">Progress saved to your browser. Clear browser data to reset.</p>
+      </div>
+
+      <!-- Knowledge Checklist -->
+      <h2 class="section-title">🧠 Core Knowledge</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><input type="checkbox" class="check-input"/><span>I can explain the CIA triad (Confidentiality, Integrity, Availability) with examples</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can explain SQL injection and how prepared statements prevent it</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can explain what CSRF is and how to implement token-based protection</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can explain why bcrypt is used for passwords (not MD5/SHA1)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I know the difference between authentication and authorisation</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can name and explain GDPR's key principles (lawfulness, minimisation, etc.)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I know what Special Category data is under GDPR and how to handle it</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can list the four POUR accessibility principles and give examples of each</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I know the WCAG 2.1 AA colour contrast requirements (4.5:1 for normal text)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can explain the difference between DDL and DML with examples</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I know what an ERD is and how to create one with correct cardinality notation</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I understand what normalisation is (1NF, 2NF, 3NF)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can explain the MVC pattern and the role of each component</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can explain the iterative development lifecycle (Requirements → Design → Implement → Review)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I know the difference between white-box and black-box testing</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can explain normal, erroneous, and boundary test data with examples</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I know what regression testing is and why it's done</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I understand what functional vs non-functional requirements are</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can write a good user story with acceptance criteria</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I know what KPIs are and can give relevant examples for a health app</span></li>
+        </ul>
+      </div>
+
+      <!-- Skills Checklist -->
+      <h2 class="section-title" style="margin-top:32px;">⚙️ Technical Skills</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><input type="checkbox" class="check-input"/><span>I can write a PHP login function using PDO prepared statements</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can implement CSRF token generation and validation in PHP</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can write JavaScript form validation with accessible error messages</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can write SQL to CREATE tables with appropriate data types and constraints</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can write a JOIN query to retrieve data across multiple tables</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can write a responsive CSS layout using Grid and Flexbox</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can write semantic HTML with correct ARIA attributes</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I understand how to structure a project using MVC pattern</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can implement and document an algorithm using pseudocode or flowchart</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I understand how to make a REST API request and parse JSON</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I can use version control (Git) with meaningful commit messages</span></li>
+        </ul>
+      </div>
+
+      <!-- Distinction Checklist -->
+      <h2 class="section-title" style="margin-top:32px;">⭐ Distinction-Level Behaviours</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><input type="checkbox" class="check-input"/><span>My proposal fully decomposes all sub-problems with inputs, processes, and outputs</span></li>
+          <li><input type="checkbox" class="check-input"/><span>Every risk in my proposal has a specific, named technical mitigation (not vague)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My FRs are verifiable (you can test whether they are met)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My NFRs are measurable (specific numbers, not "fast" or "easy")</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My KPIs are business-relevant and quantifiable</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My wireframes are annotated with HCI principles and accessibility notes</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My algorithms handle edge cases and have a clear stopping condition for any recursion</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My test log covers normal, erroneous, AND boundary data for each component</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My test log includes regression tests after every fix</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My code uses consistent naming conventions throughout (e.g. always camelCase or always snake_case)</span></li>
+          <li><input type="checkbox" class="check-input"/><span>All functions/methods have PHPDoc or JSDoc comments</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My code has no global variables where local variables would work</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My solution implements 6+ WCAG 2.1 AA success criteria</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My error messages are specific and describe how to fix the problem</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My evaluation references specific evidence from feedback (not just "users liked it")</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My rationale for future iterations is specific and linked to measured problems</span></li>
+          <li><input type="checkbox" class="check-input"/><span>My documentation uses technical language consistently and appropriately for each audience</span></li>
+          <li><input type="checkbox" class="check-input"/><span>I have documented at least 3 iterations with rationale for each design decision</span></li>
+        </ul>
+      </div>
+
+      <!-- Legislation Quick Ref -->
+      <h2 class="section-title" style="margin-top:32px;">⚖️ Legislation Quick Reference</h2>
+      <div class="card">
+        <ul class="checklist">
+          <li><input type="checkbox" class="check-input"/><span><strong>GDPR (2018):</strong> Data protection law — lawful basis for processing, consent, right to erasure, privacy by design, breach notification within 72 hours</span></li>
+          <li><input type="checkbox" class="check-input"/><span><strong>Computer Misuse Act 1990:</strong> Three offences — unauthorised access, unauthorised access with intent, unauthorised modification</span></li>
+          <li><input type="checkbox" class="check-input"/><span><strong>Equality Act 2010:</strong> Prohibits disability discrimination — requires reasonable adjustments for accessibility (WCAG 2.1 AA)</span></li>
+          <li><input type="checkbox" class="check-input"/><span><strong>WCAG 2.1:</strong> Web Content Accessibility Guidelines — POUR principles, Level A/AA/AAA compliance</span></li>
+          <li><input type="checkbox" class="check-input"/><span><strong>Copyright, Designs &amp; Patents Act 1988:</strong> Governs use of third-party code, images, and media in your solution</span></li>
+          <li><input type="checkbox" class="check-input"/><span><strong>Consumer Rights Act 2015:</strong> Software must be fit for purpose, as described, and of satisfactory quality</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

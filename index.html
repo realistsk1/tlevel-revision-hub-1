@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T-Level Digital Revision Hub</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        T-Level Digital
+        <span>Revision Hub</span>
+      </div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+
+    <div class="sidebar-search">
+      <input type="search" id="sidebarSearch" placeholder="Search topics…" aria-label="Search navigation" />
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="index.html" class="nav-item active">
+        <span class="nav-icon">🏠</span> Dashboard
+      </a>
+
+      <div class="nav-section-label">Core Topics</div>
+      <a href="pages/code-examples.html" class="nav-item">
+        <span class="nav-icon">💻</span> Code Examples
+      </a>
+      <a href="pages/security.html" class="nav-item">
+        <span class="nav-icon">🔐</span> Cyber Security
+      </a>
+      <a href="pages/accessibility.html" class="nav-item">
+        <span class="nav-icon">♿</span> Accessibility (WCAG)
+      </a>
+      <a href="pages/documentation.html" class="nav-item">
+        <span class="nav-icon">📄</span> Documentation
+      </a>
+
+      <div class="nav-section-label">New Topics</div>
+      <a href="pages/methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="pages/emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="pages/change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="pages/advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="pages/advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="pages/team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="pages/distinction-examples.html" class="nav-item">
+        <span class="nav-icon">⭐</span> Distinction Examples
+      </a>
+      <a href="pages/mock-tasks.html" class="nav-item">
+        <span class="nav-icon">📝</span> Mock OSP Tasks
+      </a>
+      <a href="pages/checklists.html" class="nav-item">
+        <span class="nav-icon">✅</span> Revision Checklists
+      </a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="pages/your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      T-Level Digital Production,<br/>Design & Development · 2025
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Main -->
+  <main class="main-content" role="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">☰</button>
+        <div class="page-breadcrumb"><strong>Dashboard</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <!-- Header -->
+      <header class="page-header fade-up">
+        <div class="eyebrow">📚 Your Exam Is Soon</div>
+        <h1>T-Level Digital Revision Hub</h1>
+        <p>Everything you need to achieve a Distinction in your Digital Production, Design &amp; Development OSP. Based on official mark scheme criteria.</p>
+      </header>
+
+      <!-- Stats -->
+      <div class="stat-grid fade-up-2">
+        <div class="stat-card">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Topic Areas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">24</div>
+          <div class="stat-label">Code Examples</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Mock Tasks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">P/M/D</div>
+          <div class="stat-label">Grade Comparisons</div>
+        </div>
+      </div>
+
+      <!-- Key Message -->
+      <div class="info-box info fade-up-3">
+        <span class="info-icon">🎯</span>
+        <div>
+          <strong>How to use this hub:</strong> Work through each section systematically. The <strong>Distinction Examples</strong> page is built directly from the official mark scheme — learn what "comprehensive lines of reasoning" and "thoroughly effective" means in practice. Use <strong>Checklists</strong> to track your progress.
+        </div>
+      </div>
+
+      <!-- Quick Nav Cards -->
+      <h2 class="section-title">📂 Quick Access</h2>
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-icon">💻</div>
+          <h3>Code Examples</h3>
+          <p>HTML, CSS, JavaScript, PHP, SQL with syntax highlighting. Includes form validation, MVC structure, prepared statements, and more.</p>
+          <a href="pages/code-examples.html" class="card-link">Explore →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h3>Cyber Security</h3>
+          <p>CSRF protection, password hashing, SQL injection prevention, secure login concepts, and CIA triad explained with exam examples.</p>
+          <a href="pages/security.html" class="card-link">Explore →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">♿</div>
+          <h3>Accessibility (WCAG)</h3>
+          <p>WCAG 2.1 principles, ARIA roles, colour contrast, keyboard navigation — with code examples and exam-ready justifications.</p>
+          <a href="pages/accessibility.html" class="card-link">Explore →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📄</div>
+          <h3>Documentation</h3>
+          <p>Design documents, test plans, risk assessments, ERD explanations, user stories, and wireframe annotations with full templates.</p>
+          <a href="pages/documentation.html" class="card-link">Explore →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⭐</div>
+          <h3>Distinction Examples</h3>
+          <p>Side-by-side Pass / Merit / Distinction answers for security justification, testing strategy, accessibility, and system design.</p>
+          <a href="pages/distinction-examples.html" class="card-link">Explore →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📝</div>
+          <h3>Mock OSP Tasks</h3>
+          <p>Practice tasks matching the real exam format. Includes Task 1A (Proposal), Task 1B (Design), Task 2 (Development), Task 3 (Evaluation).</p>
+          <a href="pages/mock-tasks.html" class="card-link">Explore →</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">✅</div>
+          <h3>Revision Checklists</h3>
+          <p>Interactive tick-off lists for every assessment focus. Track your readiness across all tasks with saved progress.</p>
+          <a href="pages/checklists.html" class="card-link">Explore →</a>
+        </div>
+
+      </div>
+
+      <!-- Mark Scheme Breakdown -->
+      <h2 class="section-title">🏆 Assessment Focus Overview</h2>
+      <div class="info-box tip">
+        <span class="info-icon">💡</span>
+        <div>The mark scheme uses <strong>4 bands (0–3)</strong> for most criteria. Band 3 = Distinction. Key words that examiners look for: <em>comprehensive, thorough, perceptive, convincing, fully, consistently.</em></div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Assessment Focus</th>
+            <th>Max Marks</th>
+            <th>Distinction Keyword</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag">Task 1A</span></td>
+            <td>Decomposing the Problem</td>
+            <td>9</td>
+            <td><em>"Fully identifies… effectively decomposes"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag">Task 1A</span></td>
+            <td>Appreciation of Wider Issues</td>
+            <td>9</td>
+            <td><em>"Comprehensive lines of reasoning that fully justify"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag">Task 1A</span></td>
+            <td>Appreciation of Business Context</td>
+            <td>6</td>
+            <td><em>"Comprehensive and perceptive definitions"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-amber">Task 1B</span></td>
+            <td>Interface Design</td>
+            <td>6</td>
+            <td><em>"Sophisticated and highly effective use"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-amber">Task 1B</span></td>
+            <td>Algorithm Design</td>
+            <td>4+6</td>
+            <td><em>"Comprehensive… precise logic… efficient structure"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-amber">Task 1B</span></td>
+            <td>Data Requirements</td>
+            <td>6</td>
+            <td><em>"Fully appropriate… thoroughly consistent naming"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-amber">Task 1B</span></td>
+            <td>Test Strategy</td>
+            <td>6</td>
+            <td><em>"Thorough and detailed understanding"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">Task 2</span></td>
+            <td>Functionality</td>
+            <td>8</td>
+            <td><em>"Consistently efficient… two different languages"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">Task 2</span></td>
+            <td>Code Organisation</td>
+            <td>8</td>
+            <td><em>"Easily maintainable… consistently appropriate"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">Task 2</span></td>
+            <td>User Experience</td>
+            <td>8</td>
+            <td><em>"Excellent… consistently effective… fully robust"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">Task 2</span></td>
+            <td>Legal &amp; Regulatory</td>
+            <td>6</td>
+            <td><em>"Consistent and effective application"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-purple">Task 2 Test</span></td>
+            <td>Suitability of Test Data</td>
+            <td>6</td>
+            <td><em>"Thorough and detailed understanding"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-purple">Task 3A</span></td>
+            <td>Effectiveness of Materials</td>
+            <td>12</td>
+            <td><em>"High-quality feedback… evidence-informed"</em></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-purple">Task 3B</span></td>
+            <td>Evaluation of Project Outcomes</td>
+            <td>9</td>
+            <td><em>"Thorough… convincing and perceptive rationale"</em></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Distinction Tip -->
+      <h2 class="section-title">🧠 Distinction Mindset</h2>
+      <div class="card-grid card-grid-3">
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Be Comprehensive</h3>
+          <p>Don't just identify — decompose. Don't just mention risks — explain how you'll mitigate each one with specific technical solutions.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧩</div>
+          <h3>Justify Everything</h3>
+          <p>Every design decision needs a reason. "I used prepared statements because they prevent SQL injection attacks by separating data from SQL commands."</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📐</div>
+          <h3>Show Iteration</h3>
+          <p>Distinction marks require evidence of iterative development — version history, regression testing, documented rationales for changes.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>Cover All Regulations</h3>
+          <p>GDPR, WCAG 2.1, OWASP, Computer Misuse Act — mention them by name and explain how your solution addresses each requirement.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧪</div>
+          <h3>Test Thoroughly</h3>
+          <p>Use normal, erroneous, and boundary data. Include evidence of regression testing. Link test results back to requirements.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h3>Write Precisely</h3>
+          <p>Use correct technical terminology consistently. Examiners reward "consistent appropriate use of technical language" for all communication marks.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

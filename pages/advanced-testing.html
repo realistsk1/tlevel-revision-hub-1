@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Testing – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .five-whys {
+      position: relative;
+      margin: 20px 0;
+    }
+    .why-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .why-step::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 44px;
+      width: 2px;
+      height: calc(100% - 4px);
+      background: var(--border);
+    }
+    .why-step:last-child::before { display: none; }
+    .why-num {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+    .why-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      flex: 1;
+    }
+    .why-content .why-q { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px; }
+    .why-content .why-a { font-size: 0.9rem; color: var(--text-primary); font-weight: 600; margin-bottom: 4px; }
+    .why-content .why-note { font-size: 0.8rem; color: var(--text-secondary); }
+    .why-root { border-color: var(--accent-3); background: #f0fdf4; }
+    [data-theme="dark"] .why-root { background: #052e16; }
+
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .tool-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .tool-card .tool-type {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .tool-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .tool-card code { font-family: var(--font-mono); font-size: 0.8rem; background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item active"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+      <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Advanced Testing</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">🧪 Advanced Testing</div>
+        <h1>Root Cause Analysis &amp; Automated Testing</h1>
+        <p>The Five Whys technique for defect analysis, plus automated testing tools for UI, performance, load, and accessibility — with exam-ready justifications.</p>
+      </header>
+
+      <div class="info-box info fade-up-2">
+        <span class="info-icon">🎯</span>
+        <div><strong>Mark scheme connection:</strong> Distinction testing evidence requires "comments show a comprehensive understanding of how errors/problems were identified and <strong>how they were rectified</strong>" and evidence of "an effective iterative development process." Root Cause Analysis directly demonstrates this — it shows you didn't just fix symptoms, but identified underlying causes.</div>
+      </div>
+
+      <!-- RCA / Five Whys -->
+      <h2 class="section-title">🔍 Root Cause Analysis — The Five Whys</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Developed by Toyota, the Five Whys technique iteratively asks "Why?" to dig past symptoms and find the underlying cause of a defect. You don't always need exactly five — stop when you reach an actionable root cause.</p>
+
+      <div class="info-box warn">
+        <span class="info-icon">⚠️</span>
+        <div><strong>Symptom vs Root Cause:</strong> Fixing a symptom means the same problem will recur. Fixing the root cause eliminates the class of problem permanently. A patch is fast; root cause analysis is professional.</div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:20px 0 16px;">Example: BMI Classification Bug (Defect DEF-01)</h3>
+
+      <div class="five-whys">
+
+        <div class="why-step">
+          <div class="why-num" style="background:#ef4444;">1</div>
+          <div class="why-content">
+            <div class="why-q">Problem (What happened?)</div>
+            <div class="why-a">BMI = 18.5 was classified as "Underweight" instead of "Normal weight"</div>
+            <div class="why-note">Discovered during boundary value testing (T-06) — test data: height 170cm, weight 53.6kg</div>
+          </div>
+        </div>
+
+        <div class="why-step">
+          <div class="why-num" style="background:#f59e0b;">2</div>
+          <div class="why-content">
+            <div class="why-q">Why? #1</div>
+            <div class="why-a">The condition was <code>if ($bmi &lt; 18.5)</code> → Underweight, which is false for exactly 18.5 but the next condition <code>elseif ($bmi &lt; 25)</code> captured it as Normal — wait, that should be correct. Let me check the logic again.</div>
+            <div class="why-note">Re-read: actually the conditions were <code>&lt; 18.5</code> → Underweight, <code>&lt;= 18.5</code> → Normal. Overlapping boundary.</div>
+          </div>
+        </div>
+
+        <div class="why-step">
+          <div class="why-num" style="background:#f59e0b;">3</div>
+          <div class="why-content">
+            <div class="why-q">Why? #2</div>
+            <div class="why-a">The floating point representation of 18.5 stored as a DECIMAL(5,2) rounds in a way that <code>$bmi === 18.5</code> evaluates to false in PHP due to floating point precision.</div>
+            <div class="why-note"><code>var_dump(0.1 + 0.2 == 0.3);</code> → bool(false) — classic floating point issue</div>
+          </div>
+        </div>
+
+        <div class="why-step">
+          <div class="why-num" style="background:#22c55e;">4</div>
+          <div class="why-content why-root">
+            <div class="why-q">🎯 Root Cause</div>
+            <div class="why-a">Strict equality or direct comparison of floating point numbers is unreliable in any programming language due to IEEE 754 representation. The code used direct comparison where a range check was needed.</div>
+            <div class="why-note">Fix: use <code>&gt;= 18.5 && &lt; 25.0</code> ranges rather than exact equality, and round to 1 decimal place before comparison using <code>round($bmi, 1)</code>.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="info-box tip">
+        <span class="info-icon">💡</span>
+        <div><strong>How to write this in your test documentation (Distinction level):</strong> "Defect DEF-01 was identified through boundary value testing at the Normal/Underweight boundary (BMI = 18.5). Root Cause Analysis revealed the defect was caused by floating point precision issues in PHP when comparing DECIMAL database values — a systemic issue affecting all boundary classifications. Fix applied: all BMI comparisons now use <code>round($bmi, 1)</code> before comparison, and strict range operators (&gt;= and &lt;) replace equality checks. Regression testing confirmed all 6 BMI boundary tests pass after the fix with no new defects introduced."</div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:24px 0 12px;">Five Whys — Worked Example 2: Security Incident</h3>
+
+      <div class="five-whys">
+        <div class="why-step">
+          <div class="why-num" style="background:#ef4444;">1</div>
+          <div class="why-content"><div class="why-q">Problem</div><div class="why-a">A student was able to cancel another student's booking by manipulating the booking_id POST parameter</div></div>
+        </div>
+        <div class="why-step">
+          <div class="why-num" style="background:#f59e0b;">2</div>
+          <div class="why-content"><div class="why-q">Why #1</div><div class="why-a">The cancel query only checked the booking_id, not whether the booking belonged to the logged-in user</div></div>
+        </div>
+        <div class="why-step">
+          <div class="why-num" style="background:#f59e0b;">3</div>
+          <div class="why-content"><div class="why-q">Why #2</div><div class="why-a">The developer assumed the booking_id would always come from the student's own list — no adversarial thinking applied</div></div>
+        </div>
+        <div class="why-step">
+          <div class="why-num" style="background:#22c55e;">4</div>
+          <div class="why-content why-root"><div class="why-q">🎯 Root Cause</div><div class="why-a">Insufficient authorisation check — authentication (are you logged in?) was present but authorisation (are you allowed to do THIS specific action?) was missing. Fix: add <code>AND user_id = ?</code> to the UPDATE query binding the session user_id.</div></div>
+        </div>
+      </div>
+
+      <!-- Automated Testing Tools -->
+      <h2 class="section-title">⚡ Automated Testing Tools</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:18px;">The mark scheme mentions "performance, stress, and load testing" can be "achieved through the use of testing software." Using real tools demonstrates professional practice and earns Distinction marks.</p>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin-bottom:14px;">🔍 Accessibility Testing</h3>
+      <div class="card-grid">
+        <div class="tool-card">
+          <div class="tool-type" style="color:#7c3aed;">Browser Extension</div>
+          <h3>Axe DevTools</h3>
+          <p>Chrome/Firefox extension by Deque. Audits a page against WCAG 2.1 A and AA criteria. Returns categorised violations with impact level (critical, serious, moderate, minor) and exact element location. <strong>Free, accurate, industry standard.</strong></p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#0891b2;">Browser Built-in</div>
+          <h3>Lighthouse (Chrome)</h3>
+          <p>F12 → Lighthouse tab. Audits Accessibility, Performance, Best Practices, SEO. Returns 0–100 score. Distinction target: Accessibility score ≥ 90. Run in incognito to avoid extension interference.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#16a34a;">Screen Reader</div>
+          <h3>NVDA (Windows)</h3>
+          <p>Free screen reader for Windows. Test your app by tabbing through it with eyes closed — if NVDA announces elements meaningfully, your ARIA implementation is correct. Essential for genuine accessibility testing.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#dc2626;">Colour</div>
+          <h3>WebAIM Contrast Checker</h3>
+          <p>Enter foreground/background hex codes — returns contrast ratio and AA/AAA pass/fail. Normal text must be ≥ 4.5:1. Large text (18pt+) must be ≥ 3:1. Free at webaim.org/resources/contrastchecker.</p>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:24px 0 14px;">🚀 Performance &amp; Load Testing</h3>
+      <div class="card-grid">
+        <div class="tool-card">
+          <div class="tool-type" style="color:#0891b2;">Performance</div>
+          <h3>Google Lighthouse</h3>
+          <p>Performance score 0–100. Key metrics: <strong>FCP</strong> (First Contentful Paint) — time to first content. <strong>LCP</strong> (Largest Contentful Paint) — target &lt; 2.5s. <strong>CLS</strong> (Cumulative Layout Shift) — visual stability. <strong>TTI</strong> (Time to Interactive). Distinction: ≥ 90 score.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#7c3aed;">Load Testing</div>
+          <h3>Apache JMeter</h3>
+          <p>Free, open-source load testing tool. Simulates hundreds/thousands of concurrent users sending HTTP requests to your server. Reports response times, throughput, error rate. Used to test NFR-02 (e.g. "99.5% uptime under 500 concurrent users").</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#f59e0b;">Load Testing (Cloud)</div>
+          <h3>k6 (Grafana)</h3>
+          <p>Modern load testing tool — write tests in JavaScript. More developer-friendly than JMeter. Can run locally or in the cloud. Supports scripted user journeys (login → browse → book → logout).</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#16a34a;">API Testing</div>
+          <h3>Postman</h3>
+          <p>Test REST API endpoints manually or automatically. Write test scripts that verify response status codes, JSON structure, and data values. Can run as a full test suite (Newman CLI) in CI/CD pipelines.</p>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:24px 0 14px;">🖥️ UI &amp; End-to-End Testing</h3>
+      <div class="card-grid">
+        <div class="tool-card">
+          <div class="tool-type" style="color:#22c55e;">E2E Testing</div>
+          <h3>Cypress</h3>
+          <p>Automated browser testing — writes tests that control a real browser. Tests user journeys end-to-end: <code>cy.get('#email').type('user@test.com'); cy.get('button[type=submit]').click(); cy.contains('Dashboard');</code>. Fast feedback, great for regression testing.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#7c3aed;">Unit Testing (PHP)</div>
+          <h3>PHPUnit</h3>
+          <p>The standard PHP unit testing framework. Write test classes that call your functions/methods with known inputs and assert expected outputs. Essential for testing calculation functions like BMI, BMR, calorie algorithms in isolation.</p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#0891b2;">Unit Testing (JS)</div>
+          <h3>Jest</h3>
+          <p>Facebook's JavaScript testing framework. Test your JS validation functions: <code>test('validates email format', () => { expect(validateEmail('bad')).toBe(false); expect(validateEmail('a@b.com')).toBe(true); });</code></p>
+        </div>
+        <div class="tool-card">
+          <div class="tool-type" style="color:#dc2626;">Security</div>
+          <h3>OWASP ZAP</h3>
+          <p>Free automated security scanner — crawls your web app and tests for OWASP Top 10 vulnerabilities including SQL injection, XSS, CSRF, and broken authentication. Use passively during development to catch security issues early.</p>
+        </div>
+      </div>
+
+      <!-- Example code: PHPUnit -->
+      <h3 style="font-family:var(--font-display);font-size:1.05rem;margin:24px 0 12px;">PHPUnit — Unit Test Example</h3>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">PHP — PHPUnit Test for BMI Calculator</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;?php
+/**
+ * Unit tests for the BMI calculation function.
+ * Tests: normal data, boundary values, erroneous data.
+ * Maps to: FR-04, Test IDs T-06 through T-12
+ */</span>
+<span class="kw">use</span> PHPUnit\Framework\TestCase;
+
+<span class="kw">class</span> <span class="fn">BmiCalculatorTest</span> <span class="kw">extends</span> <span class="fn">TestCase</span>
+{
+    <span class="cmt">// ── Normal data tests ────────────────────────────────────</span>
+    <span class="kw">public function</span> <span class="fn">testNormalWeightClassification</span>(): <span class="var">void</span>
+    {
+        $<span class="var">result</span> = <span class="fn">calculateBmi</span>(<span class="num">175</span>, <span class="num">70</span>);
+        $<span class="kw">this</span>-&gt;<span class="fn">assertEquals</span>(<span class="str">'Normal weight'</span>, $<span class="var">result</span>[<span class="str">'classification'</span>]);
+        $<span class="kw">this</span>-&gt;<span class="fn">assertEquals</span>(<span class="num">22.9</span>, $<span class="var">result</span>[<span class="str">'bmi'</span>]);
+    }
+
+    <span class="cmt">// ── Boundary value tests ─────────────────────────────────</span>
+
+    <span class="cmt">/** @dataProvider bmiProvider */</span>
+    <span class="kw">public function</span> <span class="fn">testBmiClassifications</span>(<span class="var">float</span> $<span class="var">h</span>, <span class="var">float</span> $<span class="var">w</span>, <span class="var">string</span> $<span class="var">expected</span>): <span class="var">void</span>
+    {
+        $<span class="var">result</span> = <span class="fn">calculateBmi</span>($<span class="var">h</span>, $<span class="var">w</span>);
+        $<span class="kw">this</span>-&gt;<span class="fn">assertEquals</span>($<span class="var">expected</span>, $<span class="var">result</span>[<span class="str">'classification'</span>],
+            <span class="str">"BMI {$result['bmi']} should be '$expected'"</span>);
+    }
+
+    <span class="kw">public static function</span> <span class="fn">bmiProvider</span>(): <span class="var">array</span>
+    {
+        <span class="kw">return</span> [
+            <span class="cmt">// [height_cm, weight_kg, expected_classification]</span>
+            <span class="str">'underweight boundary'</span>     =&gt; [<span class="num">170</span>, <span class="num">53.2</span>, <span class="str">'Underweight'</span>],    <span class="cmt">// BMI 18.4</span>
+            <span class="str">'normal lower boundary'</span>    =&gt; [<span class="num">170</span>, <span class="num">53.5</span>, <span class="str">'Normal weight'</span>],  <span class="cmt">// BMI 18.5 ← key boundary</span>
+            <span class="str">'normal upper boundary'</span>    =&gt; [<span class="num">170</span>, <span class="num">71.9</span>, <span class="str">'Normal weight'</span>],  <span class="cmt">// BMI 24.9</span>
+            <span class="str">'overweight lower boundary'</span>=&gt; [<span class="num">170</span>, <span class="num">72.3</span>, <span class="str">'Overweight'</span>],     <span class="cmt">// BMI 25.0</span>
+            <span class="str">'obese lower boundary'</span>     =&gt; [<span class="num">170</span>, <span class="num">86.7</span>, <span class="str">'Obese'</span>],          <span class="cmt">// BMI 30.0</span>
+        ];
+    }
+
+    <span class="cmt">// ── Erroneous data tests ─────────────────────────────────</span>
+    <span class="kw">public function</span> <span class="fn">testZeroHeightThrowsException</span>(): <span class="var">void</span>
+    {
+        $<span class="kw">this</span>-&gt;<span class="fn">expectException</span>(\<span class="fn">InvalidArgumentException</span>::<span class="kw">class</span>);
+        <span class="fn">calculateBmi</span>(<span class="num">0</span>, <span class="num">70</span>);
+    }
+
+    <span class="kw">public function</span> <span class="fn">testNegativeWeightThrowsException</span>(): <span class="var">void</span>
+    {
+        $<span class="kw">this</span>-&gt;<span class="fn">expectException</span>(\<span class="fn">InvalidArgumentException</span>::<span class="kw">class</span>);
+        <span class="fn">calculateBmi</span>(<span class="num">170</span>, <span class="num">-5</span>);
+    }
+}
+<span class="cmt">// Run: vendor/bin/phpunit tests/BmiCalculatorTest.php</span></pre>
+      </div>
+
+      <!-- Testing strategy table -->
+      <h2 class="section-title">📋 Testing Tool Selection Guide</h2>
+      <table>
+        <thead>
+          <tr><th>What to test</th><th>Tool</th><th>Type</th><th>Cost</th><th>Mention in OSP</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Individual PHP functions</td><td>PHPUnit</td><td>Unit (white-box)</td><td>Free</td><td>Unit test log</td></tr>
+          <tr><td>JavaScript functions</td><td>Jest</td><td>Unit (white-box)</td><td>Free</td><td>Unit test log</td></tr>
+          <tr><td>WCAG accessibility</td><td>Axe DevTools</td><td>Automated (black-box)</td><td>Free</td><td>Accessibility report</td></tr>
+          <tr><td>Performance score</td><td>Lighthouse</td><td>Performance</td><td>Free (built-in)</td><td>NFR evidence</td></tr>
+          <tr><td>Full user journey</td><td>Cypress</td><td>E2E (black-box)</td><td>Free tier</td><td>System test evidence</td></tr>
+          <tr><td>API endpoints</td><td>Postman</td><td>Integration (black-box)</td><td>Free tier</td><td>Integration test log</td></tr>
+          <tr><td>Load / stress</td><td>Apache JMeter</td><td>Performance/Load</td><td>Free</td><td>NFR performance evidence</td></tr>
+          <tr><td>Security vulnerabilities</td><td>OWASP ZAP</td><td>Security (automated)</td><td>Free</td><td>Security test evidence</td></tr>
+          <tr><td>Colour contrast</td><td>WebAIM Contrast Checker</td><td>Accessibility</td><td>Free</td><td>WCAG 1.4.3 evidence</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

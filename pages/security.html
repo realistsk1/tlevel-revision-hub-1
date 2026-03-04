@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber Security – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item active"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+          <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Cyber Security</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">🔐 Cyber Security</div>
+        <h1>Security Best Practices</h1>
+        <p>CIA triad, OWASP Top 10, secure coding practices, and how to justify each decision for Distinction marks.</p>
+      </header>
+
+      <!-- CIA Triad -->
+      <h2 class="section-title">🔺 CIA Triad</h2>
+      <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem;">The mark scheme states Distinction requires "thoroughly effective application of procedures and security controls to ensure <strong>confidentiality, integrity and availability</strong>."</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>Confidentiality</h3>
+          <p>Ensuring data is accessible only to authorised users. Implementations: password hashing (bcrypt), HTTPS/TLS, session management, role-based access control (RBAC), data encryption at rest.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">✔️</div>
+          <h3>Integrity</h3>
+          <p>Ensuring data cannot be tampered with or corrupted. Implementations: input validation, prepared statements, CSRF tokens, digital signatures, database transactions, checksums.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Availability</h3>
+          <p>Ensuring the system is accessible when needed. Implementations: rate limiting to prevent DDoS, server-side error handling, backups, graceful degradation, error pages that don't expose system info.</p>
+        </div>
+      </div>
+
+      <!-- OWASP -->
+      <h2 class="section-title">🌐 OWASP Top 10 — Relevant to OSP</h2>
+
+      <table>
+        <thead>
+          <tr><th>Threat</th><th>What It Is</th><th>Your Mitigation (Exam Answer)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SQL Injection</strong></td>
+            <td>Malicious SQL inserted via form inputs to manipulate database queries</td>
+            <td>PDO prepared statements with parameterised queries; server-side input validation</td>
+          </tr>
+          <tr>
+            <td><strong>Broken Authentication</strong></td>
+            <td>Weak passwords, plain-text storage, session hijacking</td>
+            <td><code>password_hash()</code> with bcrypt; <code>session_regenerate_id()</code>; HTTPS only cookies; session timeout</td>
+          </tr>
+          <tr>
+            <td><strong>XSS (Cross-Site Scripting)</strong></td>
+            <td>Attacker injects client-side scripts into pages viewed by others</td>
+            <td><code>htmlspecialchars()</code> on all output; Content-Security-Policy header; validate/sanitise all inputs</td>
+          </tr>
+          <tr>
+            <td><strong>CSRF</strong></td>
+            <td>Forces user to unknowingly submit a request to a site they're logged into</td>
+            <td>CSRF tokens in all state-changing forms; SameSite cookie attribute; verify Referer header</td>
+          </tr>
+          <tr>
+            <td><strong>Sensitive Data Exposure</strong></td>
+            <td>Transmitting or storing sensitive data without encryption</td>
+            <td>HTTPS (TLS 1.2+); store hashes not plain passwords; GDPR-compliant data minimisation</td>
+          </tr>
+          <tr>
+            <td><strong>Broken Access Control</strong></td>
+            <td>Users accessing resources they shouldn't (e.g. other users' data)</td>
+            <td>Server-side authorisation checks on every request; RBAC; verify <code>$_SESSION['user_id']</code> matches resource owner</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Password Hashing -->
+      <h2 class="section-title">🔑 Password Hashing — Explained</h2>
+
+      <div class="info-box danger">
+        <span class="info-icon">🚫</span>
+        <div><strong>Never store plain-text passwords or use MD5/SHA1.</strong> These are either reversible or fast enough to brute-force. Always use a purposely slow hashing algorithm.</div>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">❌</div>
+          <h3>Wrong: Plain Text / MD5</h3>
+          <p><code>$password = "mypassword";</code><br/>
+          MD5: <code>34819d7beeabb9260a5c854bc85b3e44</code><br/><br/>
+          MD5 is a fast hashing function — attackers can compute billions of MD5 hashes per second using GPU cracking. Rainbow tables can reverse common passwords instantly.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">✅</div>
+          <h3>Correct: bcrypt via password_hash()</h3>
+          <p>bcrypt is <strong>intentionally slow</strong> (configurable cost factor). It automatically generates a random <strong>salt</strong> to prevent rainbow table attacks. <code>password_verify()</code> safely checks the hash without timing attacks.</p>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">PHP — Password Hashing</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">&lt;?php
+// ✅ CORRECT: Hash with bcrypt (cost 12 = ~250ms on modern hardware)</span>
+$<span class="var">hash</span> = <span class="fn">password_hash</span>($<span class="var">plainPassword</span>, PASSWORD_BCRYPT, [<span class="str">'cost'</span> =&gt; <span class="num">12</span>]);
+<span class="cmt">// Result: "$2y$12$randomsalt+hashedvalue..." — different every time!</span>
+
+<span class="cmt">// ✅ CORRECT: Verify — uses constant-time comparison to prevent timing attacks</span>
+<span class="kw">if</span> (<span class="fn">password_verify</span>($<span class="var">plainPassword</span>, $<span class="var">storedHash</span>)) {
+    <span class="cmt">// Password is correct — login the user</span>
+}
+
+<span class="cmt">// ❌ WRONG: Never do this</span>
+<span class="kw">if</span> (<span class="fn">md5</span>($<span class="var">password</span>) === $<span class="var">dbPassword</span>) { <span class="cmt">// Vulnerable to rainbow tables</span> }
+<span class="kw">if</span> ($<span class="var">password</span> === $<span class="var">dbPassword</span>) { <span class="cmt">// Plain text — catastrophic breach</span> }</pre>
+      </div>
+
+      <!-- GDPR -->
+      <h2 class="section-title">📋 GDPR &amp; Legal Compliance</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📜</div>
+          <h3>GDPR Key Principles</h3>
+          <p><strong>Lawfulness:</strong> Have a legal basis for processing (consent, contract).<br/>
+          <strong>Purpose limitation:</strong> Only use data for stated purpose.<br/>
+          <strong>Data minimisation:</strong> Collect only what's necessary.<br/>
+          <strong>Storage limitation:</strong> Don't keep data longer than needed.<br/>
+          <strong>Integrity &amp; confidentiality:</strong> Keep data secure.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>Computer Misuse Act 1990</h3>
+          <p>Three offences relevant to developers:<br/>
+          1. <strong>Unauthorised access</strong> to computer material.<br/>
+          2. Unauthorised access with <strong>intent to commit further offences</strong>.<br/>
+          3. <strong>Unauthorised modification</strong> of computer material.<br/><br/>
+          As a developer, your security controls help prevent CMA violations against your users.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏋️</div>
+          <h3>Health App Specific</h3>
+          <p>Health data is <strong>Special Category</strong> under GDPR (Article 9) — requires explicit consent. This includes BMI, calorie data, medical conditions. You must:<br/>
+          - State explicitly what health data is collected<br/>
+          - Allow users to delete their data (Right to Erasure)<br/>
+          - Provide a Privacy Notice</p>
+        </div>
+      </div>
+
+      <!-- Security Checklist -->
+      <h2 class="section-title">✅ Security Implementation Checklist</h2>
+      <div class="info-box info">
+        <span class="info-icon">📌</span>
+        <div>Use this list to verify your Distinction-level solution covers all security aspects. The mark scheme awards Distinction for "thoroughly effective application of procedures and security controls."</div>
+      </div>
+
+      <div class="card" style="margin-top:0;">
+        <ul class="checklist">
+          <li><input type="checkbox" class="check-input"/> All passwords hashed with bcrypt (cost ≥ 10)</li>
+          <li><input type="checkbox" class="check-input"/> All SQL queries use prepared statements</li>
+          <li><input type="checkbox" class="check-input"/> All output HTML-encoded with <code>htmlspecialchars()</code></li>
+          <li><input type="checkbox" class="check-input"/> CSRF tokens in all POST forms</li>
+          <li><input type="checkbox" class="check-input"/> Session regenerated on login (<code>session_regenerate_id(true)</code>)</li>
+          <li><input type="checkbox" class="check-input"/> Cookies set with <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite=Strict</code></li>
+          <li><input type="checkbox" class="check-input"/> Server-side authorisation on every protected route</li>
+          <li><input type="checkbox" class="check-input"/> Error messages don't reveal system details</li>
+          <li><input type="checkbox" class="check-input"/> Input validation on both client AND server side</li>
+          <li><input type="checkbox" class="check-input"/> GDPR Privacy Notice / consent mechanism implemented</li>
+          <li><input type="checkbox" class="check-input"/> Security decisions documented and justified in proposal/evaluation</li>
+        </ul>
+      </div>
+
+      <!-- Exam Accordion -->
+      <h2 class="section-title">❓ Common Exam Questions</h2>
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Explain how prepared statements prevent SQL injection</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">
+            In a vulnerable query like <code>"SELECT * FROM users WHERE email = '$email'"</code>, an attacker could input <code>' OR '1'='1</code> to bypass authentication. Prepared statements separate the SQL structure from the data. The database compiles the query template first, then receives the parameters as pure data — the database engine will <em>never</em> interpret them as SQL commands. Using PDO: <code>$stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email"); $stmt->bindParam(':email', $email);</code>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>What is the difference between authentication and authorisation?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">
+            <strong>Authentication</strong> verifies <em>who you are</em> (login with email/password). <strong>Authorisation</strong> determines <em>what you are allowed to do</em> (can this user access this resource?). A logged-in user is authenticated, but may not be authorised to view another user's data. Always check both — authentication without authorisation allows <em>horizontal privilege escalation</em> (accessing other users' data).
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header"><span>Why is the Computer Misuse Act relevant to a health fitness app?</span><span class="accordion-arrow">▼</span></div>
+          <div class="accordion-body">
+            The Computer Misuse Act 1990 makes it illegal to access computer material without authorisation. As a developer, you must implement security controls to <em>prevent</em> others from committing CMA offences against your users. Specifically: implementing access controls prevents Section 1 (unauthorised access) offences; proper input validation and security controls prevent Section 3 (unauthorised modification) attacks like data tampering. Failing to implement adequate security could also expose you to civil liability under GDPR.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>

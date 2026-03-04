@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Change Management – T-Level Revision Hub</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    .process-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 20px 0;
+      position: relative;
+    }
+    .process-step {
+      flex: 1;
+      min-width: 130px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 12px;
+      text-align: center;
+      font-size: 0.82rem;
+      position: relative;
+      margin: 4px;
+    }
+    .process-step .step-num {
+      display: inline-block;
+      width: 24px; height: 24px;
+      background: var(--accent-2);
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.75rem;
+      line-height: 24px;
+      margin-bottom: 8px;
+    }
+    .process-step h4 {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .process-step p { color: var(--text-muted); font-size: 0.78rem; margin: 0; }
+
+    .example-doc {
+      background: var(--code-bg);
+      border-radius: 12px;
+      padding: 20px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--code-text);
+      line-height: 1.7;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+    .example-doc .doc-header { color: #cba6f7; font-weight: 600; margin-bottom: 8px; display: block; }
+    .example-doc .doc-label { color: #89b4fa; }
+    .example-doc .doc-value { color: #a6e3a1; }
+    .example-doc .doc-section { color: #f9e2af; font-weight: 600; margin-top: 12px; display: block; }
+    .example-doc .doc-body { color: #cdd6f4; }
+    .example-doc .doc-muted { color: #6c7086; font-style: italic; }
+
+    .trigger-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .trigger-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .trigger-item .trigger-icon { font-size: 1.5rem; margin-bottom: 8px; }
+    .trigger-item h4 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 5px; }
+    .trigger-item p { font-size: 0.82rem; color: var(--text-secondary); margin: 0; }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">T-Level Digital<span>Revision Hub</span></div>
+      <div class="sidebar-badge">OSP Exam Prep</div>
+    </div>
+    <div class="sidebar-search"><input type="search" id="sidebarSearch" placeholder="Search topics…" /></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Home</div>
+      <a href="../index.html" class="nav-item"><span class="nav-icon">🏠</span> Dashboard</a>
+      <div class="nav-section-label">Core Topics</div>
+      <a href="code-examples.html" class="nav-item"><span class="nav-icon">💻</span> Code Examples</a>
+      <a href="security.html" class="nav-item"><span class="nav-icon">🔐</span> Cyber Security</a>
+      <a href="accessibility.html" class="nav-item"><span class="nav-icon">♿</span> Accessibility (WCAG)</a>
+      <a href="documentation.html" class="nav-item"><span class="nav-icon">📄</span> Documentation</a>
+      <div class="nav-section-label">New Topics</div>
+      <a href="methodologies.html" class="nav-item"><span class="nav-icon">🔄</span> Dev Methodologies</a>
+      <a href="emerging-tech.html" class="nav-item"><span class="nav-icon">🚀</span> Emerging Technologies</a>
+      <a href="change-management.html" class="nav-item active"><span class="nav-icon">🔧</span> Change Management</a>
+      <a href="advanced-code.html" class="nav-item"><span class="nav-icon">⚙️</span> Advanced Code</a>
+      <a href="advanced-testing.html" class="nav-item"><span class="nav-icon">🧪</span> Advanced Testing</a>
+      <a href="team-roles.html" class="nav-item"><span class="nav-icon">👥</span> Digital Team Roles</a>
+      <div class="nav-section-label">Exam Prep</div>
+      <a href="distinction-examples.html" class="nav-item"><span class="nav-icon">⭐</span> Distinction Examples</a>
+      <a href="mock-tasks.html" class="nav-item"><span class="nav-icon">📝</span> Mock OSP Tasks</a>
+      <a href="checklists.html" class="nav-item"><span class="nav-icon">✅</span> Revision Checklists</a>
+      <div class="nav-section-label">Your Work</div>
+      <a href="your-project.html" class="nav-item"><span class="nav-icon">🔬</span> Your Project Analysis</a>
+    </nav>
+    <div class="sidebar-footer">T-Level Digital Production, Design &amp; Development · 2025</div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="page-breadcrumb">Dashboard / <strong>Change Management</strong></div>
+      </div>
+      <div class="topbar-right">
+        <div class="exam-countdown" id="examCountdown">⏱ Calculating…</div>
+        <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <header class="page-header fade-up">
+        <div class="eyebrow">🔧 Change Management</div>
+        <h1>Change Management &amp; User Support</h1>
+        <p>Triggers for change, the change control process, rollback planning, traceability, and creating professional user support materials — FAQs and release notes.</p>
+      </header>
+
+      <!-- Change Triggers -->
+      <h2 class="section-title">⚡ Triggers for Change</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Changes to software don't happen randomly — they're triggered by specific events. Understanding and documenting these triggers is part of Distinction-level iterative development evidence.</p>
+
+      <div class="trigger-grid">
+        <div class="trigger-item">
+          <div class="trigger-icon">🐛</div>
+          <h4>Defect / Bug</h4>
+          <p>Testing reveals an error. A formal defect log entry triggers investigation, fix, and regression testing.</p>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-icon">📋</div>
+          <h4>New Requirement</h4>
+          <p>Client requests additional functionality after initial scoping. Requires impact assessment before implementation.</p>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-icon">💬</div>
+          <h4>User Feedback</h4>
+          <p>UAT or live user testing reveals usability problems. Feedback analysis triggers UX changes.</p>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-icon">⚖️</div>
+          <h4>Regulatory Change</h4>
+          <p>New legislation (e.g. updated GDPR guidance, new accessibility standard) mandates system updates.</p>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-icon">🔐</div>
+          <h4>Security Vulnerability</h4>
+          <p>A CVE (Common Vulnerability and Exposures) is published affecting a dependency. Emergency patching required.</p>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-icon">⚙️</div>
+          <h4>Technical Debt</h4>
+          <p>Code that was "quick" to write but hard to maintain accumulates. Refactoring triggered to restore quality.</p>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-icon">📈</div>
+          <h4>Performance Issue</h4>
+          <p>Load testing reveals the system cannot handle expected user numbers. Architecture changes triggered.</p>
+        </div>
+        <div class="trigger-item">
+          <div class="trigger-icon">🔄</div>
+          <h4>Dependency Update</h4>
+          <p>A third-party library releases a new version with breaking changes or security patches.</p>
+        </div>
+      </div>
+
+      <!-- Change Control Process -->
+      <h2 class="section-title">📋 The Change Control Process</h2>
+
+      <div class="process-flow">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h4>Change Request</h4>
+          <p>Formally document: what change, why, who requested, priority</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h4>Impact Assessment</h4>
+          <p>Analyse effect on: functionality, security, other components, timeline, cost</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h4>Approval</h4>
+          <p>Stakeholder sign-off. May be via Change Advisory Board (CAB) in large orgs</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h4>Implementation</h4>
+          <p>Code change in version control (new branch). Document what was changed and why</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">5</div>
+          <h4>Testing</h4>
+          <p>Unit + integration + regression testing. Ensure change doesn't break existing functionality</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">6</div>
+          <h4>Deployment</h4>
+          <p>Release to production with rollback plan ready. Monitor for issues post-deployment</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">7</div>
+          <h4>Review &amp; Close</h4>
+          <p>Verify change met its objective. Update documentation. Close the change request.</p>
+        </div>
+      </div>
+
+      <!-- Rollback Planning -->
+      <h2 class="section-title">⏪ Rollback Planning</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">A rollback plan defines exactly how to revert a change if it causes problems in production. Having a rollback plan is essential before deploying any significant change — it's the "undo button" for production systems.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🌿</div>
+          <h3>Git Branching Strategy</h3>
+          <p>Every change made on a feature branch. <code>main</code> always stays deployable. If a deployment fails: <code>git revert</code> or redeploy the previous tagged release. Never commit directly to <code>main</code>.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🗄️</div>
+          <h3>Database Migrations</h3>
+          <p>Every schema change has an "up" migration and a "down" migration. If a release breaks something, run the down migration to restore the previous schema. Tools: Flyway, Liquibase, Laravel Migrations.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📸</div>
+          <h3>Snapshots &amp; Backups</h3>
+          <p>Take a full database backup before deploying. If deployment corrupts data, restore from backup. Document: where backup is stored, who can restore it, estimated restore time (RTO).</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚦</div>
+          <h3>Feature Flags</h3>
+          <p>New features deployed but disabled by default. Enable for a small % of users first (canary release). If problems occur, disable the flag instantly without redeploying.</p>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+          <span class="code-lang">Rollback Plan — Example Documentation</span>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <pre><span class="cmt">ROLLBACK PLAN — Version 1.2.0 → 1.1.3
+=========================================
+Change: Added booking conflict detection algorithm
+Date: DD/MM/YYYY | Approved by: [Name]
+
+TRIGGER CONDITIONS (when to rollback):
+  - Booking submissions fail for more than 5% of users
+  - New error in error logs: "ConflictCheckException"
+  - Any data loss detected in bookings table
+
+ROLLBACK STEPS:
+  1. Notify stakeholders (Slack #deployments channel)
+  2. Switch load balancer to previous server instance:
+       $ kubectl rollout undo deployment/resource-hub
+  3. Verify v1.1.3 is serving traffic (check /health endpoint)
+  4. Run DB down migration if schema changed:
+       $ php artisan migrate:rollback --step=1
+  5. Restore DB backup if data corruption detected:
+       $ mysql resource_booking < backup_20250115_0900.sql
+  6. Confirm with stakeholders that rollback is complete
+
+ESTIMATED ROLLBACK TIME: 8 minutes
+ROLLBACK OWNER: [Developer name]
+POST-ROLLBACK: Open P1 incident, root cause analysis within 24hrs</span></pre>
+      </div>
+
+      <!-- Traceability -->
+      <h2 class="section-title">🔍 Traceability</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Traceability means being able to trace any piece of software back to the requirement that justified it — and forward to the tests that verified it. Distinction documentation shows a clear chain: Requirement → Design Decision → Code → Test → Result.</p>
+
+      <table>
+        <thead>
+          <tr><th>Requirement ID</th><th>Feature</th><th>Design Reference</th><th>Code Location</th><th>Test ID</th><th>Test Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>FR-03</strong></td>
+            <td>Book a resource with date/time</td>
+            <td>Design Doc §4.2, ERD</td>
+            <td><code>student_dashboard.php:42–75</code></td>
+            <td>T-08, T-09, T-10</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><strong>FR-04</strong></td>
+            <td>Conflict detection — no double booking</td>
+            <td>Algorithm Design §4.3</td>
+            <td><code>student_dashboard.php:55–68</code></td>
+            <td>T-11, T-12</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+          <tr>
+            <td><strong>NFR-03</strong></td>
+            <td>WCAG 2.1 AA compliance</td>
+            <td>Interface Design §3.2</td>
+            <td>All view templates</td>
+            <td>T-AX-01 (Axe)</td>
+            <td><span class="tag tag-amber">⚠ Partial</span></td>
+          </tr>
+          <tr>
+            <td><strong>SEC-01</strong></td>
+            <td>CSRF protection on all forms</td>
+            <td>Security Design §6</td>
+            <td><code>auth.php:verifyCsrf()</code></td>
+            <td>T-SEC-03</td>
+            <td><span class="tag tag-green">✓ Pass</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- User Support -->
+      <h2 class="section-title">👤 User Support Materials</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">❓</div>
+          <h3>FAQs</h3>
+          <p>Frequently Asked Questions anticipate common user problems and answer them proactively. Good FAQs reduce support requests and improve user experience. For Distinction: show you've considered the non-technical user perspective.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Release Notes</h3>
+          <p>Document what changed between versions — new features, bug fixes, known issues, breaking changes. Essential for iterative development documentation and traceability.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎬</div>
+          <h3>Screencasts / Tutorials</h3>
+          <p>Video walkthroughs for complex features. Referenced in the mark scheme (Task 3A) as a feedback gathering tool — a screencast demonstrates your solution to non-technical stakeholders.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📖</div>
+          <h3>User Manual</h3>
+          <p>Step-by-step guide for all features. Distinction quality means separate sections for different user roles (student vs admin) and appropriate language for each audience.</p>
+        </div>
+      </div>
+
+      <!-- Example FAQ -->
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;margin:24px 0 12px;">Example: FAQ Document (Resource Hub)</h3>
+      <div class="example-doc">
+<span class="doc-header"># Resource Hub — Frequently Asked Questions (FAQ)</span>
+<span class="doc-section">FOR STUDENTS</span>
+<span class="doc-label">Q: How do I book a resource?</span>
+<span class="doc-body">A: Log in → Browse Resources → Click "Book Now" on your chosen item
+   → Select date and time → Submit Booking. You'll see a "pending" status
+   until an admin approves your request.</span>
+
+<span class="doc-label">Q: Can I book something in the past?</span>
+<span class="doc-body">A: No. The date picker only allows today or future dates. This is
+   enforced both in the interface and on the server.</span>
+
+<span class="doc-label">Q: What does "pending" mean for my booking?</span>
+<span class="doc-body">A: Your booking has been submitted and is waiting for admin approval.
+   You'll see it update to "approved" or "rejected" after review.
+   You can cancel a pending booking from "My Bookings".</span>
+
+<span class="doc-label">Q: I tried to book but got "resource already booked"?</span>
+<span class="doc-body">A: Another student has an approved or pending booking for that time slot.
+   Try a different time or a different resource of the same type.</span>
+
+<span class="doc-section">FOR ADMINISTRATORS</span>
+<span class="doc-label">Q: How do I approve or reject a booking?</span>
+<span class="doc-body">A: Admin Dashboard → Manage Bookings → Find the pending booking
+   → Click Approve or Reject. The student's dashboard updates immediately.</span>
+
+<span class="doc-label">Q: How do I mark a resource as under maintenance?</span>
+<span class="doc-body">A: Admin Dashboard → Resources → find the resource → Set Maintenance.
+   It will disappear from student booking options until set back to Available.</span>
+      </div>
+
+      <!-- Example Release Notes -->
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;margin:24px 0 12px;">Example: Release Notes (Version 1.2.0)</h3>
+      <div class="example-doc">
+<span class="doc-header"># Resource Hub — Release Notes v1.2.0</span>
+<span class="doc-label">Release date:</span> <span class="doc-value">15 January 2025</span>
+<span class="doc-label">Previous version:</span> <span class="doc-value">v1.1.3</span>
+<span class="doc-label">Released by:</span> <span class="doc-value">[Your Name]</span>
+
+<span class="doc-section">✨ NEW FEATURES</span>
+<span class="doc-body">- Real-time booking conflict detection: students now see an immediate
+  error if their chosen time slot overlaps an existing booking
+  (previously only caught on form submission — UX improvement)
+- Admin dashboard: booking table now filterable by status (pending /
+  approved / rejected / cancelled) and searchable by student name
+- Password strength indicator on registration page (visual bar + label)</span>
+
+<span class="doc-section">🐛 BUG FIXES</span>
+<span class="doc-body">- Fixed: BMI boundary value (18.5) was incorrectly classified as
+  "Underweight" due to floating point comparison error (DEF-01)
+  Fix: changed from strict equality to range comparison (&gt;= 18.5)
+- Fixed: Cancel booking button visible on approved bookings (cosmetic)
+- Fixed: Session not regenerated on admin role promotion (security)</span>
+
+<span class="doc-section">⚠️ KNOWN ISSUES</span>
+<span class="doc-body">- Booking modal missing ARIA role="dialog" — screen reader users
+  may not be announced correctly. Fix scheduled for v1.3.0
+- No email notification sent on booking approval (planned feature)</span>
+
+<span class="doc-section">🔧 TECHNICAL CHANGES</span>
+<span class="doc-body">- PHP minimum version raised to 8.1 (uses match() expressions)
+- Added mysqli_report(MYSQLI_REPORT_ERROR|MYSQLI_REPORT_STRICT)
+  to db_connect.php for improved error handling
+- All functions in auth.php now documented with PHPDoc</span>
+      </div>
+
+    </div>
+  </main>
+</div>
+<script src="../assets/js/script.js"></script>
+</body>
+</html>
